@@ -25,6 +25,7 @@ namespace ChuongTrinhQuanLyKhachSan
         public string roomtype { get; set; }
         public Nullable<decimal> roomrate { get; set; }
         public string roomstatus { get; set; }
+        public Nullable<bool> isRemove { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }

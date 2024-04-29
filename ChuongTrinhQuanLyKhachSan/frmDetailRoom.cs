@@ -14,6 +14,7 @@ namespace ChuongTrinhQuanLyKhachSan
     {
         private Room room;
         private Color roomColor;
+        QLKHACHSANEntities db = new QLKHACHSANEntities();
         public frmDetailRoom(Room room, Color roomColor)
         {
             InitializeComponent();
@@ -32,6 +33,79 @@ namespace ChuongTrinhQuanLyKhachSan
             grpRoom.BorderColor = roomColor;
             grpRoom.ForeColor = Color.White;
             grpRoom.CustomBorderColor = roomColor;
+        }
+
+        private DateTime startTime;
+        private TimeSpan elapsedTime;
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            txbEnd.Text = DateTime.Now.ToString("HH:mm:ss");
+        }
+
+        private void btnDatPhong_Click(object sender, EventArgs e)
+        {
+            if (chkTuChinh.Checked)
+            {
+                startTime = DateTime.Parse(txbStart.Text);
+                txbStart.Text = startTime.ToString("HH:mm:ss");
+                timer1.Start();
+
+            }
+            else
+            {
+                startTime = DateTime.Now;
+                txbStart.Text = startTime.ToString("HH:mm:ss");
+                timer1.Start();
+
+            }
+        }
+
+        private void btnThanhToan_Click(object sender, EventArgs e)
+        {
+            timer1.Stop();
+            DateTime endTime = DateTime.Now;
+            txbEnd.Text = endTime.ToString("HH:mm:ss");
+
+            // Tính toán tổng thời gian giữa startTime và endTime
+            elapsedTime = endTime - startTime;
+            // Hiển thị tổng thời gian trong định dạng phù hợp
+            txbTongTime.Text = elapsedTime.ToString(@"hh\:mm\:ss");
+        }
+
+        void LoadServicesComboBox()
+        {
+
+        }
+
+        private void btnFrmService_Click(object sender, EventArgs e)
+        {
+
+        }
+        int soluong = 0;
+        private void btnGiam_Click(object sender, EventArgs e)
+        {
+            if (soluong == 0)
+            {
+                soluong = 0;
+                return;
+            }
+            else
+            {
+                soluong--;
+                txbServiceSoluong.Text = soluong.ToString();
+
+            }
+        }
+
+        private void btnTang_Click(object sender, EventArgs e)
+        {
+            soluong++;
+            txbServiceSoluong.Text = soluong.ToString();
+        }
+
+        private void grpRoom_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

@@ -106,6 +106,13 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLogin.Designer.cs">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Funct.cs" />
     <Compile Include="function.cs" />
     <Compile Include="frmHome.cs">
       <SubType>Form</SubType>
@@ -133,26 +140,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="QLKHACHSANDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKHACHSANDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="QLKHACHSANDataSet1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKHACHSANDataSet1.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="QLKHACHSANDataSet2.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKHACHSANDataSet2.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="QLKHACHSANDataSet3.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>QLKHACHSANDataSet3.xsd</DependentUpon>
-    </Compile>
     <Compile Include="Room.cs">
       <DependentUpon>Model1.tt</DependentUpon>
     </Compile>
@@ -189,6 +176,9 @@
     <EmbeddedResource Include="frmHome.resx">
       <DependentUpon>frmHome.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLogin.resx">
+      <DependentUpon>frmLogin.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -215,68 +205,24 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="QLKHACHSANDataSet.xsc">
-      <DependentUpon>QLKHACHSANDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QLKHACHSANDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLKHACHSANDataSet.xss">
-      <DependentUpon>QLKHACHSANDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet1.xsc">
-      <DependentUpon>QLKHACHSANDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet1.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QLKHACHSANDataSet1.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLKHACHSANDataSet1.xss">
-      <DependentUpon>QLKHACHSANDataSet1.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet2.xsc">
-      <DependentUpon>QLKHACHSANDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet2.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QLKHACHSANDataSet2.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLKHACHSANDataSet2.xss">
-      <DependentUpon>QLKHACHSANDataSet2.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet3.xsc">
-      <DependentUpon>QLKHACHSANDataSet3.xsd</DependentUpon>
-    </None>
-    <None Include="QLKHACHSANDataSet3.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>QLKHACHSANDataSet3.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="QLKHACHSANDataSet3.xss">
-      <DependentUpon>QLKHACHSANDataSet3.xsd</DependentUpon>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
     <Content Include="Model1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>Model1.Context.cs</LastGenOutput>
       <DependentUpon>Model1.edmx</DependentUpon>
+      <LastGenOutput>Model1.Context.cs</LastGenOutput>
     </Content>
     <Content Include="Model1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>Model1.edmx</DependentUpon>
       <LastGenOutput>Model1.cs</LastGenOutput>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

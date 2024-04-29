@@ -22,7 +22,7 @@ namespace ChuongTrinhQuanLyKhachSan
     
         public int serid { get; set; }
         public string sername { get; set; }
-        public string serdetail { get; set; }
+        public Nullable<int> serquantity { get; set; }
         public Nullable<decimal> sertax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
