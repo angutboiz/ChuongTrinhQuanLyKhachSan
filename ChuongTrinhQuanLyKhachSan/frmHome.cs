@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Drawing;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -183,7 +184,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 db.Room.Add(new Room()
                 {
                     roomnumber = txbRName.Text,
-                    roomrate = decimal.Parse(Funct.RemoveDot(txbRPrice.Text)),
+                    roomrate = decimal.Parse(txbRPrice.Text.Replace(" ", "")),
                     roomtype = cbRType.Text,
                     roomstatus = cbRStatus.Text,
                     isRemove = false
@@ -213,7 +214,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 Room room = db.Room.Find(id);
                 room.roomnumber = txbRName.Text;
                 room.roomtype = cbRType.Text;
-                room.roomrate = decimal.Parse(txbRPrice.Text);
+                room.roomrate = decimal.Parse(txbRPrice.Text.Replace(" ", ""));
                 room.roomstatus = cbRStatus.Text;
 
                 db.SaveChanges();
@@ -285,6 +286,8 @@ namespace ChuongTrinhQuanLyKhachSan
                 newX = 35 + (i % 5) * 200; // Tính toán vị trí x dựa trên vị trí trong hàng
 
                 clonedGroupBox.Location = new Point(newX, newY);
+
+                this.tpPhong.Controls.Remove(clonedGroupBox);
                 this.tpPhong.Controls.Add(clonedGroupBox);
 
                 clonedGroupBox.Click += (sender, e) =>
@@ -312,6 +315,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 label2.Text = "Giá tiền: " + item.roomrate;
                 label2.ForeColor = Color.Black;
                 label2.Location = new Point(0, newY + 50);
+
                 clonedGroupBox.Controls.Add(label2);
 
 
@@ -333,7 +337,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void txbRPrice_TextChanged(object sender, EventArgs e)
         {
-            Funct.FormatNumberWithCommas(txbRPrice);
+            //Funct.FormatNumberWithCommas(txbRPrice);
         }
 
         private void rbNhom_CheckedChanged(object sender, EventArgs e)
@@ -346,6 +350,10 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnRefesh_Click(object sender, EventArgs e)
         {
+            this.Close();
+            frmHome frm = new frmHome();
+            frm.ShowDialog();
+            frmHome_Load(this, EventArgs.Empty);
             LoadDataRoom();
             LoadRoom();
         }
@@ -638,7 +646,7 @@ namespace ChuongTrinhQuanLyKhachSan
             txbRName.Text = dgvRoom.SelectedRows[0].Cells[1].Value.ToString();
             cbRType.Text = dgvRoom.SelectedRows[0].Cells[2].Value.ToString();
             txbRPrice.Text = dgvRoom.SelectedRows[0].Cells[3].Value.ToString();
-            cbRStatus.Text = dgvKH.SelectedRows[0].Cells[4].Value?.ToString();
+            cbRStatus.Text = dgvRoom.SelectedRows[0].Cells[4].Value.ToString();
         }
 
         private void dgvRoom_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -654,6 +662,24 @@ namespace ChuongTrinhQuanLyKhachSan
                 ClearFieldRoom();
                 LoadDataRoom();
             }
+        }
+
+        private void cbRStatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+           
+        }
+
+        private void cbRType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+           /* VIP
+Quạt
+Thường
+Máy lạnh*/
+            if (cbRType.SelectedIndex == 0) txbRPrice.Text = "150 000";
+            if (cbRType.SelectedIndex == 1) txbRPrice.Text = "50 000";
+            if (cbRType.SelectedIndex == 2) txbRPrice.Text = "70 000";
+            if (cbRType.SelectedIndex == 3) txbRPrice.Text = "90 000";
         }
     }
 }

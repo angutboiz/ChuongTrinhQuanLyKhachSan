@@ -65,8 +65,19 @@
             this.txbNVName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbNVID = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvNV = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffsex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cbNVSex = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tpKH = new System.Windows.Forms.TabPage();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txbKHEmail = new Guna.UI2.WinForms.Guna2TextBox();
             this.label18 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
@@ -83,6 +94,12 @@
             this.txbKHName = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbKHID = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvKH = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpQLPhong = new System.Windows.Forms.TabPage();
             this.label24 = new System.Windows.Forms.Label();
             this.label23 = new System.Windows.Forms.Label();
@@ -100,6 +117,11 @@
             this.txbRID = new Guna.UI2.WinForms.Guna2TextBox();
             this.cbRType = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dgvRoom = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tpPhong = new System.Windows.Forms.TabPage();
             this.label27 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
@@ -116,28 +138,6 @@
             this.tpDashboard = new System.Windows.Forms.TabPage();
             this.label15 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.label28 = new System.Windows.Forms.Label();
-            this.txbKHEmail = new Guna.UI2.WinForms.Guna2TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.staffsex = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcName.SuspendLayout();
             this.tpNV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNV)).BeginInit();
@@ -640,6 +640,78 @@
             this.dgvNV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNV_CellMouseClick);
             this.dgvNV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNV_CellMouseDoubleClick);
             // 
+            // Column1
+            // 
+            this.Column1.DataPropertyName = "staffid";
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // staffname
+            // 
+            this.staffname.DataPropertyName = "staffname";
+            this.staffname.HeaderText = "Tên nhân viên";
+            this.staffname.MinimumWidth = 6;
+            this.staffname.Name = "staffname";
+            this.staffname.ReadOnly = true;
+            // 
+            // staffsex
+            // 
+            this.staffsex.DataPropertyName = "staffsex";
+            this.staffsex.HeaderText = "Giới tính";
+            this.staffsex.MinimumWidth = 6;
+            this.staffsex.Name = "staffsex";
+            this.staffsex.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.DataPropertyName = "staffphone";
+            this.Column2.HeaderText = "Số điện thoại";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column7
+            // 
+            this.Column7.DataPropertyName = "staffdate";
+            this.Column7.HeaderText = "Ngày sinh";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.DataPropertyName = "staffaddress";
+            this.Column3.HeaderText = "Địa chỉ";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "username";
+            this.Column4.HeaderText = "Tên tài khoản";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "password";
+            this.Column5.HeaderText = "Mật khẩu";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
+            // 
+            // Column6
+            // 
+            this.Column6.DataPropertyName = "role";
+            this.Column6.HeaderText = "Chức vụ";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
             // cbNVSex
             // 
             this.cbNVSex.BackColor = System.Drawing.Color.Transparent;
@@ -687,6 +759,35 @@
             this.tpKH.TabIndex = 4;
             this.tpKH.Text = "Khách hàng";
             this.tpKH.UseVisualStyleBackColor = true;
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(576, 20);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(41, 16);
+            this.label28.TabIndex = 62;
+            this.label28.Text = "Email";
+            // 
+            // txbKHEmail
+            // 
+            this.txbKHEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbKHEmail.DefaultText = "";
+            this.txbKHEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbKHEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbKHEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbKHEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbKHEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbKHEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbKHEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbKHEmail.Location = new System.Drawing.Point(696, 5);
+            this.txbKHEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txbKHEmail.Name = "txbKHEmail";
+            this.txbKHEmail.PasswordChar = '\0';
+            this.txbKHEmail.PlaceholderText = "";
+            this.txbKHEmail.SelectedText = "";
+            this.txbKHEmail.Size = new System.Drawing.Size(267, 44);
+            this.txbKHEmail.TabIndex = 61;
             // 
             // label18
             // 
@@ -980,6 +1081,54 @@
             this.dgvKH.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvKH_CellMouseClick);
             this.dgvKH.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvKH_CellMouseDoubleClick);
             // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "cusid";
+            this.Column8.HeaderText = "ID";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "cusname";
+            this.Column9.HeaderText = "Tên khách hàng";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "cusphone";
+            this.Column10.HeaderText = "Số điện thoại";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "cusemail";
+            this.Column11.HeaderText = "Email";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "cusdate";
+            this.Column12.HeaderText = "Ngày sinh";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "cusaddress";
+            this.Column13.HeaderText = "Địa chỉ";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
             // tpQLPhong
             // 
             this.tpQLPhong.Controls.Add(this.label24);
@@ -1039,9 +1188,9 @@
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(13, 132);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(69, 16);
+            this.label21.Size = new System.Drawing.Size(86, 16);
             this.label21.TabIndex = 62;
-            this.label21.Text = "Giá phòng";
+            this.label21.Text = "Giá phòng / h";
             // 
             // label20
             // 
@@ -1086,6 +1235,7 @@
             this.txbRPrice.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txbRPrice.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
             this.txbRPrice.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbRPrice.Enabled = false;
             this.txbRPrice.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbRPrice.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbRPrice.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
@@ -1175,6 +1325,7 @@
             this.cbRStatus.Size = new System.Drawing.Size(265, 36);
             this.cbRStatus.StartIndex = 0;
             this.cbRStatus.TabIndex = 34;
+            this.cbRStatus.SelectedIndexChanged += new System.EventHandler(this.cbRStatus_SelectedIndexChanged);
             // 
             // txbRName
             // 
@@ -1237,8 +1388,8 @@
             this.cbRType.Margin = new System.Windows.Forms.Padding(4);
             this.cbRType.Name = "cbRType";
             this.cbRType.Size = new System.Drawing.Size(265, 36);
-            this.cbRType.StartIndex = 0;
             this.cbRType.TabIndex = 24;
+            this.cbRType.SelectedIndexChanged += new System.EventHandler(this.cbRType_SelectedIndexChanged);
             // 
             // dgvRoom
             // 
@@ -1305,6 +1456,46 @@
             this.dgvRoom.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRoom_CellMouseClick);
             this.dgvRoom.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRoom_CellMouseDoubleClick);
             // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "roomid";
+            this.Column14.HeaderText = "ID";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // Column15
+            // 
+            this.Column15.DataPropertyName = "roomnumber";
+            this.Column15.HeaderText = "Tên phòng";
+            this.Column15.MinimumWidth = 6;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            // 
+            // Column16
+            // 
+            this.Column16.DataPropertyName = "roomtype";
+            this.Column16.HeaderText = "Kiểu phòng";
+            this.Column16.MinimumWidth = 6;
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            // 
+            // Column17
+            // 
+            this.Column17.DataPropertyName = "roomrate";
+            this.Column17.HeaderText = "Giá phòng theo giờ";
+            this.Column17.MinimumWidth = 6;
+            this.Column17.Name = "Column17";
+            this.Column17.ReadOnly = true;
+            // 
+            // Column18
+            // 
+            this.Column18.DataPropertyName = "roomstatus";
+            this.Column18.HeaderText = "Trạng thái phòng";
+            this.Column18.MinimumWidth = 6;
+            this.Column18.Name = "Column18";
+            this.Column18.ReadOnly = true;
+            // 
             // tpPhong
             // 
             this.tpPhong.Controls.Add(this.label27);
@@ -1349,7 +1540,7 @@
             // 
             this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(663, 755);
+            this.label25.Location = new System.Drawing.Point(660, 755);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(89, 16);
             this.label25.TabIndex = 61;
@@ -1357,6 +1548,7 @@
             // 
             // btnRefesh
             // 
+            this.btnRefesh.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.btnRefesh.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnRefesh.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnRefesh.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
@@ -1493,195 +1685,6 @@
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Location = new System.Drawing.Point(576, 20);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(41, 16);
-            this.label28.TabIndex = 62;
-            this.label28.Text = "Email";
-            // 
-            // txbKHEmail
-            // 
-            this.txbKHEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbKHEmail.DefaultText = "";
-            this.txbKHEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txbKHEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txbKHEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbKHEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbKHEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbKHEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbKHEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbKHEmail.Location = new System.Drawing.Point(696, 5);
-            this.txbKHEmail.Margin = new System.Windows.Forms.Padding(4);
-            this.txbKHEmail.Name = "txbKHEmail";
-            this.txbKHEmail.PasswordChar = '\0';
-            this.txbKHEmail.PlaceholderText = "";
-            this.txbKHEmail.SelectedText = "";
-            this.txbKHEmail.Size = new System.Drawing.Size(267, 44);
-            this.txbKHEmail.TabIndex = 61;
-            // 
-            // Column1
-            // 
-            this.Column1.DataPropertyName = "staffid";
-            this.Column1.HeaderText = "ID";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // staffname
-            // 
-            this.staffname.DataPropertyName = "staffname";
-            this.staffname.HeaderText = "Tên nhân viên";
-            this.staffname.MinimumWidth = 6;
-            this.staffname.Name = "staffname";
-            this.staffname.ReadOnly = true;
-            // 
-            // staffsex
-            // 
-            this.staffsex.DataPropertyName = "staffsex";
-            this.staffsex.HeaderText = "Giới tính";
-            this.staffsex.MinimumWidth = 6;
-            this.staffsex.Name = "staffsex";
-            this.staffsex.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.DataPropertyName = "staffphone";
-            this.Column2.HeaderText = "Số điện thoại";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column7
-            // 
-            this.Column7.DataPropertyName = "staffdate";
-            this.Column7.HeaderText = "Ngày sinh";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.DataPropertyName = "staffaddress";
-            this.Column3.HeaderText = "Địa chỉ";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "username";
-            this.Column4.HeaderText = "Tên tài khoản";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "password";
-            this.Column5.HeaderText = "Mật khẩu";
-            this.Column5.MinimumWidth = 6;
-            this.Column5.Name = "Column5";
-            this.Column5.ReadOnly = true;
-            // 
-            // Column6
-            // 
-            this.Column6.DataPropertyName = "role";
-            this.Column6.HeaderText = "Chức vụ";
-            this.Column6.MinimumWidth = 6;
-            this.Column6.Name = "Column6";
-            this.Column6.ReadOnly = true;
-            // 
-            // Column8
-            // 
-            this.Column8.DataPropertyName = "cusid";
-            this.Column8.HeaderText = "ID";
-            this.Column8.MinimumWidth = 6;
-            this.Column8.Name = "Column8";
-            this.Column8.ReadOnly = true;
-            // 
-            // Column9
-            // 
-            this.Column9.DataPropertyName = "cusname";
-            this.Column9.HeaderText = "Tên khách hàng";
-            this.Column9.MinimumWidth = 6;
-            this.Column9.Name = "Column9";
-            this.Column9.ReadOnly = true;
-            // 
-            // Column10
-            // 
-            this.Column10.DataPropertyName = "cusphone";
-            this.Column10.HeaderText = "Số điện thoại";
-            this.Column10.MinimumWidth = 6;
-            this.Column10.Name = "Column10";
-            this.Column10.ReadOnly = true;
-            // 
-            // Column11
-            // 
-            this.Column11.DataPropertyName = "cusemail";
-            this.Column11.HeaderText = "Email";
-            this.Column11.MinimumWidth = 6;
-            this.Column11.Name = "Column11";
-            this.Column11.ReadOnly = true;
-            // 
-            // Column12
-            // 
-            this.Column12.DataPropertyName = "cusdate";
-            this.Column12.HeaderText = "Ngày sinh";
-            this.Column12.MinimumWidth = 6;
-            this.Column12.Name = "Column12";
-            this.Column12.ReadOnly = true;
-            // 
-            // Column13
-            // 
-            this.Column13.DataPropertyName = "cusaddress";
-            this.Column13.HeaderText = "Địa chỉ";
-            this.Column13.MinimumWidth = 6;
-            this.Column13.Name = "Column13";
-            this.Column13.ReadOnly = true;
-            // 
-            // Column14
-            // 
-            this.Column14.DataPropertyName = "roomid";
-            this.Column14.HeaderText = "ID";
-            this.Column14.MinimumWidth = 6;
-            this.Column14.Name = "Column14";
-            this.Column14.ReadOnly = true;
-            // 
-            // Column15
-            // 
-            this.Column15.DataPropertyName = "roomnumber";
-            this.Column15.HeaderText = "Tên phòng";
-            this.Column15.MinimumWidth = 6;
-            this.Column15.Name = "Column15";
-            this.Column15.ReadOnly = true;
-            // 
-            // Column16
-            // 
-            this.Column16.DataPropertyName = "roomtype";
-            this.Column16.HeaderText = "Kiểu phòng";
-            this.Column16.MinimumWidth = 6;
-            this.Column16.Name = "Column16";
-            this.Column16.ReadOnly = true;
-            // 
-            // Column17
-            // 
-            this.Column17.DataPropertyName = "roomrate";
-            this.Column17.HeaderText = "Giá phòng theo giờ";
-            this.Column17.MinimumWidth = 6;
-            this.Column17.Name = "Column17";
-            this.Column17.ReadOnly = true;
-            // 
-            // Column18
-            // 
-            this.Column18.DataPropertyName = "roomstatus";
-            this.Column18.HeaderText = "Trạng thái phòng";
-            this.Column18.MinimumWidth = 6;
-            this.Column18.Name = "Column18";
-            this.Column18.ReadOnly = true;
             // 
             // frmHome
             // 

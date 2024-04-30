@@ -12,7 +12,7 @@ namespace ChuongTrinhQuanLyKhachSan
 {
     public partial class frmDetailRoom : Form
     {
-        private Room room;
+        Room room;
         private Color roomColor;
         public int idphong;
         QLKHACHSANEntities db = new QLKHACHSANEntities();
@@ -30,13 +30,14 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void frmDetailRoom_Load(object sender, EventArgs e)
         {
-            grpRoom.Text = "Phòng "+ room.roomnumber;
+            grpRoom.Text = "Phòng " + room.roomnumber;
             grpRoom.BorderColor = roomColor;
             grpRoom.ForeColor = Color.White;
             grpRoom.CustomBorderColor = roomColor;
 
-            txbStart.Text = DateTime.Now.ToString("HH:mm:ss");
-            btnThanhToan.Enabled = false;
+
+            txbGiaTheoGio.Text = room.roomrate.ToString();
+            txbLoaiPhong.Text = room.roomtype;
 
             var service = from s in db.Service select s.sername;
             cbService.DataSource = service.ToList();
@@ -48,14 +49,53 @@ namespace ChuongTrinhQuanLyKhachSan
             cbNV.DataSource = staff.ToList();
 
             var customer = from cus in db.Customer
-                        where cus.isRemove == false
-                        select cus.cusname;
+                           where cus.isRemove == false
+                           select cus.cusname;
+
+           
 
             cbKH.DataSource = customer.ToList();
+
+            if (room.roomstatus == "Đang sử dụng")
+            {
+                btnDatPhong.Enabled = false;
+                btnThanhToan.Enabled = true;
+               
+            }
+            else if (room.roomstatus == "Bảo trì")
+            {
+                btnDatPhong.Enabled = false;
+                btnThanhToan.Enabled = false;
+            }
+
+
+
+            //kiếm xem id room có trong booking chưa, nếu có thì hiển thị data staff và customer lên load form
+            var booking = db.Booking.FirstOrDefault(b => b.roomid == room.roomid);
+
+            if (booking != null)
+            {
+                var staffid = db.Staff.Find(booking.staffid);
+                var custom = db.Customer.Find(booking.cusid);
+
+                if (staffid != null && custom != null)
+                {
+                    cbNV.Text = staffid.staffname.ToString();
+                    cbKH.Text = custom.cusname.ToString();
+                    txbStart.Text = booking.checkin.ToString();
+                }
+                
+            }
+            else
+            {
+                ClearData();
+                txbStart.Text = DateTime.Now.ToString("HH:mm:ss");
+                btnDatPhong.Enabled = true;
+                btnThanhToan.Enabled = false;
+            }
         }
 
         private DateTime startTime;
-        private TimeSpan elapsedTime;
         private void timer1_Tick(object sender, EventArgs e)
         {
             txbEnd.Text = DateTime.Now.ToString("HH:mm:ss");
@@ -63,34 +103,77 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnDatPhong_Click(object sender, EventArgs e)
         {
-            if (chkTuChinh.Checked)
+            if (cbKH.SelectedIndex == -1 && cbNV.SelectedIndex == -1)
             {
-                startTime = DateTime.Parse(txbStart.Text);
-                txbStart.Text = startTime.ToString("HH:mm:ss");
-                timer1.Start();
-
+                MessageBox.Show("Bạn chưa chọn tên nhân viên hoặc tên khách hàng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
-                startTime = DateTime.Now;
-                txbStart.Text = startTime.ToString("HH:mm:ss");
-                timer1.Start();
+                if (chkTuChinh.Checked)
+                {
+                    startTime = DateTime.Parse(txbStart.Text);
+                    txbStart.Text = startTime.ToString();
+                    timer1.Start();
+
+                }
+                else
+                {
+                    startTime = DateTime.Now;
+                    txbStart.Text = startTime.ToString();
+                    timer1.Start();
+
+                }
+
+                
+
+                Room r = db.Room.Find(room.roomid);
+                r.roomstatus = "Đang sử dụng";
+
+                db.Booking.Add(new Booking()
+                {
+                    staffid = int.Parse(txbNVID.Text),
+                    cusid = int.Parse(txbKHID.Text),
+                    roomid = room.roomid,
+                    checkin = DateTime.Now,
+                    bookstatus = "Đang thuê"
+                });
+
+                db.SaveChanges();
+
+                ClearData();
+                ClearData();
+
+                btnThanhToan.Enabled = true;
+                btnDatPhong.Enabled = false;
 
             }
-            btnThanhToan.Enabled = true;
-            btnDatPhong.Enabled = false;
+
+
+            
+          
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
         {
             timer1.Stop();
             DateTime endTime = DateTime.Now;
-            txbEnd.Text = endTime.ToString("HH:mm:ss");
+            txbEnd.Text = endTime.ToString();
+            DateTime startTime = DateTime.Parse(txbStart.Text);
 
             // Tính toán tổng thời gian giữa startTime và endTime
-            elapsedTime = endTime - startTime;
+            TimeSpan elapsedTime = endTime - startTime;
             // Hiển thị tổng thời gian trong định dạng phù hợp
-            txbTongTime.Text = elapsedTime.ToString(@"hh\:mm\:ss");
+            double totalHours = elapsedTime.TotalHours;
+
+            txbTongTime.Text = Math.Round(totalHours,0).ToString();
+
+            int giatheogio = int.Parse(txbGiaTheoGio.Text);
+            int tongthoigian = int.Parse(txbTongTime.Text);
+
+            int tongtien = tongthoigian * giatheogio;
+
+            lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
+
 
             btnThanhToan.Enabled = false;
             btnDatPhong.Enabled = true;
@@ -149,10 +232,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 txbNVID.Text = staff.staffid.ToString();
                 txbNVSDT.Text = staff.staffphone.ToString();
             }
-            else
-            {
-                MessageBox.Show("Không tìm thấy nhân viên có tên " + tennv, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+           
         }
 
         private void cbKH_SelectedIndexChanged(object sender, EventArgs e)
@@ -166,15 +246,30 @@ namespace ChuongTrinhQuanLyKhachSan
                 txbKHID.Text = cus.cusid.ToString();
                 txbKHPhone.Text = cus.cusphone;
             }
-            else
-            {
-                MessageBox.Show("Không tìm thấy khách hàng có tên " + cus, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
+          
         }
 
         private void cbService_SelectedIndexChanged(object sender, EventArgs e)
         {
             
+        }
+
+        private void btnClearData_Click(object sender, EventArgs e)
+        {
+            ClearData();
+            ClearData();
+        }
+
+        void ClearData()
+        {
+            cbService.SelectedIndex = -1;
+            cbKH.SelectedIndex = -1;
+            cbNV.SelectedIndex = -1;
+
+            txbNVID.Text = "";
+            txbNVSDT.Text = "";
+            txbKHID.Text = "";
+            txbKHPhone.Text = "";
         }
     }
 }
