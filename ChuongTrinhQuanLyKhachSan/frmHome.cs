@@ -49,17 +49,17 @@ namespace ChuongTrinhQuanLyKhachSan
 
             if (tcName.SelectedTab == tpKH)
             {
-
+                LoadDataKhachHang();
             }
 
             if (tcName.SelectedTab == tpPhong)
             {
-
+                LoadRoom();
+                LoadDataRoom();
             }
-            if (tcName.SelectedTab == tpQLPhong
-                )
+            if (tcName.SelectedTab == tpQLPhong)
             {
-
+                LoadDataRoom();
             }
 
             if (role != "admin" && tcName.SelectedTab == tpNV)
@@ -183,9 +183,10 @@ namespace ChuongTrinhQuanLyKhachSan
                 db.Room.Add(new Room()
                 {
                     roomnumber = txbRName.Text,
-                    roomrate = decimal.Parse(txbRPrice.Text),
+                    roomrate = decimal.Parse(Funct.RemoveDot(txbRPrice.Text)),
                     roomtype = cbRType.Text,
                     roomstatus = cbRStatus.Text,
+                    isRemove = false
                 });
 
                 db.SaveChanges();
@@ -241,7 +242,9 @@ namespace ChuongTrinhQuanLyKhachSan
             panelBaoTri.BackColor = red;
             panelTrong.BackColor = gray;
 
-            foreach (var item in db.Room)
+            var room = db.Room.Where(r => r.isRemove == false);
+
+            foreach (var item in room)
             {
 
                 Color selectedRoomColor = ColorTranslator.FromHtml("#374151");
@@ -294,6 +297,7 @@ namespace ChuongTrinhQuanLyKhachSan
                     if (selectedRoom != null)
                     {
                         frmDetailRoom detailRoom = new frmDetailRoom(selectedRoom, selectedRoomColor);
+                        detailRoom.idphong = roomId;
                         detailRoom.ShowDialog();
                     }
                 };
@@ -374,12 +378,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 txbNVPass.Focus();
                 return false;
             }
-            if (txbNVSDT.Text.Trim().Length > 10 && txbNVSDT.Text.Trim().Length < 10)
-            {
-                MessageBox.Show("Vui lòng nhập số điện thoại có 10 chữ số ", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txbNVSDT.Focus();
-                return false;
-            }
+           
 
             return true;
         }
@@ -397,40 +396,59 @@ namespace ChuongTrinhQuanLyKhachSan
             cbRole.Text = "";
         }
 
+        void ClearFieldKH()
+        {
+            txbKHID.Text = "";
+            txbKHName.Text = "";
+            txbKHSDT.Text = "";
+            txbKHEmail.Text = "";
+            txbKHAddress.Text = "";
+            txbKHSearch.Text = "";
+        }
+
         private void btnNVThem_Click(object sender, EventArgs e)
         {
 
             if (CheckValidationNhanVien())
             {
-                int sdt = int.Parse(txbNVSDT.Text.Trim());
+                string sdt = txbNVSDT.Text.Trim();
                 bool sdtExists = db.Staff.Any(r => r.staffphone == sdt);
 
-                if (sdtExists)
+                if (sdt.Trim().Length != 10)
                 {
-                    MessageBox.Show("Số điện thoại này đã được đăng kí", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    txbRName.Focus();
-                    return;
-                } else
+                    MessageBox.Show("Vui lòng nhập số điện thoại có 10 chữ số ", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbNVSDT.Focus();
+                }
+                else
                 {
-                    db.Staff.Add(new Staff()
-                    {
-                        staffname = txbNVName.Text,
-                        staffsex = cbNVSex.Text,
-                        staffphone = sdt,
-                        staffdate = dtpNVDate.Value,
-                        staffaddress = txbNVAddress.Text,
-                        Username = txbUser.Text,
-                        Password = txbNVPass.Text,
-                        Role = cbRole.Text,
-                        isRemove = false
-                        
-                    });
 
-                    db.SaveChanges();
-                    LoadDataNhanVien();
-                    MessageBox.Show("Thêm nhân viên [" + txbNVName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearFieldNV();
-                    LoadRoom();
+                    if (sdtExists)
+                    {
+                        MessageBox.Show("Số điện thoại này đã được đăng kí", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txbRName.Focus();
+                        return;
+                    }
+                    else
+                    {
+                        db.Staff.Add(new Staff()
+                        {
+                            staffname = txbNVName.Text,
+                            staffsex = cbNVSex.Text,
+                            staffphone = sdt,
+                            staffdate = dtpNVDate.Value,
+                            staffaddress = txbNVAddress.Text,
+                            Username = txbUser.Text,
+                            Password = txbNVPass.Text,
+                            Role = cbRole.Text,
+                            isRemove = false
+
+                        });
+
+                        db.SaveChanges();
+                        LoadDataNhanVien();
+                        MessageBox.Show("Thêm nhân viên [" + txbNVName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        ClearFieldNV();
+                    }
                 }
             }
         }
@@ -446,7 +464,7 @@ namespace ChuongTrinhQuanLyKhachSan
                     Staff staff = db.Staff.Find(id);
                     staff.staffname = txbNVName.Text;
                     staff.staffsex = cbNVSex.Text;
-                    staff.staffphone = int.Parse(txbNVSDT.Text);
+                    staff.staffphone = txbNVSDT.Text;
                     staff.staffaddress = txbNVAddress.Text;
                     staff.Username = txbUser.Text;
                     staff.Password = txbNVPass.Text;
@@ -456,7 +474,6 @@ namespace ChuongTrinhQuanLyKhachSan
                     LoadDataNhanVien();
                     MessageBox.Show("Sửa nhân viên [" + staff.staffname + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     ClearFieldNV();
-                    LoadRoom();
                 }
                 catch (Exception es)
                 {
@@ -488,7 +505,6 @@ namespace ChuongTrinhQuanLyKhachSan
                 staff.isRemove = true;
                 db.SaveChanges();
                 ClearFieldNV();
-                LoadRoom();
                 LoadDataNhanVien();
             }
         }
@@ -504,6 +520,140 @@ namespace ChuongTrinhQuanLyKhachSan
             txbUser.Text = dgvNV.SelectedRows[0].Cells[6].Value.ToString();
             txbNVPass.Text = dgvNV.SelectedRows[0].Cells[7].Value.ToString();
             cbRole.Text = dgvNV.SelectedRows[0].Cells[8].Value.ToString();
+        }
+
+        bool CheckValidationKhachHang()
+        {
+            if (txbKHName.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên khách hàng", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbKHName.Focus();
+                return false;
+            }
+            if (txbKHSDT.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập số điện thoại", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbKHSDT.Focus();
+                return false;
+            }
+
+            return true;
+        }
+
+        private void btnKHAdd_Click(object sender, EventArgs e)
+        {
+            if (CheckValidationKhachHang())
+            {
+                db.Customer.Add(new Customer()
+                {
+                    cusname = txbKHName.Text,
+                    cusemail = txbKHEmail.Text,
+                    cusphone = txbKHSDT.Text,
+                    cusdate = dtpKHDate.Value,
+                    cusaddress = txbKHAddress.Text,
+                    isRemove = false
+
+                });
+
+                db.SaveChanges();
+                LoadDataKhachHang();
+                MessageBox.Show("Thêm nhân viên [" + txbKHName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFieldKH();
+            }
+        }
+
+        private void btnKHEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int id = Convert.ToInt32(txbKHID.Text);
+
+                Customer cus = db.Customer.Find(id);
+                cus.cusname = txbKHName.Text;
+                cus.cusemail = txbKHEmail.Text;
+                cus.cusphone = txbKHSDT.Text;
+                cus.cusaddress = txbKHAddress.Text;
+                cus.cusdate = dtpKHDate.Value;
+
+                db.SaveChanges();
+                LoadDataKhachHang();
+                MessageBox.Show("Sửa khách hàng [" + txbKHName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ClearFieldKH();
+            }
+            catch (Exception es)
+            {
+                MessageBox.Show("Lỗi\n" + es);
+            }
+        }
+
+        private void btnKHClear_Click(object sender, EventArgs e)
+        {
+            ClearFieldKH();    
+        }
+
+        private void txbKHSearch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+            
+        }
+
+        private void dgvKH_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+           
+        }
+
+        private void dgvKH_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txbKHID.Text = dgvKH.SelectedRows[0].Cells[0].Value.ToString();
+            txbKHName.Text = dgvKH.SelectedRows[0].Cells[1].Value.ToString();
+            txbKHSDT.Text = dgvKH.SelectedRows[0].Cells[2].Value.ToString();
+            txbKHEmail.Text = dgvKH.SelectedRows[0].Cells[3].Value.ToString();
+            dtpKHDate.Text = dgvKH.SelectedRows[0].Cells[4].Value?.ToString();
+            txbKHAddress.Text = dgvKH.SelectedRows[0].Cells[5].Value.ToString();
+        }
+
+        private void dgvKH_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa khách hàng " + txbKHName.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                int id = Convert.ToInt32(txbKHID.Text);
+
+                Customer cus = db.Customer.Find(id);
+                cus.isRemove = true;
+                db.SaveChanges();
+                ClearFieldKH();
+                LoadDataKhachHang();
+            }
+        }
+
+        private void dgvRoom_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txbRID.Text = dgvRoom.SelectedRows[0].Cells[0].Value.ToString();
+            txbRName.Text = dgvRoom.SelectedRows[0].Cells[1].Value.ToString();
+            cbRType.Text = dgvRoom.SelectedRows[0].Cells[2].Value.ToString();
+            txbRPrice.Text = dgvRoom.SelectedRows[0].Cells[3].Value.ToString();
+            cbRStatus.Text = dgvKH.SelectedRows[0].Cells[4].Value?.ToString();
+        }
+
+        private void dgvRoom_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa phòng " + txbRName.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                int id = Convert.ToInt32(txbRID.Text);
+
+                Room r = db.Room.Find(id);
+                r.isRemove = true;
+                db.SaveChanges();
+                ClearFieldRoom();
+                LoadDataRoom();
+            }
         }
     }
 }

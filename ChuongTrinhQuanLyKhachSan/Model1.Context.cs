@@ -31,6 +31,5 @@ namespace ChuongTrinhQuanLyKhachSan
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
     }
 }

@@ -14,6 +14,7 @@ namespace ChuongTrinhQuanLyKhachSan
     {
         private Room room;
         private Color roomColor;
+        public int idphong;
         QLKHACHSANEntities db = new QLKHACHSANEntities();
         public frmDetailRoom(Room room, Color roomColor)
         {
@@ -33,6 +34,24 @@ namespace ChuongTrinhQuanLyKhachSan
             grpRoom.BorderColor = roomColor;
             grpRoom.ForeColor = Color.White;
             grpRoom.CustomBorderColor = roomColor;
+
+            txbStart.Text = DateTime.Now.ToString("HH:mm:ss");
+            btnThanhToan.Enabled = false;
+
+            var service = from s in db.Service select s.sername;
+            cbService.DataSource = service.ToList();
+
+            var staff = from nv in db.Staff
+                        where nv.isRemove == false && nv.Role != "admin"
+                        select nv.staffname;
+
+            cbNV.DataSource = staff.ToList();
+
+            var customer = from cus in db.Customer
+                        where cus.isRemove == false
+                        select cus.cusname;
+
+            cbKH.DataSource = customer.ToList();
         }
 
         private DateTime startTime;
@@ -58,6 +77,8 @@ namespace ChuongTrinhQuanLyKhachSan
                 timer1.Start();
 
             }
+            btnThanhToan.Enabled = true;
+            btnDatPhong.Enabled = false;
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
@@ -70,6 +91,9 @@ namespace ChuongTrinhQuanLyKhachSan
             elapsedTime = endTime - startTime;
             // Hiển thị tổng thời gian trong định dạng phù hợp
             txbTongTime.Text = elapsedTime.ToString(@"hh\:mm\:ss");
+
+            btnThanhToan.Enabled = false;
+            btnDatPhong.Enabled = true;
         }
 
         void LoadServicesComboBox()
@@ -79,7 +103,9 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnFrmService_Click(object sender, EventArgs e)
         {
-
+            int soluong = int.Parse(txbServiceSoluong.Text);
+            dgvService.Rows.Add(soluong);
+            /// todo ở đây
         }
         int soluong = 0;
         private void btnGiam_Click(object sender, EventArgs e)
@@ -106,6 +132,49 @@ namespace ChuongTrinhQuanLyKhachSan
         private void grpRoom_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void guna2GroupBox4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cbNV_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tennv = cbNV.Text;
+            var staff = db.Staff.FirstOrDefault(nv => nv.staffname == tennv);
+
+            if (staff != null)
+            {
+                txbNVID.Text = staff.staffid.ToString();
+                txbNVSDT.Text = staff.staffphone.ToString();
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy nhân viên có tên " + tennv, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cbKH_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            string tenkh = cbKH.Text;
+            var cus = db.Customer.FirstOrDefault(c => c.cusname == tenkh);
+
+            
+            if (cus != null)
+            {
+                txbKHID.Text = cus.cusid.ToString();
+                txbKHPhone.Text = cus.cusphone;
+            }
+            else
+            {
+                MessageBox.Show("Không tìm thấy khách hàng có tên " + cus, "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void cbService_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

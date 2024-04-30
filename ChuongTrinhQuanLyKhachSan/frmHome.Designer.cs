@@ -29,19 +29,30 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tcName = new Guna.UI2.WinForms.Guna2TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tpNV = new System.Windows.Forms.TabPage();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbNVAddress = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnNVClear = new Guna.UI2.WinForms.Guna2Button();
             this.btnNVEdit = new Guna.UI2.WinForms.Guna2Button();
             this.btnNVThem = new Guna.UI2.WinForms.Guna2Button();
@@ -56,67 +67,77 @@
             this.dgvNV = new Guna.UI2.WinForms.Guna2DataGridView();
             this.cbNVSex = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tpKH = new System.Windows.Forms.TabPage();
+            this.label18 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.btnKHClear = new Guna.UI2.WinForms.Guna2Button();
             this.btnKHEdit = new Guna.UI2.WinForms.Guna2Button();
             this.btnKHAdd = new Guna.UI2.WinForms.Guna2Button();
             this.txbKHSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel10 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbKHAddress = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel12 = new Guna.UI2.WinForms.Guna2HtmlLabel();
-            this.guna2HtmlLabel14 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dtpKHDate = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.guna2HtmlLabel15 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbKHSDT = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel16 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbKHName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel17 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbKHID = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel18 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.dgvKH = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.cbKHSex = new Guna.UI2.WinForms.Guna2ComboBox();
             this.tpQLPhong = new System.Windows.Forms.TabPage();
+            this.label24 = new System.Windows.Forms.Label();
+            this.label23 = new System.Windows.Forms.Label();
+            this.label22 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.btnRClear = new Guna.UI2.WinForms.Guna2Button();
             this.txbRPrice = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel22 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cbRSearch = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel20 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.btnREdit = new Guna.UI2.WinForms.Guna2Button();
             this.btnRAdd = new Guna.UI2.WinForms.Guna2Button();
-            this.guna2HtmlLabel21 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cbRStatus = new Guna.UI2.WinForms.Guna2ComboBox();
-            this.guna2HtmlLabel26 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbRName = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel27 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.txbRID = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2HtmlLabel28 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.cbRType = new Guna.UI2.WinForms.Guna2ComboBox();
             this.dgvRoom = new Guna.UI2.WinForms.Guna2DataGridView();
             this.tpPhong = new System.Windows.Forms.TabPage();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
+            this.label25 = new System.Windows.Forms.Label();
             this.btnRefesh = new Guna.UI2.WinForms.Guna2Button();
             this.rbPhong = new Guna.UI2.WinForms.Guna2RadioButton();
             this.rbNhom = new Guna.UI2.WinForms.Guna2RadioButton();
             this.lbDatetimeNow = new System.Windows.Forms.Label();
-            this.guna2HtmlLabel19 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.panelUse = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel13 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.panelTrong = new Guna.UI2.WinForms.Guna2Panel();
-            this.guna2HtmlLabel11 = new Guna.UI2.WinForms.Guna2HtmlLabel();
             this.panelBaoTri = new Guna.UI2.WinForms.Guna2Panel();
             this.tpThanhToan = new System.Windows.Forms.TabPage();
             this.tpQLService = new System.Windows.Forms.TabPage();
             this.tpDashboard = new System.Windows.Forms.TabPage();
+            this.label15 = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.txbNVAddress = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.txbKHEmail = new Guna.UI2.WinForms.Guna2TextBox();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.staffsex = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column13 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column14 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column15 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column16 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column17 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tcName.SuspendLayout();
             this.tpNV.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvNV)).BeginInit();
@@ -222,6 +243,122 @@
             this.tpNV.Text = "Nhân viên";
             this.tpNV.UseVisualStyleBackColor = true;
             // 
+            // label10
+            // 
+            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(709, 27);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(47, 16);
+            this.label10.TabIndex = 61;
+            this.label10.Text = "Địa chỉ";
+            // 
+            // label9
+            // 
+            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(709, 79);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(98, 16);
+            this.label9.TabIndex = 60;
+            this.label9.Text = "Tên đăng nhập";
+            // 
+            // label8
+            // 
+            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(709, 125);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(61, 16);
+            this.label8.TabIndex = 59;
+            this.label8.Text = "Mật khẩu";
+            // 
+            // label7
+            // 
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(709, 189);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(54, 16);
+            this.label7.TabIndex = 58;
+            this.label7.Text = "Chức vụ";
+            // 
+            // label6
+            // 
+            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(1021, 293);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(62, 16);
+            this.label6.TabIndex = 57;
+            this.label6.Text = "Tìm kiếm";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(18, 189);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(54, 16);
+            this.label5.TabIndex = 56;
+            this.label5.Text = "Giới tính";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(18, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(67, 16);
+            this.label4.TabIndex = 55;
+            this.label4.Text = "Ngày sinh";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(34, 16);
+            this.label3.TabIndex = 54;
+            this.label3.Text = "SĐT";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 27);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(20, 16);
+            this.label2.TabIndex = 53;
+            this.label2.Text = "ID";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 79);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(91, 16);
+            this.label1.TabIndex = 52;
+            this.label1.Text = "Tên nhân viên";
+            // 
+            // txbNVAddress
+            // 
+            this.txbNVAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbNVAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbNVAddress.DefaultText = "";
+            this.txbNVAddress.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbNVAddress.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbNVAddress.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbNVAddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbNVAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbNVAddress.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbNVAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbNVAddress.Location = new System.Drawing.Point(821, 10);
+            this.txbNVAddress.Margin = new System.Windows.Forms.Padding(4);
+            this.txbNVAddress.Name = "txbNVAddress";
+            this.txbNVAddress.PasswordChar = '\0';
+            this.txbNVAddress.PlaceholderText = "";
+            this.txbNVAddress.SelectedText = "";
+            this.txbNVAddress.Size = new System.Drawing.Size(267, 44);
+            this.txbNVAddress.TabIndex = 51;
+            // 
             // btnNVClear
             // 
             this.btnNVClear.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
@@ -237,6 +374,7 @@
             this.btnNVClear.Size = new System.Drawing.Size(217, 55);
             this.btnNVClear.TabIndex = 49;
             this.btnNVClear.Text = "Clear";
+            this.btnNVClear.Click += new System.EventHandler(this.btnNVClear_Click);
             // 
             // btnNVEdit
             // 
@@ -305,7 +443,7 @@
             this.txbNVPass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbNVPass.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbNVPass.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbNVPass.Location = new System.Drawing.Point(816, 114);
+            this.txbNVPass.Location = new System.Drawing.Point(821, 114);
             this.txbNVPass.Margin = new System.Windows.Forms.Padding(4);
             this.txbNVPass.Name = "txbNVPass";
             this.txbNVPass.PasswordChar = '\0';
@@ -326,7 +464,7 @@
             this.txbUser.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbUser.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbUser.Location = new System.Drawing.Point(816, 62);
+            this.txbUser.Location = new System.Drawing.Point(821, 62);
             this.txbUser.Margin = new System.Windows.Forms.Padding(4);
             this.txbUser.Name = "txbUser";
             this.txbUser.PasswordChar = '\0';
@@ -350,7 +488,7 @@
             "Admin",
             "Nhân viên",
             "Phục vụ"});
-            this.cbRole.Location = new System.Drawing.Point(816, 175);
+            this.cbRole.Location = new System.Drawing.Point(821, 175);
             this.cbRole.Margin = new System.Windows.Forms.Padding(4);
             this.cbRole.Name = "cbRole";
             this.cbRole.Size = new System.Drawing.Size(265, 36);
@@ -439,25 +577,35 @@
             this.dgvNV.AllowUserToDeleteRows = false;
             this.dgvNV.AllowUserToResizeColumns = false;
             this.dgvNV.AllowUserToResizeRows = false;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            this.dgvNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvNV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            this.dgvNV.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvNV.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvNV.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvNV.DefaultCellStyle = dataGridViewCellStyle12;
+            this.dgvNV.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.staffname,
+            this.staffsex,
+            this.Column2,
+            this.Column7,
+            this.Column3,
+            this.Column4,
+            this.Column5,
+            this.Column6});
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvNV.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvNV.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvNV.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvNV.Location = new System.Drawing.Point(0, 367);
@@ -489,6 +637,8 @@
             this.dgvNV.ThemeStyle.RowsStyle.Height = 22;
             this.dgvNV.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvNV.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvNV.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNV_CellMouseClick);
+            this.dgvNV.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvNV_CellMouseDoubleClick);
             // 
             // cbNVSex
             // 
@@ -512,24 +662,24 @@
             // 
             // tpKH
             // 
+            this.tpKH.Controls.Add(this.label28);
+            this.tpKH.Controls.Add(this.txbKHEmail);
+            this.tpKH.Controls.Add(this.label18);
+            this.tpKH.Controls.Add(this.label17);
+            this.tpKH.Controls.Add(this.label16);
+            this.tpKH.Controls.Add(this.label14);
+            this.tpKH.Controls.Add(this.label13);
+            this.tpKH.Controls.Add(this.label11);
             this.tpKH.Controls.Add(this.btnKHClear);
             this.tpKH.Controls.Add(this.btnKHEdit);
             this.tpKH.Controls.Add(this.btnKHAdd);
             this.tpKH.Controls.Add(this.txbKHSearch);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel10);
             this.tpKH.Controls.Add(this.txbKHAddress);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel12);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel14);
             this.tpKH.Controls.Add(this.dtpKHDate);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel15);
             this.tpKH.Controls.Add(this.txbKHSDT);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel16);
             this.tpKH.Controls.Add(this.txbKHName);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel17);
             this.tpKH.Controls.Add(this.txbKHID);
-            this.tpKH.Controls.Add(this.guna2HtmlLabel18);
             this.tpKH.Controls.Add(this.dgvKH);
-            this.tpKH.Controls.Add(this.cbKHSex);
             this.tpKH.Location = new System.Drawing.Point(184, 4);
             this.tpKH.Margin = new System.Windows.Forms.Padding(4);
             this.tpKH.Name = "tpKH";
@@ -537,6 +687,61 @@
             this.tpKH.TabIndex = 4;
             this.tpKH.Text = "Khách hàng";
             this.tpKH.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(1022, 288);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(62, 16);
+            this.label18.TabIndex = 60;
+            this.label18.Text = "Tìm kiếm";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(576, 124);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(67, 16);
+            this.label17.TabIndex = 59;
+            this.label17.Text = "Ngày sinh";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(18, 20);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(20, 16);
+            this.label16.TabIndex = 58;
+            this.label16.Text = "ID";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(18, 72);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(103, 16);
+            this.label14.TabIndex = 56;
+            this.label14.Text = "Tên khách hàng";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(18, 136);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(34, 16);
+            this.label13.TabIndex = 55;
+            this.label13.Text = "SĐT";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(576, 72);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 16);
+            this.label11.TabIndex = 53;
+            this.label11.Text = "Địa chỉ";
             // 
             // btnKHClear
             // 
@@ -553,6 +758,7 @@
             this.btnKHClear.Size = new System.Drawing.Size(217, 55);
             this.btnKHClear.TabIndex = 49;
             this.btnKHClear.Text = "Clear";
+            this.btnKHClear.Click += new System.EventHandler(this.btnKHClear_Click);
             // 
             // btnKHEdit
             // 
@@ -569,6 +775,7 @@
             this.btnKHEdit.Size = new System.Drawing.Size(217, 55);
             this.btnKHEdit.TabIndex = 48;
             this.btnKHEdit.Text = "Sửa";
+            this.btnKHEdit.Click += new System.EventHandler(this.btnKHEdit_Click);
             // 
             // btnKHAdd
             // 
@@ -585,10 +792,11 @@
             this.btnKHAdd.Size = new System.Drawing.Size(217, 55);
             this.btnKHAdd.TabIndex = 47;
             this.btnKHAdd.Text = "Thêm";
+            this.btnKHAdd.Click += new System.EventHandler(this.btnKHAdd_Click);
             // 
             // txbKHSearch
             // 
-            this.txbKHSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.txbKHSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txbKHSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.txbKHSearch.DefaultText = "";
             this.txbKHSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -606,17 +814,7 @@
             this.txbKHSearch.SelectedText = "";
             this.txbKHSearch.Size = new System.Drawing.Size(267, 44);
             this.txbKHSearch.TabIndex = 41;
-            // 
-            // guna2HtmlLabel10
-            // 
-            this.guna2HtmlLabel10.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.guna2HtmlLabel10.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel10.Location = new System.Drawing.Point(1025, 282);
-            this.guna2HtmlLabel10.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel10.Name = "guna2HtmlLabel10";
-            this.guna2HtmlLabel10.Size = new System.Drawing.Size(58, 18);
-            this.guna2HtmlLabel10.TabIndex = 40;
-            this.guna2HtmlLabel10.Text = "Tìm kiếm";
+            this.txbKHSearch.TextChanged += new System.EventHandler(this.txbKHSearch_TextChanged);
             // 
             // txbKHAddress
             // 
@@ -629,7 +827,7 @@
             this.txbKHAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbKHAddress.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbKHAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbKHAddress.Location = new System.Drawing.Point(693, 5);
+            this.txbKHAddress.Location = new System.Drawing.Point(696, 57);
             this.txbKHAddress.Margin = new System.Windows.Forms.Padding(4);
             this.txbKHAddress.Name = "txbKHAddress";
             this.txbKHAddress.PasswordChar = '\0';
@@ -638,33 +836,13 @@
             this.txbKHAddress.Size = new System.Drawing.Size(267, 44);
             this.txbKHAddress.TabIndex = 36;
             // 
-            // guna2HtmlLabel12
-            // 
-            this.guna2HtmlLabel12.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel12.Location = new System.Drawing.Point(576, 20);
-            this.guna2HtmlLabel12.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel12.Name = "guna2HtmlLabel12";
-            this.guna2HtmlLabel12.Size = new System.Drawing.Size(43, 18);
-            this.guna2HtmlLabel12.TabIndex = 35;
-            this.guna2HtmlLabel12.Text = "Địa chỉ";
-            // 
-            // guna2HtmlLabel14
-            // 
-            this.guna2HtmlLabel14.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel14.Location = new System.Drawing.Point(576, 70);
-            this.guna2HtmlLabel14.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel14.Name = "guna2HtmlLabel14";
-            this.guna2HtmlLabel14.Size = new System.Drawing.Size(63, 18);
-            this.guna2HtmlLabel14.TabIndex = 31;
-            this.guna2HtmlLabel14.Text = "Ngày sinh";
-            // 
             // dtpKHDate
             // 
             this.dtpKHDate.Checked = true;
             this.dtpKHDate.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpKHDate.ForeColor = System.Drawing.SystemColors.ButtonFace;
             this.dtpKHDate.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpKHDate.Location = new System.Drawing.Point(693, 57);
+            this.dtpKHDate.Location = new System.Drawing.Point(696, 109);
             this.dtpKHDate.Margin = new System.Windows.Forms.Padding(4);
             this.dtpKHDate.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpKHDate.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
@@ -672,16 +850,6 @@
             this.dtpKHDate.Size = new System.Drawing.Size(267, 44);
             this.dtpKHDate.TabIndex = 30;
             this.dtpKHDate.Value = new System.DateTime(2024, 4, 28, 8, 30, 33, 453);
-            // 
-            // guna2HtmlLabel15
-            // 
-            this.guna2HtmlLabel15.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel15.Location = new System.Drawing.Point(21, 135);
-            this.guna2HtmlLabel15.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel15.Name = "guna2HtmlLabel15";
-            this.guna2HtmlLabel15.Size = new System.Drawing.Size(30, 18);
-            this.guna2HtmlLabel15.TabIndex = 29;
-            this.guna2HtmlLabel15.Text = "SĐT";
             // 
             // txbKHSDT
             // 
@@ -703,16 +871,6 @@
             this.txbKHSDT.Size = new System.Drawing.Size(253, 44);
             this.txbKHSDT.TabIndex = 28;
             // 
-            // guna2HtmlLabel16
-            // 
-            this.guna2HtmlLabel16.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel16.Location = new System.Drawing.Point(21, 186);
-            this.guna2HtmlLabel16.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel16.Name = "guna2HtmlLabel16";
-            this.guna2HtmlLabel16.Size = new System.Drawing.Size(50, 18);
-            this.guna2HtmlLabel16.TabIndex = 27;
-            this.guna2HtmlLabel16.Text = "Giới tính";
-            // 
             // txbKHName
             // 
             this.txbKHName.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -732,16 +890,6 @@
             this.txbKHName.SelectedText = "";
             this.txbKHName.Size = new System.Drawing.Size(253, 44);
             this.txbKHName.TabIndex = 26;
-            // 
-            // guna2HtmlLabel17
-            // 
-            this.guna2HtmlLabel17.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel17.Location = new System.Drawing.Point(21, 71);
-            this.guna2HtmlLabel17.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel17.Name = "guna2HtmlLabel17";
-            this.guna2HtmlLabel17.Size = new System.Drawing.Size(99, 18);
-            this.guna2HtmlLabel17.TabIndex = 25;
-            this.guna2HtmlLabel17.Text = "Tên khách hàng";
             // 
             // txbKHID
             // 
@@ -764,41 +912,38 @@
             this.txbKHID.Size = new System.Drawing.Size(253, 44);
             this.txbKHID.TabIndex = 24;
             // 
-            // guna2HtmlLabel18
-            // 
-            this.guna2HtmlLabel18.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel18.Location = new System.Drawing.Point(21, 20);
-            this.guna2HtmlLabel18.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel18.Name = "guna2HtmlLabel18";
-            this.guna2HtmlLabel18.Size = new System.Drawing.Size(16, 18);
-            this.guna2HtmlLabel18.TabIndex = 23;
-            this.guna2HtmlLabel18.Text = "ID";
-            // 
             // dgvKH
             // 
             this.dgvKH.AllowUserToAddRows = false;
             this.dgvKH.AllowUserToDeleteRows = false;
             this.dgvKH.AllowUserToResizeColumns = false;
             this.dgvKH.AllowUserToResizeRows = false;
-            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
-            this.dgvKH.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle13;
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvKH.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvKH.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvKH.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvKH.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvKH.DefaultCellStyle = dataGridViewCellStyle15;
+            this.dgvKH.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column8,
+            this.Column9,
+            this.Column10,
+            this.Column11,
+            this.Column12,
+            this.Column13});
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvKH.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvKH.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvKH.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvKH.Location = new System.Drawing.Point(0, 367);
@@ -830,43 +975,27 @@
             this.dgvKH.ThemeStyle.RowsStyle.Height = 22;
             this.dgvKH.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvKH.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // cbKHSex
-            // 
-            this.cbKHSex.BackColor = System.Drawing.Color.Transparent;
-            this.cbKHSex.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.cbKHSex.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbKHSex.FocusedColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbKHSex.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.cbKHSex.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.cbKHSex.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
-            this.cbKHSex.ItemHeight = 30;
-            this.cbKHSex.Items.AddRange(new object[] {
-            "Nam",
-            "Nữ"});
-            this.cbKHSex.Location = new System.Drawing.Point(139, 170);
-            this.cbKHSex.Margin = new System.Windows.Forms.Padding(4);
-            this.cbKHSex.Name = "cbKHSex";
-            this.cbKHSex.Size = new System.Drawing.Size(252, 36);
-            this.cbKHSex.StartIndex = 0;
-            this.cbKHSex.TabIndex = 21;
+            this.dgvKH.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKH_CellContentClick);
+            this.dgvKH.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKH_CellContentDoubleClick);
+            this.dgvKH.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvKH_CellMouseClick);
+            this.dgvKH.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvKH_CellMouseDoubleClick);
             // 
             // tpQLPhong
             // 
+            this.tpQLPhong.Controls.Add(this.label24);
+            this.tpQLPhong.Controls.Add(this.label23);
+            this.tpQLPhong.Controls.Add(this.label22);
+            this.tpQLPhong.Controls.Add(this.label21);
+            this.tpQLPhong.Controls.Add(this.label20);
+            this.tpQLPhong.Controls.Add(this.label19);
             this.tpQLPhong.Controls.Add(this.btnRClear);
             this.tpQLPhong.Controls.Add(this.txbRPrice);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel22);
             this.tpQLPhong.Controls.Add(this.cbRSearch);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel20);
             this.tpQLPhong.Controls.Add(this.btnREdit);
             this.tpQLPhong.Controls.Add(this.btnRAdd);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel21);
             this.tpQLPhong.Controls.Add(this.cbRStatus);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel26);
             this.tpQLPhong.Controls.Add(this.txbRName);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel27);
             this.tpQLPhong.Controls.Add(this.txbRID);
-            this.tpQLPhong.Controls.Add(this.guna2HtmlLabel28);
             this.tpQLPhong.Controls.Add(this.cbRType);
             this.tpQLPhong.Controls.Add(this.dgvRoom);
             this.tpQLPhong.Location = new System.Drawing.Point(184, 4);
@@ -876,6 +1005,61 @@
             this.tpQLPhong.TabIndex = 7;
             this.tpQLPhong.Text = "Quản lí phòng";
             this.tpQLPhong.UseVisualStyleBackColor = true;
+            // 
+            // label24
+            // 
+            this.label24.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label24.AutoSize = true;
+            this.label24.Location = new System.Drawing.Point(1013, 293);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(62, 16);
+            this.label24.TabIndex = 65;
+            this.label24.Text = "Tìm kiếm";
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.Location = new System.Drawing.Point(13, 80);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(72, 16);
+            this.label23.TabIndex = 64;
+            this.label23.Text = "Tên phòng";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(13, 26);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(20, 16);
+            this.label22.TabIndex = 63;
+            this.label22.Text = "ID";
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.Location = new System.Drawing.Point(13, 132);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(69, 16);
+            this.label21.TabIndex = 62;
+            this.label21.Text = "Giá phòng";
+            // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Location = new System.Drawing.Point(613, 26);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(74, 16);
+            this.label20.TabIndex = 61;
+            this.label20.Text = "Kiểu phòng\r\n";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(613, 77);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(67, 16);
+            this.label19.TabIndex = 60;
+            this.label19.Text = "Trạng thái";
             // 
             // btnRClear
             // 
@@ -916,19 +1100,9 @@
             this.txbRPrice.TextChanged += new System.EventHandler(this.txbRPrice_TextChanged);
             this.txbRPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbRPrice_KeyPress);
             // 
-            // guna2HtmlLabel22
-            // 
-            this.guna2HtmlLabel22.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel22.Location = new System.Drawing.Point(16, 128);
-            this.guna2HtmlLabel22.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel22.Name = "guna2HtmlLabel22";
-            this.guna2HtmlLabel22.Size = new System.Drawing.Size(65, 18);
-            this.guna2HtmlLabel22.TabIndex = 44;
-            this.guna2HtmlLabel22.Text = "Giá phòng";
-            // 
             // cbRSearch
             // 
-            this.cbRSearch.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.cbRSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbRSearch.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.cbRSearch.DefaultText = "";
             this.cbRSearch.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
@@ -946,17 +1120,6 @@
             this.cbRSearch.SelectedText = "";
             this.cbRSearch.Size = new System.Drawing.Size(267, 44);
             this.cbRSearch.TabIndex = 43;
-            // 
-            // guna2HtmlLabel20
-            // 
-            this.guna2HtmlLabel20.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.guna2HtmlLabel20.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel20.Location = new System.Drawing.Point(1015, 287);
-            this.guna2HtmlLabel20.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel20.Name = "guna2HtmlLabel20";
-            this.guna2HtmlLabel20.Size = new System.Drawing.Size(58, 18);
-            this.guna2HtmlLabel20.TabIndex = 42;
-            this.guna2HtmlLabel20.Text = "Tìm kiếm";
             // 
             // btnREdit
             // 
@@ -992,16 +1155,6 @@
             this.btnRAdd.Text = "Thêm";
             this.btnRAdd.Click += new System.EventHandler(this.btnRAdd_Click);
             // 
-            // guna2HtmlLabel21
-            // 
-            this.guna2HtmlLabel21.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel21.Location = new System.Drawing.Point(616, 78);
-            this.guna2HtmlLabel21.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel21.Name = "guna2HtmlLabel21";
-            this.guna2HtmlLabel21.Size = new System.Drawing.Size(63, 18);
-            this.guna2HtmlLabel21.TabIndex = 39;
-            this.guna2HtmlLabel21.Text = "Trạng thái";
-            // 
             // cbRStatus
             // 
             this.cbRStatus.BackColor = System.Drawing.Color.Transparent;
@@ -1022,16 +1175,6 @@
             this.cbRStatus.Size = new System.Drawing.Size(265, 36);
             this.cbRStatus.StartIndex = 0;
             this.cbRStatus.TabIndex = 34;
-            // 
-            // guna2HtmlLabel26
-            // 
-            this.guna2HtmlLabel26.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel26.Location = new System.Drawing.Point(616, 26);
-            this.guna2HtmlLabel26.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel26.Name = "guna2HtmlLabel26";
-            this.guna2HtmlLabel26.Size = new System.Drawing.Size(70, 18);
-            this.guna2HtmlLabel26.TabIndex = 29;
-            this.guna2HtmlLabel26.Text = "Kiểu phòng";
             // 
             // txbRName
             // 
@@ -1054,16 +1197,6 @@
             this.txbRName.TabIndex = 28;
             this.txbRName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txbRName_KeyPress);
             // 
-            // guna2HtmlLabel27
-            // 
-            this.guna2HtmlLabel27.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel27.Location = new System.Drawing.Point(16, 76);
-            this.guna2HtmlLabel27.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel27.Name = "guna2HtmlLabel27";
-            this.guna2HtmlLabel27.Size = new System.Drawing.Size(68, 18);
-            this.guna2HtmlLabel27.TabIndex = 27;
-            this.guna2HtmlLabel27.Text = "Tên phòng";
-            // 
             // txbRID
             // 
             this.txbRID.Cursor = System.Windows.Forms.Cursors.IBeam;
@@ -1084,16 +1217,6 @@
             this.txbRID.SelectedText = "";
             this.txbRID.Size = new System.Drawing.Size(267, 44);
             this.txbRID.TabIndex = 26;
-            // 
-            // guna2HtmlLabel28
-            // 
-            this.guna2HtmlLabel28.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel28.Location = new System.Drawing.Point(16, 25);
-            this.guna2HtmlLabel28.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel28.Name = "guna2HtmlLabel28";
-            this.guna2HtmlLabel28.Size = new System.Drawing.Size(16, 18);
-            this.guna2HtmlLabel28.TabIndex = 25;
-            this.guna2HtmlLabel28.Text = "ID";
             // 
             // cbRType
             // 
@@ -1123,25 +1246,31 @@
             this.dgvRoom.AllowUserToDeleteRows = false;
             this.dgvRoom.AllowUserToResizeColumns = false;
             this.dgvRoom.AllowUserToResizeRows = false;
-            dataGridViewCellStyle16.BackColor = System.Drawing.Color.White;
-            this.dgvRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.Color.Gray;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.Color.Silver;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            this.dgvRoom.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.Color.Gray;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.Silver;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRoom.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvRoom.ColumnHeadersHeight = 45;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvRoom.DefaultCellStyle = dataGridViewCellStyle18;
+            this.dgvRoom.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column14,
+            this.Column15,
+            this.Column16,
+            this.Column17,
+            this.Column18});
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvRoom.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvRoom.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dgvRoom.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRoom.Location = new System.Drawing.Point(0, 367);
@@ -1173,18 +1302,20 @@
             this.dgvRoom.ThemeStyle.RowsStyle.Height = 22;
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvRoom.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvRoom.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRoom_CellMouseClick);
+            this.dgvRoom.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvRoom_CellMouseDoubleClick);
             // 
             // tpPhong
             // 
+            this.tpPhong.Controls.Add(this.label27);
+            this.tpPhong.Controls.Add(this.label26);
+            this.tpPhong.Controls.Add(this.label25);
             this.tpPhong.Controls.Add(this.btnRefesh);
             this.tpPhong.Controls.Add(this.rbPhong);
             this.tpPhong.Controls.Add(this.rbNhom);
             this.tpPhong.Controls.Add(this.lbDatetimeNow);
-            this.tpPhong.Controls.Add(this.guna2HtmlLabel19);
             this.tpPhong.Controls.Add(this.panelUse);
-            this.tpPhong.Controls.Add(this.guna2HtmlLabel13);
             this.tpPhong.Controls.Add(this.panelTrong);
-            this.tpPhong.Controls.Add(this.guna2HtmlLabel11);
             this.tpPhong.Controls.Add(this.panelBaoTri);
             this.tpPhong.Location = new System.Drawing.Point(184, 4);
             this.tpPhong.Margin = new System.Windows.Forms.Padding(4);
@@ -1193,6 +1324,36 @@
             this.tpPhong.TabIndex = 3;
             this.tpPhong.Text = "Phòng";
             this.tpPhong.UseVisualStyleBackColor = true;
+            // 
+            // label27
+            // 
+            this.label27.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(861, 756);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(43, 16);
+            this.label27.TabIndex = 63;
+            this.label27.Text = "Trống";
+            // 
+            // label26
+            // 
+            this.label26.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(1004, 756);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(45, 16);
+            this.label26.TabIndex = 62;
+            this.label26.Text = "Bảo trì";
+            // 
+            // label25
+            // 
+            this.label25.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(663, 755);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(89, 16);
+            this.label25.TabIndex = 61;
+            this.label25.Text = "Đang sử dụng";
             // 
             // btnRefesh
             // 
@@ -1261,17 +1422,6 @@
             this.lbDatetimeNow.TabIndex = 8;
             this.lbDatetimeNow.Text = "hôm nay";
             // 
-            // guna2HtmlLabel19
-            // 
-            this.guna2HtmlLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2HtmlLabel19.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel19.Location = new System.Drawing.Point(657, 753);
-            this.guna2HtmlLabel19.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel19.Name = "guna2HtmlLabel19";
-            this.guna2HtmlLabel19.Size = new System.Drawing.Size(85, 18);
-            this.guna2HtmlLabel19.TabIndex = 7;
-            this.guna2HtmlLabel19.Text = "Đang sử dụng";
-            // 
             // panelUse
             // 
             this.panelUse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1282,17 +1432,6 @@
             this.panelUse.Size = new System.Drawing.Size(68, 32);
             this.panelUse.TabIndex = 6;
             // 
-            // guna2HtmlLabel13
-            // 
-            this.guna2HtmlLabel13.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2HtmlLabel13.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel13.Location = new System.Drawing.Point(859, 753);
-            this.guna2HtmlLabel13.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel13.Name = "guna2HtmlLabel13";
-            this.guna2HtmlLabel13.Size = new System.Drawing.Size(39, 18);
-            this.guna2HtmlLabel13.TabIndex = 5;
-            this.guna2HtmlLabel13.Text = "Trống";
-            // 
             // panelTrong
             // 
             this.panelTrong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -1302,17 +1441,6 @@
             this.panelTrong.Name = "panelTrong";
             this.panelTrong.Size = new System.Drawing.Size(68, 32);
             this.panelTrong.TabIndex = 4;
-            // 
-            // guna2HtmlLabel11
-            // 
-            this.guna2HtmlLabel11.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.guna2HtmlLabel11.BackColor = System.Drawing.Color.Transparent;
-            this.guna2HtmlLabel11.Location = new System.Drawing.Point(1004, 753);
-            this.guna2HtmlLabel11.Margin = new System.Windows.Forms.Padding(4);
-            this.guna2HtmlLabel11.Name = "guna2HtmlLabel11";
-            this.guna2HtmlLabel11.Size = new System.Drawing.Size(41, 18);
-            this.guna2HtmlLabel11.TabIndex = 3;
-            this.guna2HtmlLabel11.Text = "Bảo trì";
             // 
             // panelBaoTri
             // 
@@ -1353,125 +1481,207 @@
             this.tpDashboard.Text = "Dashboard";
             this.tpDashboard.UseVisualStyleBackColor = true;
             // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(271, 102);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(103, 16);
+            this.label15.TabIndex = 57;
+            this.label15.Text = "Tên khách hàng";
+            // 
             // timer1
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // txbNVAddress
+            // label28
             // 
-            this.txbNVAddress.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbNVAddress.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbNVAddress.DefaultText = "";
-            this.txbNVAddress.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txbNVAddress.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txbNVAddress.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbNVAddress.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbNVAddress.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbNVAddress.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbNVAddress.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbNVAddress.Location = new System.Drawing.Point(816, 10);
-            this.txbNVAddress.Margin = new System.Windows.Forms.Padding(4);
-            this.txbNVAddress.Name = "txbNVAddress";
-            this.txbNVAddress.PasswordChar = '\0';
-            this.txbNVAddress.PlaceholderText = "";
-            this.txbNVAddress.SelectedText = "";
-            this.txbNVAddress.Size = new System.Drawing.Size(267, 44);
-            this.txbNVAddress.TabIndex = 51;
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(576, 20);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(41, 16);
+            this.label28.TabIndex = 62;
+            this.label28.Text = "Email";
             // 
-            // label1
+            // txbKHEmail
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 79);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(91, 16);
-            this.label1.TabIndex = 52;
-            this.label1.Text = "Tên nhân viên";
+            this.txbKHEmail.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbKHEmail.DefaultText = "";
+            this.txbKHEmail.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbKHEmail.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbKHEmail.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbKHEmail.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbKHEmail.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbKHEmail.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbKHEmail.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbKHEmail.Location = new System.Drawing.Point(696, 5);
+            this.txbKHEmail.Margin = new System.Windows.Forms.Padding(4);
+            this.txbKHEmail.Name = "txbKHEmail";
+            this.txbKHEmail.PasswordChar = '\0';
+            this.txbKHEmail.PlaceholderText = "";
+            this.txbKHEmail.SelectedText = "";
+            this.txbKHEmail.Size = new System.Drawing.Size(267, 44);
+            this.txbKHEmail.TabIndex = 61;
             // 
-            // label2
+            // Column1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 27);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(20, 16);
-            this.label2.TabIndex = 53;
-            this.label2.Text = "ID";
+            this.Column1.DataPropertyName = "staffid";
+            this.Column1.HeaderText = "ID";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
             // 
-            // label3
+            // staffname
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(34, 16);
-            this.label3.TabIndex = 54;
-            this.label3.Text = "SĐT";
+            this.staffname.DataPropertyName = "staffname";
+            this.staffname.HeaderText = "Tên nhân viên";
+            this.staffname.MinimumWidth = 6;
+            this.staffname.Name = "staffname";
+            this.staffname.ReadOnly = true;
             // 
-            // label4
+            // staffsex
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(18, 252);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(67, 16);
-            this.label4.TabIndex = 55;
-            this.label4.Text = "Ngày sinh";
+            this.staffsex.DataPropertyName = "staffsex";
+            this.staffsex.HeaderText = "Giới tính";
+            this.staffsex.MinimumWidth = 6;
+            this.staffsex.Name = "staffsex";
+            this.staffsex.ReadOnly = true;
             // 
-            // label5
+            // Column2
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(18, 189);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(54, 16);
-            this.label5.TabIndex = 56;
-            this.label5.Text = "Giới tính";
+            this.Column2.DataPropertyName = "staffphone";
+            this.Column2.HeaderText = "Số điện thoại";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
             // 
-            // label6
+            // Column7
             // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(1021, 293);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(62, 16);
-            this.label6.TabIndex = 57;
-            this.label6.Text = "Tìm kiếm";
+            this.Column7.DataPropertyName = "staffdate";
+            this.Column7.HeaderText = "Ngày sinh";
+            this.Column7.MinimumWidth = 6;
+            this.Column7.Name = "Column7";
+            this.Column7.ReadOnly = true;
             // 
-            // label7
+            // Column3
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(709, 189);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(54, 16);
-            this.label7.TabIndex = 58;
-            this.label7.Text = "Chức vụ";
+            this.Column3.DataPropertyName = "staffaddress";
+            this.Column3.HeaderText = "Địa chỉ";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
             // 
-            // label8
+            // Column4
             // 
-            this.label8.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(709, 125);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(61, 16);
-            this.label8.TabIndex = 59;
-            this.label8.Text = "Mật khẩu";
+            this.Column4.DataPropertyName = "username";
+            this.Column4.HeaderText = "Tên tài khoản";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
-            // label9
+            // Column5
             // 
-            this.label9.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(709, 79);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(98, 16);
-            this.label9.TabIndex = 60;
-            this.label9.Text = "Tên đăng nhập";
+            this.Column5.DataPropertyName = "password";
+            this.Column5.HeaderText = "Mật khẩu";
+            this.Column5.MinimumWidth = 6;
+            this.Column5.Name = "Column5";
+            this.Column5.ReadOnly = true;
             // 
-            // label10
+            // Column6
             // 
-            this.label10.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(709, 27);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(47, 16);
-            this.label10.TabIndex = 61;
-            this.label10.Text = "Địa chỉ";
+            this.Column6.DataPropertyName = "role";
+            this.Column6.HeaderText = "Chức vụ";
+            this.Column6.MinimumWidth = 6;
+            this.Column6.Name = "Column6";
+            this.Column6.ReadOnly = true;
+            // 
+            // Column8
+            // 
+            this.Column8.DataPropertyName = "cusid";
+            this.Column8.HeaderText = "ID";
+            this.Column8.MinimumWidth = 6;
+            this.Column8.Name = "Column8";
+            this.Column8.ReadOnly = true;
+            // 
+            // Column9
+            // 
+            this.Column9.DataPropertyName = "cusname";
+            this.Column9.HeaderText = "Tên khách hàng";
+            this.Column9.MinimumWidth = 6;
+            this.Column9.Name = "Column9";
+            this.Column9.ReadOnly = true;
+            // 
+            // Column10
+            // 
+            this.Column10.DataPropertyName = "cusphone";
+            this.Column10.HeaderText = "Số điện thoại";
+            this.Column10.MinimumWidth = 6;
+            this.Column10.Name = "Column10";
+            this.Column10.ReadOnly = true;
+            // 
+            // Column11
+            // 
+            this.Column11.DataPropertyName = "cusemail";
+            this.Column11.HeaderText = "Email";
+            this.Column11.MinimumWidth = 6;
+            this.Column11.Name = "Column11";
+            this.Column11.ReadOnly = true;
+            // 
+            // Column12
+            // 
+            this.Column12.DataPropertyName = "cusdate";
+            this.Column12.HeaderText = "Ngày sinh";
+            this.Column12.MinimumWidth = 6;
+            this.Column12.Name = "Column12";
+            this.Column12.ReadOnly = true;
+            // 
+            // Column13
+            // 
+            this.Column13.DataPropertyName = "cusaddress";
+            this.Column13.HeaderText = "Địa chỉ";
+            this.Column13.MinimumWidth = 6;
+            this.Column13.Name = "Column13";
+            this.Column13.ReadOnly = true;
+            // 
+            // Column14
+            // 
+            this.Column14.DataPropertyName = "roomid";
+            this.Column14.HeaderText = "ID";
+            this.Column14.MinimumWidth = 6;
+            this.Column14.Name = "Column14";
+            this.Column14.ReadOnly = true;
+            // 
+            // Column15
+            // 
+            this.Column15.DataPropertyName = "roomnumber";
+            this.Column15.HeaderText = "Tên phòng";
+            this.Column15.MinimumWidth = 6;
+            this.Column15.Name = "Column15";
+            this.Column15.ReadOnly = true;
+            // 
+            // Column16
+            // 
+            this.Column16.DataPropertyName = "roomtype";
+            this.Column16.HeaderText = "Kiểu phòng";
+            this.Column16.MinimumWidth = 6;
+            this.Column16.Name = "Column16";
+            this.Column16.ReadOnly = true;
+            // 
+            // Column17
+            // 
+            this.Column17.DataPropertyName = "roomrate";
+            this.Column17.HeaderText = "Giá phòng theo giờ";
+            this.Column17.MinimumWidth = 6;
+            this.Column17.Name = "Column17";
+            this.Column17.ReadOnly = true;
+            // 
+            // Column18
+            // 
+            this.Column18.DataPropertyName = "roomstatus";
+            this.Column18.HeaderText = "Trạng thái phòng";
+            this.Column18.MinimumWidth = 6;
+            this.Column18.Name = "Column18";
+            this.Column18.ReadOnly = true;
             // 
             // frmHome
             // 
@@ -1479,6 +1689,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1445, 814);
             this.Controls.Add(this.tcName);
+            this.Controls.Add(this.label15);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmHome";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -1498,6 +1709,7 @@
             this.tpPhong.ResumeLayout(false);
             this.tpPhong.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1520,20 +1732,12 @@
         private Guna.UI2.WinForms.Guna2TextBox txbNVSearch;
         private Guna.UI2.WinForms.Guna2TextBox txbNVName;
         private Guna.UI2.WinForms.Guna2TextBox txbKHSearch;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel10;
         private Guna.UI2.WinForms.Guna2TextBox txbKHAddress;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel12;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel14;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpKHDate;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel15;
         private Guna.UI2.WinForms.Guna2TextBox txbKHSDT;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel16;
         private Guna.UI2.WinForms.Guna2TextBox txbKHName;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel17;
         private Guna.UI2.WinForms.Guna2TextBox txbKHID;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel18;
         private Guna.UI2.WinForms.Guna2DataGridView dgvKH;
-        private Guna.UI2.WinForms.Guna2ComboBox cbKHSex;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffnameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn staffsexDataGridViewTextBoxColumn;
@@ -1551,34 +1755,23 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn cusdateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn cusaddressDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isRemoveDataGridViewCheckBoxColumn1;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel13;
         private Guna.UI2.WinForms.Guna2Panel panelTrong;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel11;
         private Guna.UI2.WinForms.Guna2Panel panelBaoTri;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel19;
         private Guna.UI2.WinForms.Guna2Panel panelUse;
         private System.Windows.Forms.Label lbDatetimeNow;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.TabPage tpQLPhong;
         private Guna.UI2.WinForms.Guna2DataGridView dgvRoom;
         private Guna.UI2.WinForms.Guna2TextBox txbRPrice;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel22;
         private Guna.UI2.WinForms.Guna2TextBox cbRSearch;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel20;
         private Guna.UI2.WinForms.Guna2Button btnREdit;
         private Guna.UI2.WinForms.Guna2Button btnRAdd;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel21;
         private Guna.UI2.WinForms.Guna2ComboBox cbRStatus;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel26;
         private Guna.UI2.WinForms.Guna2TextBox txbRName;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel27;
         private Guna.UI2.WinForms.Guna2TextBox txbRID;
-        private Guna.UI2.WinForms.Guna2HtmlLabel guna2HtmlLabel28;
         private Guna.UI2.WinForms.Guna2ComboBox cbRType;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomidDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomnumberDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roomtypeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn roomrateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn roomstatusDataGridViewTextBoxColumn;
         private Guna.UI2.WinForms.Guna2Button btnRClear;
         private Guna.UI2.WinForms.Guna2Button btnNVClear;
@@ -1604,5 +1797,43 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.Label label23;
+        private System.Windows.Forms.Label label22;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label28;
+        private Guna.UI2.WinForms.Guna2TextBox txbKHEmail;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn staffname;
+        private System.Windows.Forms.DataGridViewTextBoxColumn staffsex;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column7;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column4;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column10;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column11;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column13;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column14;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column15;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column16;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column17;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column18;
     }
 }

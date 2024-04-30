@@ -40,19 +40,24 @@ namespace ChuongTrinhQuanLyKhachSan
             {
                 try
                 {
-                    var user = db.Staff.FirstOrDefault(u => u.Username == username && u.Password == password);
-                    if (username == user.Username && password == user.Password)
+                    var user = db.Staff.FirstOrDefault(u => u.Username == username);
+
+                    if (user != null)
                     {
                         frmHome.name = username;
                         frmHome.role = user.Role;
                         frmHome.ShowDialog();
                     }
+                    else
+                    {
+                        MessageBox.Show("Sai mật khẩu hoặc tên đăng nhập", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Sai mật khẩu hoặc tên đăng nhập", "Đăng nhập thất bại", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Đã xảy ra lỗi: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-               
+
             }
         }
     }

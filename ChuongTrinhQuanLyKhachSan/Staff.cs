@@ -23,7 +23,7 @@ namespace ChuongTrinhQuanLyKhachSan
         public int staffid { get; set; }
         public string staffname { get; set; }
         public string staffsex { get; set; }
-        public int staffphone { get; set; }
+        public string staffphone { get; set; }
         public Nullable<System.DateTime> staffdate { get; set; }
         public string staffaddress { get; set; }
         public string Username { get; set; }

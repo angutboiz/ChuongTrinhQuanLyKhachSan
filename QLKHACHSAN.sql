@@ -6,7 +6,7 @@ CREATE TABLE Staff (
     staffid INT PRIMARY KEY IDENTITY(1,1),
     staffname NVARCHAR(50) NOT NULL,
 	staffsex NVARCHAR(20),
-    staffphone INT UNIQUE NOT NULL,
+    staffphone NVARCHAR(10) UNIQUE NOT NULL,
 	staffdate DATE,                  
     staffaddress NVARCHAR(100),
     Username NVARCHAR(50) UNIQUE NOT NULL,
@@ -21,7 +21,7 @@ CREATE TABLE Customer (
     cusid INT IDENTITY(1,1) PRIMARY KEY,
     cusname NVARCHAR(100) NOT NULL,
     cusemail NVARCHAR(100),
-    cusphone NVARCHAR(20) UNIQUE NOT NULL,
+    cusphone NVARCHAR(10) UNIQUE NOT NULL,
 	cusdate SMALLDATETIME,       
     cusaddress NVARCHAR(255),
 	isRemove bit default 0 -- mặc định là hiển thị, khi xóa sẽ ko hiển thị
