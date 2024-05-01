@@ -122,6 +122,7 @@ namespace ChuongTrinhQuanLyKhachSan
             dgvRoom.DataSource = result.ToList();
         }
 
+       
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbDatetimeNow.Text = DateTime.Now.ToString("HH:mm:ss") + "   |   Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
@@ -287,7 +288,6 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 clonedGroupBox.Location = new Point(newX, newY);
 
-                this.tpPhong.Controls.Remove(clonedGroupBox);
                 this.tpPhong.Controls.Add(clonedGroupBox);
 
                 clonedGroupBox.Click += (sender, e) =>
@@ -307,16 +307,30 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 Label label1 = new Label();
                 label1.Text = "Loại phòng: " + item.roomtype;
+                label1.AutoSize = true;
                 label1.ForeColor = Color.Black;
-                label1.Location = new Point(0, newY + 30);
+                label1.Location = new Point(0, 70);
                 clonedGroupBox.Controls.Add(label1);
 
                 Label label2 = new Label();
-                label2.Text = "Giá tiền: " + item.roomrate;
+                label2.Text = string.Format("Giá tiền: {0:#,##0}đ", item.roomrate);
                 label2.ForeColor = Color.Black;
-                label2.Location = new Point(0, newY + 50);
-
+                label2.Location = new Point(0, 90);
+                label2.AutoSize = true;
                 clonedGroupBox.Controls.Add(label2);
+
+                var booking = db.Booking.FirstOrDefault(b => b.roomid == item.roomid);
+                if (item.roomstatus == "Đang sử dụng")
+                {
+                    Label label3 = new Label();
+                    label3.Text = "Thời gian đặt:\n" + booking.checkin;
+                    label3.ForeColor = Color.Black;
+                    label3.Location = new Point(0, 110);
+                    label3.AutoSize = true;
+                    clonedGroupBox.Controls.Add(label3);
+
+                } 
+
 
 
                 i++;
@@ -351,9 +365,7 @@ namespace ChuongTrinhQuanLyKhachSan
         private void btnRefesh_Click(object sender, EventArgs e)
         {
             this.Close();
-            frmHome frm = new frmHome();
-            frm.ShowDialog();
-            frmHome_Load(this, EventArgs.Empty);
+            
             LoadDataRoom();
             LoadRoom();
         }
@@ -560,7 +572,6 @@ namespace ChuongTrinhQuanLyKhachSan
                     cusdate = dtpKHDate.Value,
                     cusaddress = txbKHAddress.Text,
                     isRemove = false
-
                 });
 
                 db.SaveChanges();
@@ -676,10 +687,10 @@ namespace ChuongTrinhQuanLyKhachSan
 Quạt
 Thường
 Máy lạnh*/
-            if (cbRType.SelectedIndex == 0) txbRPrice.Text = "150 000";
-            if (cbRType.SelectedIndex == 1) txbRPrice.Text = "50 000";
-            if (cbRType.SelectedIndex == 2) txbRPrice.Text = "70 000";
-            if (cbRType.SelectedIndex == 3) txbRPrice.Text = "90 000";
+            if (cbRType.SelectedIndex == 0) txbRPrice.Text = "200 000";
+            if (cbRType.SelectedIndex == 1) txbRPrice.Text = "250 000";
+            if (cbRType.SelectedIndex == 2) txbRPrice.Text = "300 000";
+            if (cbRType.SelectedIndex == 3) txbRPrice.Text = "300 000";
         }
     }
 }

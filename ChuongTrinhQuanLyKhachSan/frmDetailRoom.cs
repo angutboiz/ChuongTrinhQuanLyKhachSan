@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,7 +53,7 @@ namespace ChuongTrinhQuanLyKhachSan
                            where cus.isRemove == false
                            select cus.cusname;
 
-           
+
 
             cbKH.DataSource = customer.ToList();
 
@@ -60,20 +61,22 @@ namespace ChuongTrinhQuanLyKhachSan
             {
                 btnDatPhong.Enabled = false;
                 btnThanhToan.Enabled = true;
+                btnClearData.Enabled = false;
                
             }
             else if (room.roomstatus == "Bảo trì")
             {
                 btnDatPhong.Enabled = false;
                 btnThanhToan.Enabled = false;
+                btnClearData.Enabled = true;
             }
 
 
 
             //kiếm xem id room có trong booking chưa, nếu có thì hiển thị data staff và customer lên load form
             var booking = db.Booking.FirstOrDefault(b => b.roomid == room.roomid);
-
-            if (booking != null)
+            
+            if (booking != null && booking.bookstatus == "Đang thuê phòng")
             {
                 var staffid = db.Staff.Find(booking.staffid);
                 var custom = db.Customer.Find(booking.cusid);
@@ -89,9 +92,9 @@ namespace ChuongTrinhQuanLyKhachSan
             else
             {
                 ClearData();
-                txbStart.Text = DateTime.Now.ToString("HH:mm:ss");
                 btnDatPhong.Enabled = true;
                 btnThanhToan.Enabled = false;
+                btnClearData.Enabled = false;
             }
         }
 
@@ -169,10 +172,21 @@ namespace ChuongTrinhQuanLyKhachSan
 
             int giatheogio = int.Parse(txbGiaTheoGio.Text);
             int tongthoigian = int.Parse(txbTongTime.Text);
+            int phi = int.Parse(txbPhiTheoGio.Text.Replace(" ", ""));
 
-            int tongtien = tongthoigian * giatheogio;
+            int tongtien = (tongthoigian * phi) + giatheogio;
 
             lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
+
+            var bk = db.Booking.SingleOrDefault(b => b.roomid == room.roomid);
+            bk.checkout = DateTime.Parse(txbEnd.Text);
+            bk.bookstatus = "Trả phòng";
+
+
+            Room r = db.Room.Find(room.roomid);
+            r.roomstatus = "Bảo trì";
+            db.SaveChanges();
+
 
 
             btnThanhToan.Enabled = false;
@@ -256,6 +270,10 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnClearData_Click(object sender, EventArgs e)
         {
+
+            var check = db.Room.SingleOrDefault(b => b.roomid == room.roomid);
+            check.roomstatus = "Phòng trống";
+            db.SaveChanges();
             ClearData();
             ClearData();
         }
@@ -270,6 +288,19 @@ namespace ChuongTrinhQuanLyKhachSan
             txbNVSDT.Text = "";
             txbKHID.Text = "";
             txbKHPhone.Text = "";
+        }
+
+        private void chkTuChinh_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkTuChinh.Checked)
+            {
+                txbStart.Enabled = true;
+                txbStart.Text = "20/04/2024 12:30";
+            } else
+            {
+                txbStart.Enabled = false;
+                txbStart.Text = "";
+            }
         }
     }
 }

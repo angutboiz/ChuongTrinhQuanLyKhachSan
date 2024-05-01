@@ -7,15 +7,13 @@
       <Diagram DiagramId="5c754bb1cc4549d5bd2e78a3f4dcacb4" Name="Diagram1">
         <EntityTypeShape EntityType="QLKHACHSANModel.Booking" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKHACHSANModel.Customer" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHACHSANModel.Payment" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKHACHSANModel.Room" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKHACHSANModel.Service" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
         <EntityTypeShape EntityType="QLKHACHSANModel.Staff" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
         <AssociationConnector Association="QLKHACHSANModel.FK__Booking__cusid__31EC6D26" ManuallyRouted="false" />
         <AssociationConnector Association="QLKHACHSANModel.FK__Booking__roomid__32E0915F" ManuallyRouted="false" />
         <AssociationConnector Association="QLKHACHSANModel.FK__Booking__staffid__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Payment__bookid__37A5467C" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Payment__serid__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

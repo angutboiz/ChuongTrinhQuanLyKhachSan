@@ -17,7 +17,7 @@ namespace ChuongTrinhQuanLyKhachSan
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Payment = new HashSet<Payment>();
+            this.Booking = new HashSet<Booking>();
         }
     
         public int serid { get; set; }
@@ -26,6 +26,6 @@ namespace ChuongTrinhQuanLyKhachSan
         public Nullable<decimal> sertax { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payment { get; set; }
+        public virtual ICollection<Booking> Booking { get; set; }
     }
 }

@@ -1380,10 +1380,10 @@
             this.cbRType.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbRType.ItemHeight = 30;
             this.cbRType.Items.AddRange(new object[] {
-            "VIP",
-            "Quạt",
-            "Thường",
-            "Máy lạnh"});
+            "Superior",
+            "Deluxe Twin Bed",
+            "Deluxe King Bed",
+            "VIP"});
             this.cbRType.Location = new System.Drawing.Point(720, 10);
             this.cbRType.Margin = new System.Windows.Forms.Padding(4);
             this.cbRType.Name = "cbRType";

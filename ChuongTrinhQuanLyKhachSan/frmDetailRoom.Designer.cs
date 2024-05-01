@@ -29,10 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.grpRoom = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label15 = new System.Windows.Forms.Label();
+            this.btnClearData = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox4 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnTang = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
@@ -43,13 +45,23 @@
             this.txbServiceSoluong = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnServiceAdd = new Guna.UI2.WinForms.Guna2Button();
             this.dgvService = new Guna.UI2.WinForms.Guna2DataGridView();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2DateTimePicker1 = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.chkTuChinh = new Guna.UI2.WinForms.Guna2CheckBox();
             this.guna2GroupBox3 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.txbPhiTheoGio = new Guna.UI2.WinForms.Guna2TextBox();
+            this.label14 = new System.Windows.Forms.Label();
             this.lbTongTien = new System.Windows.Forms.Label();
+            this.txbGiaTheoGio = new Guna.UI2.WinForms.Guna2TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txbLoaiPhong = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbTongTime = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbEnd = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbStart = new Guna.UI2.WinForms.Guna2TextBox();
@@ -72,15 +84,6 @@
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.qLKHACHSANDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnClearData = new Guna.UI2.WinForms.Guna2Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txbLoaiPhong = new Guna.UI2.WinForms.Guna2TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.txbGiaTheoGio = new Guna.UI2.WinForms.Guna2TextBox();
-            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.grpRoom.SuspendLayout();
             this.guna2GroupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
@@ -93,6 +96,7 @@
             // 
             // grpRoom
             // 
+            this.grpRoom.Controls.Add(this.label15);
             this.grpRoom.Controls.Add(this.btnClearData);
             this.grpRoom.Controls.Add(this.guna2GroupBox4);
             this.grpRoom.Controls.Add(this.guna2DateTimePicker1);
@@ -113,6 +117,36 @@
             this.grpRoom.TabIndex = 0;
             this.grpRoom.Text = "Phòng 201";
             this.grpRoom.Click += new System.EventHandler(this.grpRoom_Click);
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.Transparent;
+            this.label15.ForeColor = System.Drawing.Color.Black;
+            this.label15.Location = new System.Drawing.Point(907, 387);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(180, 20);
+            this.label15.TabIndex = 30;
+            this.label15.Text = "Nếu phòng dọn dẹp xong";
+            // 
+            // btnClearData
+            // 
+            this.btnClearData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnClearData.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClearData.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnClearData.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnClearData.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnClearData.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnClearData.FillColor = System.Drawing.Color.Teal;
+            this.btnClearData.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnClearData.ForeColor = System.Drawing.Color.White;
+            this.btnClearData.Location = new System.Drawing.Point(938, 414);
+            this.btnClearData.Margin = new System.Windows.Forms.Padding(4);
+            this.btnClearData.Name = "btnClearData";
+            this.btnClearData.Size = new System.Drawing.Size(132, 43);
+            this.btnClearData.TabIndex = 29;
+            this.btnClearData.Text = "Mở lại phòng";
+            this.btnClearData.Click += new System.EventHandler(this.btnClearData_Click);
             // 
             // guna2GroupBox4
             // 
@@ -259,30 +293,30 @@
             this.dgvService.AllowUserToDeleteRows = false;
             this.dgvService.AllowUserToResizeColumns = false;
             this.dgvService.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvService.ColumnHeadersHeight = 40;
             this.dgvService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvService.Location = new System.Drawing.Point(3, 176);
             this.dgvService.Name = "dgvService";
@@ -313,6 +347,35 @@
             this.dgvService.ThemeStyle.RowsStyle.Height = 24;
             this.dgvService.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvService.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "STT";
+            this.Column1.MinimumWidth = 6;
+            this.Column1.Name = "Column1";
+            this.Column1.ReadOnly = true;
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Tên dịch vụ";
+            this.Column2.MinimumWidth = 6;
+            this.Column2.Name = "Column2";
+            this.Column2.ReadOnly = true;
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Số lượng";
+            this.Column3.MinimumWidth = 6;
+            this.Column3.Name = "Column3";
+            this.Column3.ReadOnly = true;
+            // 
+            // Column4
+            // 
+            this.Column4.DataPropertyName = "sertax";
+            this.Column4.HeaderText = "Tổng tiền";
+            this.Column4.MinimumWidth = 6;
+            this.Column4.Name = "Column4";
+            this.Column4.ReadOnly = true;
             // 
             // guna2DateTimePicker1
             // 
@@ -348,9 +411,12 @@
             this.chkTuChinh.UncheckedState.BorderThickness = 0;
             this.chkTuChinh.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
             this.chkTuChinh.UseVisualStyleBackColor = false;
+            this.chkTuChinh.CheckedChanged += new System.EventHandler(this.chkTuChinh_CheckedChanged);
             // 
             // guna2GroupBox3
             // 
+            this.guna2GroupBox3.Controls.Add(this.label5);
+            this.guna2GroupBox3.Controls.Add(this.txbPhiTheoGio);
             this.guna2GroupBox3.Controls.Add(this.label14);
             this.guna2GroupBox3.Controls.Add(this.lbTongTien);
             this.guna2GroupBox3.Controls.Add(this.txbGiaTheoGio);
@@ -372,6 +438,52 @@
             this.guna2GroupBox3.TabIndex = 27;
             this.guna2GroupBox3.Text = "Chi tiết";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Enabled = false;
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(296, 60);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(89, 20);
+            this.label5.TabIndex = 42;
+            this.label5.Text = "Phí theo giờ";
+            // 
+            // txbPhiTheoGio
+            // 
+            this.txbPhiTheoGio.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbPhiTheoGio.DefaultText = "50 000";
+            this.txbPhiTheoGio.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbPhiTheoGio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbPhiTheoGio.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbPhiTheoGio.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbPhiTheoGio.Enabled = false;
+            this.txbPhiTheoGio.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbPhiTheoGio.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbPhiTheoGio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbPhiTheoGio.Location = new System.Drawing.Point(300, 84);
+            this.txbPhiTheoGio.Margin = new System.Windows.Forms.Padding(4);
+            this.txbPhiTheoGio.Name = "txbPhiTheoGio";
+            this.txbPhiTheoGio.PasswordChar = '\0';
+            this.txbPhiTheoGio.PlaceholderText = "";
+            this.txbPhiTheoGio.SelectedText = "";
+            this.txbPhiTheoGio.Size = new System.Drawing.Size(85, 44);
+            this.txbPhiTheoGio.TabIndex = 41;
+            this.txbPhiTheoGio.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.White;
+            this.label14.Enabled = false;
+            this.label14.ForeColor = System.Drawing.Color.Black;
+            this.label14.Location = new System.Drawing.Point(218, 60);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(53, 20);
+            this.label14.TabIndex = 40;
+            this.label14.Text = "Giá/2h";
+            // 
             // lbTongTien
             // 
             this.lbTongTien.AutoSize = true;
@@ -379,9 +491,30 @@
             this.lbTongTien.ForeColor = System.Drawing.Color.Black;
             this.lbTongTien.Location = new System.Drawing.Point(18, 313);
             this.lbTongTien.Name = "lbTongTien";
-            this.lbTongTien.Size = new System.Drawing.Size(152, 20);
+            this.lbTongTien.Size = new System.Drawing.Size(79, 20);
             this.lbTongTien.TabIndex = 33;
-            this.lbTongTien.Text = "Tổng tiền: 83.000.00Đ";
+            this.lbTongTien.Text = "Tổng tiền: ";
+            // 
+            // txbGiaTheoGio
+            // 
+            this.txbGiaTheoGio.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbGiaTheoGio.DefaultText = "";
+            this.txbGiaTheoGio.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbGiaTheoGio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbGiaTheoGio.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbGiaTheoGio.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbGiaTheoGio.Enabled = false;
+            this.txbGiaTheoGio.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbGiaTheoGio.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbGiaTheoGio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbGiaTheoGio.Location = new System.Drawing.Point(181, 84);
+            this.txbGiaTheoGio.Margin = new System.Windows.Forms.Padding(4);
+            this.txbGiaTheoGio.Name = "txbGiaTheoGio";
+            this.txbGiaTheoGio.PasswordChar = '\0';
+            this.txbGiaTheoGio.PlaceholderText = "";
+            this.txbGiaTheoGio.SelectedText = "";
+            this.txbGiaTheoGio.Size = new System.Drawing.Size(111, 44);
+            this.txbGiaTheoGio.TabIndex = 39;
             // 
             // label8
             // 
@@ -415,6 +548,39 @@
             this.label3.Size = new System.Drawing.Size(97, 20);
             this.label3.TabIndex = 31;
             this.label3.Text = "Thời gian đặt";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.White;
+            this.label13.Enabled = false;
+            this.label13.ForeColor = System.Drawing.Color.Black;
+            this.label13.Location = new System.Drawing.Point(40, 60);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(84, 20);
+            this.label13.TabIndex = 38;
+            this.label13.Text = "Loại phòng";
+            // 
+            // txbLoaiPhong
+            // 
+            this.txbLoaiPhong.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txbLoaiPhong.DefaultText = "";
+            this.txbLoaiPhong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txbLoaiPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txbLoaiPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbLoaiPhong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txbLoaiPhong.Enabled = false;
+            this.txbLoaiPhong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbLoaiPhong.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txbLoaiPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txbLoaiPhong.Location = new System.Drawing.Point(17, 84);
+            this.txbLoaiPhong.Margin = new System.Windows.Forms.Padding(4);
+            this.txbLoaiPhong.Name = "txbLoaiPhong";
+            this.txbLoaiPhong.PasswordChar = '\0';
+            this.txbLoaiPhong.PlaceholderText = "";
+            this.txbLoaiPhong.SelectedText = "";
+            this.txbLoaiPhong.Size = new System.Drawing.Size(156, 44);
+            this.txbLoaiPhong.TabIndex = 37;
             // 
             // txbTongTime
             // 
@@ -757,119 +923,6 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnClearData
-            // 
-            this.btnClearData.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClearData.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClearData.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnClearData.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnClearData.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnClearData.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnClearData.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.btnClearData.ForeColor = System.Drawing.Color.White;
-            this.btnClearData.Location = new System.Drawing.Point(938, 257);
-            this.btnClearData.Margin = new System.Windows.Forms.Padding(4);
-            this.btnClearData.Name = "btnClearData";
-            this.btnClearData.Size = new System.Drawing.Size(132, 43);
-            this.btnClearData.TabIndex = 29;
-            this.btnClearData.Text = "Clear Data";
-            this.btnClearData.Click += new System.EventHandler(this.btnClearData_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.White;
-            this.label13.Enabled = false;
-            this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(151, 60);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(84, 20);
-            this.label13.TabIndex = 38;
-            this.label13.Text = "Loại phòng";
-            // 
-            // txbLoaiPhong
-            // 
-            this.txbLoaiPhong.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbLoaiPhong.DefaultText = "";
-            this.txbLoaiPhong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txbLoaiPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txbLoaiPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbLoaiPhong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbLoaiPhong.Enabled = false;
-            this.txbLoaiPhong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbLoaiPhong.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbLoaiPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbLoaiPhong.Location = new System.Drawing.Point(144, 84);
-            this.txbLoaiPhong.Margin = new System.Windows.Forms.Padding(4);
-            this.txbLoaiPhong.Name = "txbLoaiPhong";
-            this.txbLoaiPhong.PasswordChar = '\0';
-            this.txbLoaiPhong.PlaceholderText = "";
-            this.txbLoaiPhong.SelectedText = "";
-            this.txbLoaiPhong.Size = new System.Drawing.Size(99, 44);
-            this.txbLoaiPhong.TabIndex = 37;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.BackColor = System.Drawing.Color.White;
-            this.label14.Enabled = false;
-            this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(290, 60);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(91, 20);
-            this.label14.TabIndex = 40;
-            this.label14.Text = "Giá theo giờ";
-            // 
-            // txbGiaTheoGio
-            // 
-            this.txbGiaTheoGio.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbGiaTheoGio.DefaultText = "";
-            this.txbGiaTheoGio.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txbGiaTheoGio.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txbGiaTheoGio.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbGiaTheoGio.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txbGiaTheoGio.Enabled = false;
-            this.txbGiaTheoGio.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbGiaTheoGio.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txbGiaTheoGio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbGiaTheoGio.Location = new System.Drawing.Point(286, 84);
-            this.txbGiaTheoGio.Margin = new System.Windows.Forms.Padding(4);
-            this.txbGiaTheoGio.Name = "txbGiaTheoGio";
-            this.txbGiaTheoGio.PasswordChar = '\0';
-            this.txbGiaTheoGio.PlaceholderText = "";
-            this.txbGiaTheoGio.SelectedText = "";
-            this.txbGiaTheoGio.Size = new System.Drawing.Size(99, 44);
-            this.txbGiaTheoGio.TabIndex = 39;
-            // 
-            // Column1
-            // 
-            this.Column1.HeaderText = "STT";
-            this.Column1.MinimumWidth = 6;
-            this.Column1.Name = "Column1";
-            this.Column1.ReadOnly = true;
-            // 
-            // Column2
-            // 
-            this.Column2.HeaderText = "Tên dịch vụ";
-            this.Column2.MinimumWidth = 6;
-            this.Column2.Name = "Column2";
-            this.Column2.ReadOnly = true;
-            // 
-            // Column3
-            // 
-            this.Column3.HeaderText = "Số lượng";
-            this.Column3.MinimumWidth = 6;
-            this.Column3.Name = "Column3";
-            this.Column3.ReadOnly = true;
-            // 
-            // Column4
-            // 
-            this.Column4.DataPropertyName = "sertax";
-            this.Column4.HeaderText = "Tổng tiền";
-            this.Column4.MinimumWidth = 6;
-            this.Column4.Name = "Column4";
-            this.Column4.ReadOnly = true;
-            // 
             // frmDetailRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -954,5 +1007,8 @@
         private Guna.UI2.WinForms.Guna2TextBox txbGiaTheoGio;
         private System.Windows.Forms.Label label13;
         private Guna.UI2.WinForms.Guna2TextBox txbLoaiPhong;
+        private System.Windows.Forms.Label label5;
+        private Guna.UI2.WinForms.Guna2TextBox txbPhiTheoGio;
+        private System.Windows.Forms.Label label15;
     }
 }

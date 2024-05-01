@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="QLKHACHSANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="QLKHACHSANModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Booking">
           <Key>
             <PropertyRef Name="bookid" />
@@ -13,9 +13,12 @@
           <Property Name="staffid" Type="int" />
           <Property Name="cusid" Type="int" />
           <Property Name="roomid" Type="int" />
+          <Property Name="serid" Type="int" />
           <Property Name="checkin" Type="smalldatetime" />
           <Property Name="checkout" Type="smalldatetime" />
           <Property Name="bookstatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="paymethod" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -28,17 +31,6 @@
           <Property Name="cusdate" Type="smalldatetime" />
           <Property Name="cusaddress" Type="nvarchar" MaxLength="255" />
           <Property Name="isRemove" Type="bit" />
-        </EntityType>
-        <EntityType Name="Payment">
-          <Key>
-            <PropertyRef Name="payid" />
-          </Key>
-          <Property Name="payid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="bookid" Type="int" />
-          <Property Name="serid" Type="int" />
-          <Property Name="paydate" Type="smalldatetime" />
-          <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="paymethod" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -75,7 +67,7 @@
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="isRemove" Type="bit" />
         </EntityType>
-        <Association Name="FK__Booking__cusid__31EC6D26">
+        <Association Name="FK__Booking__cusid__33D4B598">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -87,7 +79,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__roomid__32E0915F">
+        <Association Name="FK__Booking__roomid__34C8D9D1">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -99,7 +91,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__staffid__30F848ED">
+        <Association Name="FK__Booking__serid__35BCFE0A">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="serid" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="serid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__staffid__32E0915F">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -111,60 +115,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__bookid__37A5467C">
-          <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Booking">
-              <PropertyRef Name="bookid" />
-            </Principal>
-            <Dependent Role="Payment">
-              <PropertyRef Name="bookid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Payment__serid__38996AB5">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="serid" />
-            </Principal>
-            <Dependent Role="Payment">
-              <PropertyRef Name="serid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QLKHACHSANModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Payment" EntityType="Self.Payment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Booking__cusid__31EC6D26" Association="Self.FK__Booking__cusid__31EC6D26">
+          <AssociationSet Name="FK__Booking__cusid__33D4B598" Association="Self.FK__Booking__cusid__33D4B598">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__roomid__32E0915F" Association="Self.FK__Booking__roomid__32E0915F">
+          <AssociationSet Name="FK__Booking__roomid__34C8D9D1" Association="Self.FK__Booking__roomid__34C8D9D1">
             <End Role="Room" EntitySet="Room" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__staffid__30F848ED" Association="Self.FK__Booking__staffid__30F848ED">
+          <AssociationSet Name="FK__Booking__serid__35BCFE0A" Association="Self.FK__Booking__serid__35BCFE0A">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__staffid__32E0915F" Association="Self.FK__Booking__staffid__32E0915F">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__bookid__37A5467C" Association="Self.FK__Payment__bookid__37A5467C">
-            <End Role="Booking" EntitySet="Booking" />
-            <End Role="Payment" EntitySet="Payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Payment__serid__38996AB5" Association="Self.FK__Payment__serid__38996AB5">
-            <End Role="Service" EntitySet="Service" />
-            <End Role="Payment" EntitySet="Payment" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="QLKHACHSANModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -182,7 +156,10 @@
           <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__cusid__31EC6D26" FromRole="Booking" ToRole="Customer" />
           <NavigationProperty Name="Room" Relationship="Self.FK__Booking__roomid__32E0915F" FromRole="Booking" ToRole="Room" />
           <NavigationProperty Name="Staff" Relationship="Self.FK__Booking__staffid__30F848ED" FromRole="Booking" ToRole="Staff" />
-          <NavigationProperty Name="Payment" Relationship="Self.FK__Payment__bookid__37A5467C" FromRole="Booking" ToRole="Payment" />
+          <Property Name="serid" Type="Int32" />
+          <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="paymethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Service" Relationship="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" FromRole="Booking" ToRole="Service" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -196,19 +173,6 @@
           <Property Name="cusaddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="isRemove" Type="Boolean" />
           <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__cusid__31EC6D26" FromRole="Customer" ToRole="Booking" />
-        </EntityType>
-        <EntityType Name="Payment">
-          <Key>
-            <PropertyRef Name="payid" />
-          </Key>
-          <Property Name="payid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="bookid" Type="Int32" />
-          <Property Name="serid" Type="Int32" />
-          <Property Name="paydate" Type="DateTime" Precision="0" />
-          <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="paymethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Payment__bookid__37A5467C" FromRole="Payment" ToRole="Booking" />
-          <NavigationProperty Name="Service" Relationship="Self.FK__Payment__serid__38996AB5" FromRole="Payment" ToRole="Service" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -230,7 +194,7 @@
           <Property Name="sername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="serquantity" Type="Int32" />
           <Property Name="sertax" Type="Decimal" Precision="10" Scale="0" />
-          <NavigationProperty Name="Payment" Relationship="Self.FK__Payment__serid__38996AB5" FromRole="Service" ToRole="Payment" />
+          <NavigationProperty Name="Booking" Relationship="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" FromRole="Service" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -284,34 +248,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Payment__bookid__37A5467C">
-          <End Role="Booking" Type="Self.Booking" Multiplicity="0..1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Booking">
-              <PropertyRef Name="bookid" />
-            </Principal>
-            <Dependent Role="Payment">
-              <PropertyRef Name="bookid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Payment__serid__38996AB5">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
-          <End Role="Payment" Type="Self.Payment" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="serid" />
-            </Principal>
-            <Dependent Role="Payment">
-              <PropertyRef Name="serid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="QLKHACHSANEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Booking" EntityType="Self.Booking" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
-          <EntitySet Name="Payment" EntityType="Self.Payment" />
           <EntitySet Name="Room" EntityType="Self.Room" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
@@ -327,15 +266,23 @@
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Payment__bookid__37A5467C" Association="Self.FK__Payment__bookid__37A5467C">
-            <End Role="Booking" EntitySet="Booking" />
-            <End Role="Payment" EntitySet="Payment" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Payment__serid__38996AB5" Association="Self.FK__Payment__serid__38996AB5">
+          <AssociationSet Name="FK__Booking__serid__35BCFE0A" Association="QLKHACHSANModel.FK__Booking__serid__35BCFE0A">
             <End Role="Service" EntitySet="Service" />
-            <End Role="Payment" EntitySet="Payment" />
+            <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
         </EntityContainer>
+        <Association Name="FK__Booking__serid__35BCFE0A">
+          <End Type="QLKHACHSANModel.Service" Role="Service" Multiplicity="0..1" />
+          <End Type="QLKHACHSANModel.Booking" Role="Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="serid" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="serid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -345,6 +292,9 @@
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="QLKHACHSANModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
+                <ScalarProperty Name="payamount" ColumnName="payamount" />
+                <ScalarProperty Name="serid" ColumnName="serid" />
                 <ScalarProperty Name="bookid" ColumnName="bookid" />
                 <ScalarProperty Name="staffid" ColumnName="staffid" />
                 <ScalarProperty Name="cusid" ColumnName="cusid" />
@@ -365,18 +315,6 @@
                 <ScalarProperty Name="cusdate" ColumnName="cusdate" />
                 <ScalarProperty Name="cusaddress" ColumnName="cusaddress" />
                 <ScalarProperty Name="isRemove" ColumnName="isRemove" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Payment">
-            <EntityTypeMapping TypeName="QLKHACHSANModel.Payment">
-              <MappingFragment StoreEntitySet="Payment">
-                <ScalarProperty Name="payid" ColumnName="payid" />
-                <ScalarProperty Name="bookid" ColumnName="bookid" />
-                <ScalarProperty Name="serid" ColumnName="serid" />
-                <ScalarProperty Name="paydate" ColumnName="paydate" />
-                <ScalarProperty Name="payamount" ColumnName="payamount" />
-                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -27,7 +27,6 @@ namespace ChuongTrinhQuanLyKhachSan
     
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
-        public virtual DbSet<Payment> Payment { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
