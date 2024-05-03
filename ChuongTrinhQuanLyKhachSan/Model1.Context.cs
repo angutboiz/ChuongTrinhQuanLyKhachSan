@@ -29,6 +29,7 @@ namespace ChuongTrinhQuanLyKhachSan
         public virtual DbSet<Customer> Customer { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Service> Service { get; set; }
+        public virtual DbSet<ServiceOrder> ServiceOrder { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
     }
 }

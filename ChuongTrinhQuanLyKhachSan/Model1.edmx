@@ -13,12 +13,13 @@
           <Property Name="staffid" Type="int" />
           <Property Name="cusid" Type="int" />
           <Property Name="roomid" Type="int" />
-          <Property Name="serid" Type="int" />
+          <Property Name="serdetailid" Type="int" />
           <Property Name="checkin" Type="smalldatetime" />
           <Property Name="checkout" Type="smalldatetime" />
           <Property Name="bookstatus" Type="nvarchar" MaxLength="50" />
           <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
           <Property Name="paymethod" Type="nvarchar" MaxLength="50" />
+          <Property Name="booktype" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -40,17 +41,28 @@
           <Property Name="roomnumber" Type="nvarchar" MaxLength="20" Nullable="false" />
           <Property Name="roomtype" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="roomrate" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="fulldaynight" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="fullnight" Type="decimal" Precision="10" Scale="0" />
           <Property Name="roomstatus" Type="nvarchar" MaxLength="50" />
-          <Property Name="isRemove" Type="bit" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="serid" />
           </Key>
           <Property Name="serid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="sername" Type="nvarchar" MaxLength="100" />
+          <Property Name="sername" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="serprice" Type="decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="sertype" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ServiceOrder">
+          <Key>
+            <PropertyRef Name="serdetailid" />
+          </Key>
+          <Property Name="serdetailid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="serid" Type="int" />
+          <Property Name="roomid" Type="int" />
           <Property Name="serquantity" Type="int" />
-          <Property Name="sertax" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="sertotal" Type="decimal" Precision="10" Scale="0" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -67,7 +79,7 @@
           <Property Name="Role" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="isRemove" Type="bit" />
         </EntityType>
-        <Association Name="FK__Booking__cusid__33D4B598">
+        <Association Name="FK__Booking__cusid__37A5467C">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -79,7 +91,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__roomid__34C8D9D1">
+        <Association Name="FK__Booking__roomid__38996AB5">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -91,19 +103,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__serid__35BCFE0A">
-          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+        <Association Name="FK__Booking__serdeta__398D8EEE">
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="serid" />
+            <Principal Role="ServiceOrder">
+              <PropertyRef Name="serdetailid" />
             </Principal>
             <Dependent Role="Booking">
-              <PropertyRef Name="serid" />
+              <PropertyRef Name="serdetailid" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__staffid__32E0915F">
+        <Association Name="FK__Booking__staffid__36B12243">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -115,27 +127,60 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ServiceOr__roomi__33D4B598">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomid" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="roomid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__serid__32E0915F">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="serid" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="serid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLKHACHSANModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Booking__cusid__33D4B598" Association="Self.FK__Booking__cusid__33D4B598">
+          <AssociationSet Name="FK__Booking__cusid__37A5467C" Association="Self.FK__Booking__cusid__37A5467C">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__roomid__34C8D9D1" Association="Self.FK__Booking__roomid__34C8D9D1">
+          <AssociationSet Name="FK__Booking__roomid__38996AB5" Association="Self.FK__Booking__roomid__38996AB5">
             <End Role="Room" EntitySet="Room" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__serid__35BCFE0A" Association="Self.FK__Booking__serid__35BCFE0A">
-            <End Role="Service" EntitySet="Service" />
+          <AssociationSet Name="FK__Booking__serdeta__398D8EEE" Association="Self.FK__Booking__serdeta__398D8EEE">
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__staffid__32E0915F" Association="Self.FK__Booking__staffid__32E0915F">
+          <AssociationSet Name="FK__Booking__staffid__36B12243" Association="Self.FK__Booking__staffid__36B12243">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__roomi__33D4B598" Association="Self.FK__ServiceOr__roomi__33D4B598">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__serid__32E0915F" Association="Self.FK__ServiceOr__serid__32E0915F">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -150,16 +195,17 @@
           <Property Name="staffid" Type="Int32" />
           <Property Name="cusid" Type="Int32" />
           <Property Name="roomid" Type="Int32" />
+          <Property Name="serdetailid" Type="Int32" />
           <Property Name="checkin" Type="DateTime" Precision="0" />
           <Property Name="checkout" Type="DateTime" Precision="0" />
           <Property Name="bookstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__cusid__31EC6D26" FromRole="Booking" ToRole="Customer" />
-          <NavigationProperty Name="Room" Relationship="Self.FK__Booking__roomid__32E0915F" FromRole="Booking" ToRole="Room" />
-          <NavigationProperty Name="Staff" Relationship="Self.FK__Booking__staffid__30F848ED" FromRole="Booking" ToRole="Staff" />
-          <Property Name="serid" Type="Int32" />
           <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="paymethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="Service" Relationship="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" FromRole="Booking" ToRole="Service" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__cusid__37A5467C" FromRole="Booking" ToRole="Customer" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__Booking__roomid__38996AB5" FromRole="Booking" ToRole="Room" />
+          <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__Booking__serdeta__398D8EEE" FromRole="Booking" ToRole="ServiceOrder" />
+          <NavigationProperty Name="Staff" Relationship="Self.FK__Booking__staffid__36B12243" FromRole="Booking" ToRole="Staff" />
+          <Property Name="booktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -172,7 +218,7 @@
           <Property Name="cusdate" Type="DateTime" Precision="0" />
           <Property Name="cusaddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="isRemove" Type="Boolean" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__cusid__31EC6D26" FromRole="Customer" ToRole="Booking" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__cusid__37A5467C" FromRole="Customer" ToRole="Booking" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -182,19 +228,34 @@
           <Property Name="roomnumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="roomtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="roomrate" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="fulldaynight" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="fullnight" Type="Decimal" Precision="10" Scale="0" />
           <Property Name="roomstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="isRemove" Type="Boolean" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__roomid__32E0915F" FromRole="Room" ToRole="Booking" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__roomid__38996AB5" FromRole="Room" ToRole="Booking" />
+          <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__ServiceOr__roomi__33D4B598" FromRole="Room" ToRole="ServiceOrder" />
         </EntityType>
         <EntityType Name="Service">
           <Key>
             <PropertyRef Name="serid" />
           </Key>
           <Property Name="serid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="sername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="sername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="serprice" Type="Decimal" Precision="10" Scale="0" Nullable="false" />
+          <Property Name="sertype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__ServiceOr__serid__32E0915F" FromRole="Service" ToRole="ServiceOrder" />
+        </EntityType>
+        <EntityType Name="ServiceOrder">
+          <Key>
+            <PropertyRef Name="serdetailid" />
+          </Key>
+          <Property Name="serdetailid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="serid" Type="Int32" />
+          <Property Name="roomid" Type="Int32" />
           <Property Name="serquantity" Type="Int32" />
-          <Property Name="sertax" Type="Decimal" Precision="10" Scale="0" />
-          <NavigationProperty Name="Booking" Relationship="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" FromRole="Service" ToRole="Booking" />
+          <Property Name="sertotal" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__serdeta__398D8EEE" FromRole="ServiceOrder" ToRole="Booking" />
+          <NavigationProperty Name="Room" Relationship="Self.FK__ServiceOr__roomi__33D4B598" FromRole="ServiceOrder" ToRole="Room" />
+          <NavigationProperty Name="Service" Relationship="Self.FK__ServiceOr__serid__32E0915F" FromRole="ServiceOrder" ToRole="Service" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
@@ -210,9 +271,9 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="isRemove" Type="Boolean" />
-          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__staffid__30F848ED" FromRole="Staff" ToRole="Booking" />
+          <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__staffid__36B12243" FromRole="Staff" ToRole="Booking" />
         </EntityType>
-        <Association Name="FK__Booking__cusid__31EC6D26">
+        <Association Name="FK__Booking__cusid__37A5467C">
           <End Role="Customer" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -224,7 +285,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__roomid__32E0915F">
+        <Association Name="FK__Booking__roomid__38996AB5">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -236,7 +297,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Booking__staffid__30F848ED">
+        <Association Name="FK__Booking__serdeta__398D8EEE">
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="0..1" />
+          <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ServiceOrder">
+              <PropertyRef Name="serdetailid" />
+            </Principal>
+            <Dependent Role="Booking">
+              <PropertyRef Name="serdetailid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Booking__staffid__36B12243">
           <End Role="Staff" Type="Self.Staff" Multiplicity="0..1" />
           <End Role="Booking" Type="Self.Booking" Multiplicity="*" />
           <ReferentialConstraint>
@@ -248,41 +321,62 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__ServiceOr__roomi__33D4B598">
+          <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Room">
+              <PropertyRef Name="roomid" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="roomid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__ServiceOr__serid__32E0915F">
+          <End Role="Service" Type="Self.Service" Multiplicity="0..1" />
+          <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="serid" />
+            </Principal>
+            <Dependent Role="ServiceOrder">
+              <PropertyRef Name="serid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="QLKHACHSANEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Booking" EntityType="Self.Booking" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
           <EntitySet Name="Room" EntityType="Self.Room" />
           <EntitySet Name="Service" EntityType="Self.Service" />
+          <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" />
           <EntitySet Name="Staff" EntityType="Self.Staff" />
-          <AssociationSet Name="FK__Booking__cusid__31EC6D26" Association="Self.FK__Booking__cusid__31EC6D26">
+          <AssociationSet Name="FK__Booking__cusid__37A5467C" Association="Self.FK__Booking__cusid__37A5467C">
             <End Role="Customer" EntitySet="Customer" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__roomid__32E0915F" Association="Self.FK__Booking__roomid__32E0915F">
+          <AssociationSet Name="FK__Booking__roomid__38996AB5" Association="Self.FK__Booking__roomid__38996AB5">
             <End Role="Room" EntitySet="Room" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__staffid__30F848ED" Association="Self.FK__Booking__staffid__30F848ED">
+          <AssociationSet Name="FK__Booking__serdeta__398D8EEE" Association="Self.FK__Booking__serdeta__398D8EEE">
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+            <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Booking__staffid__36B12243" Association="Self.FK__Booking__staffid__36B12243">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
-          <AssociationSet Name="FK__Booking__serid__35BCFE0A" Association="QLKHACHSANModel.FK__Booking__serid__35BCFE0A">
+          <AssociationSet Name="FK__ServiceOr__roomi__33D4B598" Association="Self.FK__ServiceOr__roomi__33D4B598">
+            <End Role="Room" EntitySet="Room" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK__ServiceOr__serid__32E0915F" Association="Self.FK__ServiceOr__serid__32E0915F">
             <End Role="Service" EntitySet="Service" />
-            <End Role="Booking" EntitySet="Booking" />
+            <End Role="ServiceOrder" EntitySet="ServiceOrder" />
           </AssociationSet>
         </EntityContainer>
-        <Association Name="FK__Booking__serid__35BCFE0A">
-          <End Type="QLKHACHSANModel.Service" Role="Service" Multiplicity="0..1" />
-          <End Type="QLKHACHSANModel.Booking" Role="Booking" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Service">
-              <PropertyRef Name="serid" />
-            </Principal>
-            <Dependent Role="Booking">
-              <PropertyRef Name="serid" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -292,16 +386,17 @@
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="QLKHACHSANModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
-                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
-                <ScalarProperty Name="payamount" ColumnName="payamount" />
-                <ScalarProperty Name="serid" ColumnName="serid" />
+                <ScalarProperty Name="booktype" ColumnName="booktype" />
                 <ScalarProperty Name="bookid" ColumnName="bookid" />
                 <ScalarProperty Name="staffid" ColumnName="staffid" />
                 <ScalarProperty Name="cusid" ColumnName="cusid" />
                 <ScalarProperty Name="roomid" ColumnName="roomid" />
+                <ScalarProperty Name="serdetailid" ColumnName="serdetailid" />
                 <ScalarProperty Name="checkin" ColumnName="checkin" />
                 <ScalarProperty Name="checkout" ColumnName="checkout" />
                 <ScalarProperty Name="bookstatus" ColumnName="bookstatus" />
+                <ScalarProperty Name="payamount" ColumnName="payamount" />
+                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -325,8 +420,9 @@
                 <ScalarProperty Name="roomnumber" ColumnName="roomnumber" />
                 <ScalarProperty Name="roomtype" ColumnName="roomtype" />
                 <ScalarProperty Name="roomrate" ColumnName="roomrate" />
+                <ScalarProperty Name="fulldaynight" ColumnName="fulldaynight" />
+                <ScalarProperty Name="fullnight" ColumnName="fullnight" />
                 <ScalarProperty Name="roomstatus" ColumnName="roomstatus" />
-                <ScalarProperty Name="isRemove" ColumnName="isRemove" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -335,8 +431,19 @@
               <MappingFragment StoreEntitySet="Service">
                 <ScalarProperty Name="serid" ColumnName="serid" />
                 <ScalarProperty Name="sername" ColumnName="sername" />
+                <ScalarProperty Name="serprice" ColumnName="serprice" />
+                <ScalarProperty Name="sertype" ColumnName="sertype" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ServiceOrder">
+            <EntityTypeMapping TypeName="QLKHACHSANModel.ServiceOrder">
+              <MappingFragment StoreEntitySet="ServiceOrder">
+                <ScalarProperty Name="serdetailid" ColumnName="serdetailid" />
+                <ScalarProperty Name="serid" ColumnName="serid" />
+                <ScalarProperty Name="roomid" ColumnName="roomid" />
                 <ScalarProperty Name="serquantity" ColumnName="serquantity" />
-                <ScalarProperty Name="sertax" ColumnName="sertax" />
+                <ScalarProperty Name="sertotal" ColumnName="sertotal" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

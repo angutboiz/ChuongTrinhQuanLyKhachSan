@@ -49,5 +49,39 @@ namespace ChuongTrinhQuanLyKhachSan
             // Đặt lại vị trí con trỏ
             txb.SelectionStart = currentCursorPosition + (txb.Text.Length - originalText.Length);
         }
+
+        public static string VietHoaCacKyTu(string input)
+        {
+            if (!string.IsNullOrEmpty(input))
+            {
+                string[] words = input.Split(' '); // Tách chuỗi thành mảng các từ dựa trên dấu cách
+
+                for (int i = 0; i < words.Length; i++)
+                {
+                    // Chuyển đổi chữ cái đầu tiên của từ thành chữ in hoa
+                    words[i] = char.ToUpper(words[i][0]) + words[i].Substring(1);
+                }
+
+                // Ghép lại các từ thành chuỗi mới
+                return string.Join(" ", words);
+            }
+            else
+            {
+                // Trả về chuỗi rỗng nếu đầu vào là null hoặc rỗng
+                return string.Empty;
+            }
+        }
+        public static string VietHoaMotKyTu(string input)
+        {
+            if (!string.IsNullOrEmpty(input))
+            {
+                return char.ToUpper(input[0]) + input.Substring(1);
+            } else
+            {
+                return string.Empty;
+            }
+        }
+
+
     }
 }

@@ -17,15 +17,15 @@ namespace ChuongTrinhQuanLyKhachSan
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Service()
         {
-            this.Booking = new HashSet<Booking>();
+            this.ServiceOrder = new HashSet<ServiceOrder>();
         }
     
         public int serid { get; set; }
         public string sername { get; set; }
-        public Nullable<int> serquantity { get; set; }
-        public Nullable<decimal> sertax { get; set; }
+        public decimal serprice { get; set; }
+        public string sertype { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Booking> Booking { get; set; }
+        public virtual ICollection<ServiceOrder> ServiceOrder { get; set; }
     }
 }

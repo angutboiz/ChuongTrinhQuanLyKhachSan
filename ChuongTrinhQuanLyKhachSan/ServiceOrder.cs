@@ -12,26 +12,23 @@ namespace ChuongTrinhQuanLyKhachSan
     using System;
     using System.Collections.Generic;
     
-    public partial class Room
+    public partial class ServiceOrder
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Room()
+        public ServiceOrder()
         {
             this.Booking = new HashSet<Booking>();
-            this.ServiceOrder = new HashSet<ServiceOrder>();
         }
     
-        public int roomid { get; set; }
-        public string roomnumber { get; set; }
-        public string roomtype { get; set; }
-        public Nullable<decimal> roomrate { get; set; }
-        public Nullable<decimal> fulldaynight { get; set; }
-        public Nullable<decimal> fullnight { get; set; }
-        public string roomstatus { get; set; }
+        public int serdetailid { get; set; }
+        public Nullable<int> serid { get; set; }
+        public Nullable<int> roomid { get; set; }
+        public Nullable<int> serquantity { get; set; }
+        public Nullable<decimal> sertotal { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Booking> Booking { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<ServiceOrder> ServiceOrder { get; set; }
+        public virtual Room Room { get; set; }
+        public virtual Service Service { get; set; }
     }
 }

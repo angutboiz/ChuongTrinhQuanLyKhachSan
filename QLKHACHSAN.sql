@@ -27,23 +27,36 @@ CREATE TABLE Customer (
 	isRemove bit default 0 -- mặc định là hiển thị, khi xóa sẽ ko hiển thị
 );
 
+
 -- Tạo bảng Phòng
 CREATE TABLE Room (
     roomid INT IDENTITY(1,1) PRIMARY KEY,
     roomnumber NVARCHAR(20) UNIQUE NOT NULL,
     roomtype NVARCHAR(50) NOT NULL, -- kiểu phòng: phòng vip, phòng thường, phòng quạt, phòng lạnh, phòng đôi,...
-    roomrate DECIMAL(10, 0), -- giá tiền
+    roomrate DECIMAL(10, 0), -- giá tiền theo giờ
+	fulldaynight DECIMAL(10, 0),
+	fullnight DECIMAL(10, 0),
     roomstatus NVARCHAR(50), -- 3 giá trị: đang sử dụng - phòng trống - bảo trì (dọn phòng...)
-	isRemove bit default 0 -- mặc định là hiển thị, khi xóa sẽ ko hiển thị
 );
 
 -- tạo bảng Dịch Vụ
 CREATE TABLE Service (
 	serid INT IDENTITY(1,1) PRIMARY KEY,
-	sername NVARCHAR(100),
-	serquantity INT, -- số lượng khách hàng sử dụng
-	sertax DECIMAL(10, 0), -- thu phí thêm các dịch vụ như: nước, bánh, trái cây,....
+	sername NVARCHAR(100) UNIQUE NOT NULL,
+	serprice DECIMAL(10, 0) NOT NULL, -- thu tiền dịch vụ như: nước, bánh, trái cây,....
+	sertype NVARCHAR(50) NOT NULL, -- loại dịch vụ: ĐỒ MẶN, ĐỒ ĂN VẶT
 )
+
+CREATE TABLE ServiceOrder(
+	serdetailid INT IDENTITY(1,1) PRIMARY KEY,
+	serid int,
+	roomid int,
+	serquantity INT, -- số lượng khách mua
+	sertotal DECIMAL(10, 0), -- tổng tiền
+	FOREIGN KEY (serid) REFERENCES Service (serid),
+	FOREIGN KEY (roomid) REFERENCES Room (roomid)
+)
+
 
 -- Tạo bảng Đặt phòng
 CREATE TABLE Booking (
@@ -51,7 +64,8 @@ CREATE TABLE Booking (
 	staffid INT,
     cusid INT,
     roomid INT,
-	serid INT,
+	serdetailid INT,
+    booktype NVARCHAR(50), -- loại book: theo ngay theo tháng hay qua đêm
     checkin SMALLDATETIME, -- lưu lại ngày giờ lúc khách đặt phòng
     checkout SMALLDATETIME, -- lưu lại ngày giờ lúc khách trả phòng
     bookstatus NVARCHAR(50), -- 2 giá trị: đang thuê phòng hoặc trả phòng
@@ -60,33 +74,36 @@ CREATE TABLE Booking (
     FOREIGN KEY (staffid) REFERENCES Staff(staffid),
     FOREIGN KEY (cusid) REFERENCES Customer(cusid),
     FOREIGN KEY (roomid) REFERENCES Room(roomid),
-	FOREIGN KEY (serid) REFERENCES Service (serid)
+	FOREIGN KEY (serdetailid) REFERENCES ServiceOrder (serdetailid)
 );
 
 
-
--- Dữ liệu giả định cho bảng Nhân viên
 INSERT INTO Staff (staffname, staffsex, staffphone, staffdate, staffaddress, Username, Password, Role)
-VALUES ('admin', 'Nam', '093764812', '01-01-2003', '123 Main Street', 'admin', 'admin', 'admin'
+VALUES ('admin', 'Nam', '093764812', '01-01-2003', '123 Main Street', 'admin', 'admin', 'admin')
 
--- Dữ liệu giả định cho bảng Khách hàng
 INSERT INTO Customer (cusname, cusemail, cusphone, cusaddress)
-VALUES ('Alice Johnson', 'alice@example.com', '5551234567', '789 Oak Avenue'),
-       ('Bob Williams', 'bob@example.com', '5559876543', '321 Pine Street');
+VALUES (N'Văn Thanh', 'alice@example.com', '5551234567', N'Biên Hòa'),
+       (N'Long Phạm', 'bob@example.com', '5559876543', 'Bình Dương')
 
--- Dữ liệu giả định cho bảng Phòng
-INSERT INTO Room (roomnumber, roomtype, roomrate, roomstatus)
-VALUES ('101', 'Standard', 100, N'Đang sử dụng'),
-       ('102', 'Deluxe', 150, N'Bảo trì'),
-       ('103', 'Suite', 200, N'Phòng trống'); 
+INSERT INTO Room (roomnumber, roomtype, roomrate, roomstatus,fulldaynight,fullnight)
+VALUES ('101', 'Superior', 200000, N'Phòng trống'),
+       ('102', 'Deluxe Twin Bed', 250000, N'Phòng trống'),
+       ('872', 'VIP', 300000, N'Bảo trì'),
+       ('382', 'Deluxe King Bed', 300000, N'Phòng trống')
 
--- Dữ liệu giả định cho bảng Đặt phòng
-INSERT INTO Booking (staffid, cusid, roomid, checkin, checkout, bookstatus)
-VALUES (1, 1, 1, '2024-04-01', '2024-04-03', 'Checked In'), -- Nhân viên John Doe đặt phòng cho khách hàng Alice Johnson
-       (2, 2, 2, '2024-04-05', '2024-04-08', 'Checked In'); -- Nhân viên Jane Smith đặt phòng cho khách hàng Bob Williams
+INSERT INTO Service(sername, serprice, sertype)
+VALUES	(N'Gà hấp lá chanh', 250000, N'Đồ ăn mặn'),
+		(N'Ghẹ hấp', 150000, N'Đồ ăn mặn'),
+		(N'Hàu nướng', 10000, N'Đồ ăn mặn'),
+		(N'Bim bim', 10000, N'Đồ ăn nhanh'),
+		(N'Khoai tây chiên', 22000, N'Đồ ăn nhanh'),
+		(N'Bỏng ngô', 25000, N'Đồ ăn nhanh'),
+		(N'Hoa quả', 100000, N'Đồ ăn nhanh'),
+		(N'Rượu', 300000, N'Nước'),
+		(N'Bia', 20000, N'Nước'),
+		(N'Cafe', 50000, N'Nước')
 
--- Dữ liệu giả định cho bảng Dịch vụ
-INSERT INTO Service (sername, serquantity, sertax)
-VALUES ('Breakfast', 1, 10),
-       ('Laundry', 2, 20);
+		
+	   
+
 

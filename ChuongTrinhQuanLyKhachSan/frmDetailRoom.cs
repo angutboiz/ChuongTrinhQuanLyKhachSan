@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.Globalization;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChuongTrinhQuanLyKhachSan
 {
@@ -17,6 +19,15 @@ namespace ChuongTrinhQuanLyKhachSan
         private Color roomColor;
         public int idphong;
         QLKHACHSANEntities db = new QLKHACHSANEntities();
+
+        Color green = ColorTranslator.FromHtml("#15803d");
+        Color red = ColorTranslator.FromHtml("#b91c1c");
+        Color gray = ColorTranslator.FromHtml("#374151");
+
+        Color zinc = ColorTranslator.FromHtml("#4b5563");
+        Color orange = ColorTranslator.FromHtml("#dc2626");
+        Color emeral = ColorTranslator.FromHtml("#16a34a");
+
         public frmDetailRoom(Room room, Color roomColor)
         {
             InitializeComponent();
@@ -33,9 +44,25 @@ namespace ChuongTrinhQuanLyKhachSan
         {
             grpRoom.Text = "Phòng " + room.roomnumber;
             grpRoom.BorderColor = roomColor;
+
+            grbNV.CustomBorderColor = zinc;
+            grbKH.CustomBorderColor = zinc;
+            grbService.CustomBorderColor = zinc;
+            grbDetail.CustomBorderColor = zinc;
+
             grpRoom.ForeColor = Color.White;
             grpRoom.CustomBorderColor = roomColor;
+            btnDatPhong.FillColor = gray;
+            btnClose.FillColor = gray;
+            //fill mặc định đồ ăn mặn trong cbService
+            LoadDataService();
+            btnServiceAdd.Enabled = false;
+            rbMan.Checked = true;
+            var ser = from Service in db.Service
+                      where Service.sertype == "Đồ ăn mặn"
+                      select Service.sername;
 
+            cbService.DataSource = ser.ToList();
 
             txbGiaTheoGio.Text = room.roomrate.ToString();
             txbLoaiPhong.Text = room.roomtype;
@@ -62,20 +89,36 @@ namespace ChuongTrinhQuanLyKhachSan
                 btnDatPhong.Enabled = false;
                 btnThanhToan.Enabled = true;
                 btnClearData.Enabled = false;
-               
+
+                btnThanhToan.FillColor = green;
+                btnClose.FillColor = green;
+                grbNV.CustomBorderColor = emeral;
+                grbKH.CustomBorderColor = emeral;
+                grbService.CustomBorderColor = emeral;
+                grbDetail.CustomBorderColor = emeral;
+                
+
             }
             else if (room.roomstatus == "Bảo trì")
             {
                 btnDatPhong.Enabled = false;
                 btnThanhToan.Enabled = false;
                 btnClearData.Enabled = true;
+                
+                btnClearData.FillColor = red;
+                btnClose.FillColor = red;
+
+                grbNV.CustomBorderColor = orange;
+                grbKH.CustomBorderColor = orange;
+                grbService.CustomBorderColor = orange;
+                grbDetail.CustomBorderColor = orange;
+
             }
 
 
 
             //kiếm xem id room có trong booking chưa, nếu có thì hiển thị data staff và customer lên load form
             var booking = db.Booking.FirstOrDefault(b => b.roomid == room.roomid);
-            
             if (booking != null && booking.bookstatus == "Đang thuê phòng")
             {
                 var staffid = db.Staff.Find(booking.staffid);
@@ -86,8 +129,18 @@ namespace ChuongTrinhQuanLyKhachSan
                     cbNV.Text = staffid.staffname.ToString();
                     cbKH.Text = custom.cusname.ToString();
                     txbStart.Text = booking.checkin.ToString();
+                    btnServiceAdd.Enabled = true;
+                    timer1.Start();
+                    TinhThoiGian();
+                    btnServiceAdd.FillColor = green;
+                    btnDatPhong.FillColor = green;
+
+                    grbNV.CustomBorderColor = emeral;
+                    grbKH.CustomBorderColor = emeral;
+                    grbService.CustomBorderColor = emeral;
+                    grbDetail.CustomBorderColor = emeral;
                 }
-                
+
             }
             else
             {
@@ -101,7 +154,7 @@ namespace ChuongTrinhQuanLyKhachSan
         private DateTime startTime;
         private void timer1_Tick(object sender, EventArgs e)
         {
-            txbEnd.Text = DateTime.Now.ToString("HH:mm:ss");
+            txbEnd.Text = DateTime.Now.ToString();
         }
 
         private void btnDatPhong_Click(object sender, EventArgs e)
@@ -109,6 +162,11 @@ namespace ChuongTrinhQuanLyKhachSan
             if (cbKH.SelectedIndex == -1 && cbNV.SelectedIndex == -1)
             {
                 MessageBox.Show("Bạn chưa chọn tên nhân viên hoặc tên khách hàng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else if (!rbQuaDem.Checked || !rbTheoGio.Checked || !rbTheoNgay.Checked || !rbTheoThang.Checked)
+            {
+                MessageBox.Show("Bạn chưa chọn kiểu khách muốn thuê\nVui lòng chọn 1 trong 4:\nTheo ngày\nTheo tháng\nTheo đêm\nTheo giờ", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
             }
             else
             {
@@ -127,7 +185,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 }
 
-                
+
 
                 Room r = db.Room.Find(room.roomid);
                 r.roomstatus = "Đang sử dụng";
@@ -137,8 +195,8 @@ namespace ChuongTrinhQuanLyKhachSan
                     staffid = int.Parse(txbNVID.Text),
                     cusid = int.Parse(txbKHID.Text),
                     roomid = room.roomid,
-                    checkin = DateTime.Now,
-                    bookstatus = "Đang thuê"
+                    checkin = startTime,
+                    bookstatus = "Đang thuê phòng"
                 });
 
                 db.SaveChanges();
@@ -148,68 +206,42 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 btnThanhToan.Enabled = true;
                 btnDatPhong.Enabled = false;
+                btnServiceAdd.Enabled = true;
+                grpRoom.BorderColor = green;
 
             }
 
 
-            
-          
-        }
 
-        private void btnThanhToan_Click(object sender, EventArgs e)
-        {
-            timer1.Stop();
-            DateTime endTime = DateTime.Now;
-            txbEnd.Text = endTime.ToString();
-            DateTime startTime = DateTime.Parse(txbStart.Text);
-
-            // Tính toán tổng thời gian giữa startTime và endTime
-            TimeSpan elapsedTime = endTime - startTime;
-            // Hiển thị tổng thời gian trong định dạng phù hợp
-            double totalHours = elapsedTime.TotalHours;
-
-            txbTongTime.Text = Math.Round(totalHours,0).ToString();
-
-            int giatheogio = int.Parse(txbGiaTheoGio.Text);
-            int tongthoigian = int.Parse(txbTongTime.Text);
-            int phi = int.Parse(txbPhiTheoGio.Text.Replace(" ", ""));
-
-            int tongtien = (tongthoigian * phi) + giatheogio;
-
-            lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
-
-            var bk = db.Booking.SingleOrDefault(b => b.roomid == room.roomid);
-            bk.checkout = DateTime.Parse(txbEnd.Text);
-            bk.bookstatus = "Trả phòng";
-
-
-            Room r = db.Room.Find(room.roomid);
-            r.roomstatus = "Bảo trì";
-            db.SaveChanges();
-
-
-
-            btnThanhToan.Enabled = false;
-            btnDatPhong.Enabled = true;
-        }
-
-        void LoadServicesComboBox()
-        {
 
         }
-
+        int soluong = 1;
         private void btnFrmService_Click(object sender, EventArgs e)
         {
             int soluong = int.Parse(txbServiceSoluong.Text);
-            dgvService.Rows.Add(soluong);
-            /// todo ở đây
+            string name = cbService.Text;
+            var ser = db.Service.SingleOrDefault(s => s.sername == name);
+            decimal total = soluong * ser.serprice;
+
+            db.ServiceOrder.Add(new ServiceOrder()
+            {
+                serid = ser.serid,
+                roomid = room.roomid,
+                serquantity = soluong,
+                sertotal = total
+            });
+            db.SaveChanges();
+            LoadDataService();
+
+            txbServiceSoluong.Text = "1";
+            soluong = 1;
         }
-        int soluong = 0;
+
         private void btnGiam_Click(object sender, EventArgs e)
         {
-            if (soluong == 0)
+            if (soluong == 1)
             {
-                soluong = 0;
+                soluong = 1;
                 return;
             }
             else
@@ -226,14 +258,77 @@ namespace ChuongTrinhQuanLyKhachSan
             txbServiceSoluong.Text = soluong.ToString();
         }
 
-        private void grpRoom_Click(object sender, EventArgs e)
+        void TinhThoiGian()
+        {
+            DateTime endTime = DateTime.Now;
+            txbEnd.Text = endTime.ToString();
+            DateTime startTime = DateTime.Parse(txbStart.Text);
+
+            // Tính toán tổng thời gian giữa startTime và endTime
+            TimeSpan elapsedTime = endTime - startTime;
+            // Hiển thị tổng thời gian trong định dạng phù hợp
+            double totalHours = elapsedTime.TotalHours;
+
+            txbTongTime.Text = Math.Round(totalHours, 0).ToString();
+
+            int giatheogio = int.Parse(txbGiaTheoGio.Text);
+
+            //2 tiếng đàu không tính nên 2
+            int tongthoigian = int.Parse(txbTongTime.Text) - 2;
+            int phi = int.Parse(txbPhi.Text.Replace(" ", ""));
+
+            int tongtien = giatheogio + (tongthoigian* phi);
+            // 300 000 + 5 * 50
+            lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
+        }
+
+        void ThueTheoNgay()
         {
 
         }
 
-        private void guna2GroupBox4_Click(object sender, EventArgs e)
+        private void btnThanhToan_Click(object sender, EventArgs e)
         {
+            timer1.Stop();
 
+            TinhThoiGian();
+
+           
+
+            var bk = db.Booking.SingleOrDefault(b => b.roomid == room.roomid);
+            bk.checkout = DateTime.Parse(txbEnd.Text);
+            bk.bookstatus = "Trả phòng";
+
+
+            Room r = db.Room.Find(room.roomid);
+            r.roomstatus = "Bảo trì";
+            db.SaveChanges();
+
+
+
+
+            btnThanhToan.Enabled = false;
+            btnDatPhong.Enabled = true;
+        }
+
+        void LoadDataService()
+        {
+            var service = from so in db.ServiceOrder
+                          where so.roomid == room.roomid
+                           join s in db.Service on so.serid equals s.serid
+                           select new
+                           {
+                               so.serdetailid,
+                               s.sername,
+                               so.serquantity,
+                               so.sertotal
+                           };
+
+
+
+            dgvService.DataSource = service.ToList();
+            var totalall = db.ServiceOrder.Where(o=> o.roomid == room.roomid).Sum(o => o.sertotal );
+            lbTongService.Text = string.Format("{0:#,##0}đ", totalall) ;
         }
 
         private void cbNV_SelectedIndexChanged(object sender, EventArgs e)
@@ -295,11 +390,128 @@ namespace ChuongTrinhQuanLyKhachSan
             if (chkTuChinh.Checked)
             {
                 txbStart.Enabled = true;
-                txbStart.Text = "20/04/2024 12:30";
+                txbStart.Text = DateTime.Now.ToString();
             } else
             {
                 txbStart.Enabled = false;
                 txbStart.Text = "";
+            }
+        }
+
+        private void rbMan_CheckedChanged(object sender, EventArgs e)
+        {
+            var ser = from Service in db.Service
+                           where Service.sertype == "Đồ ăn mặn"
+                           select Service.sername;
+
+            if (rbMan.Checked)
+            {
+                cbService.DataSource = ser.ToList();
+            }
+        }
+
+        private void rbSnack_CheckedChanged(object sender, EventArgs e)
+        {
+            var ser = from Service in db.Service
+                      where Service.sertype == "Đồ ăn nhanh"
+                      select Service.sername;
+
+            if (rbSnack.Checked)
+            {
+                cbService.DataSource = ser.ToList();
+            }
+        }
+
+        private void rbNuoc_CheckedChanged(object sender, EventArgs e)
+        {
+            var ser = from Service in db.Service
+                      where Service.sertype == "Nước"
+                      select Service.sername;
+
+            if (rbNuoc.Checked)
+            {
+                cbService.DataSource = ser.ToList();
+            }
+        }
+
+        private void rbTheoGio_CheckedChanged(object sender, EventArgs e)
+        {
+            ThueTheoNgay();
+        }
+
+        private void rbQuaDem_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbTheoThang.Checked)
+            {
+                if (room.roomtype == "Superior")
+                {
+                    txbGiaTheoGio.Text = "480 000";
+                    lbGia.Text = "Thuê qua đêm";
+
+                }
+                else if (room.roomtype == "Deluxe Twin Bed")
+                {
+                    txbGiaTheoGio.Text = "600 000";
+                    lbGia.Text = "Thuê qua đêm";
+                }
+                else if (room.roomtype == "Deluxe King Bed")
+                {
+                    txbGiaTheoGio.Text = "600 000";
+                    lbGia.Text = "Thuê qua đêm";
+                }
+                else if (room.roomtype == "VIP")
+                {
+                    txbGiaTheoGio.Text = "700 000";
+                    lbGia.Text = "Thuê qua đêm";
+                }
+            }
+        }
+       /* Superior
+Deluxe Twin Bed
+Deluxe King Bed
+VIP*/
+        private void rbTheoNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbTheoThang.Checked)
+            {
+                if (room.roomtype == "Superior")
+                {
+                    txbGiaTheoGio.Text = "650 000";
+                    lbGia.Text = "Thuê theo ngày";
+
+                }
+                else if (room.roomtype == "Deluxe Twin Bed")
+                {
+                    txbGiaTheoGio.Text = "700 000";
+                    lbGia.Text = "Thuê theo ngày";
+                }
+                else if (room.roomtype == "Deluxe King Bed")
+                {
+                    txbGiaTheoGio.Text = "800 000";
+                    lbGia.Text = "Thuê theo ngày";
+                }
+                else if (room.roomtype == "VIP")
+                {
+                    txbGiaTheoGio.Text = "900 000";
+                    lbGia.Text = "Thuê theo ngày";
+                }
+            }
+        }
+
+        private void rbTheoThang_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbTheoThang.Checked)
+            {
+                if (room.roomtype == "VIP")
+                {
+                    txbGiaTheoGio.Text = "3 500 000";
+                    lbGia.Text = "Thuê theo tháng";
+
+                } else
+                {
+                    txbGiaTheoGio.Text = "1 000 000";
+                    lbGia.Text = "Thuê theo tháng";
+                }
             }
         }
     }

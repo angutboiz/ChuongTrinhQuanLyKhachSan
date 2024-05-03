@@ -4,16 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="5c754bb1cc4549d5bd2e78a3f4dcacb4" Name="Diagram1">
-        <EntityTypeShape EntityType="QLKHACHSANModel.Booking" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHACHSANModel.Customer" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHACHSANModel.Room" Width="1.5" PointX="0.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHACHSANModel.Service" Width="1.5" PointX="3" PointY="5.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="QLKHACHSANModel.Staff" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__cusid__31EC6D26" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__roomid__32E0915F" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__staffid__30F848ED" ManuallyRouted="false" />
-        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__serid__35BCFE0A" />
+      <Diagram DiagramId="f7ac1a28421c4a0c8fb35f288fb2c3c3" Name="Diagram1">
+        <EntityTypeShape EntityType="QLKHACHSANModel.Booking" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.Customer" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.Room" Width="1.5" PointX="0.75" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.Service" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.ServiceOrder" Width="1.5" PointX="6" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.Staff" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__cusid__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__roomid__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__serdeta__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__Booking__staffid__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__ServiceOr__roomi__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="QLKHACHSANModel.FK__ServiceOr__serid__32E0915F" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

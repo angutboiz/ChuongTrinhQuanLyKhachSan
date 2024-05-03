@@ -35,6 +35,7 @@ namespace ChuongTrinhQuanLyKhachSan
             LoadDataKhachHang();
             LoadDataRoom();
             LoadRoom();
+            LoadDataService();
         }
 
         private void tcName_SelectedIndexChanged(object sender, EventArgs e)
@@ -63,10 +64,15 @@ namespace ChuongTrinhQuanLyKhachSan
                 LoadDataRoom();
             }
 
-            if (role != "admin" && tcName.SelectedTab == tpNV)
+            if (tcName.SelectedTab == tpQLService)
+            {
+                LoadDataService();
+            }
+
+            if (role != "admin" && (tcName.SelectedTab == tpNV || tcName.SelectedTab == tpQLPhong))
             {
                 tcName.SelectedTab = tpPhong;
-                MessageBox.Show("Bạn không có quyền vào trang nhân viên", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Bạn không có quyền vào trang này", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
         }
@@ -109,20 +115,52 @@ namespace ChuongTrinhQuanLyKhachSan
         void LoadDataRoom()
         {
             var result = from r in db.Room
-                         where r.isRemove == false
                          select new
                          {
                              r.roomid,
                              r.roomnumber,
                              r.roomtype,
                              r.roomrate,
+                             r.fullnight,
+                             r.fulldaynight,
                              r.roomstatus
                          };
 
             dgvRoom.DataSource = result.ToList();
         }
 
-       
+        void LoadDataService()
+        {
+            var result = from r in db.Service
+                         select new
+                         {
+                             r.serid,
+                             r.sername,
+                             r.serprice,
+                             r.sertype,
+                         };
+
+            dgvService.DataSource = result.ToList();
+        }
+
+        void LoadDataBooking()
+        {
+            var query = from booking in db.Booking
+                        join customer in db.Customer on booking.cusid equals customer.cusid
+                        join ServiceOrder in db.ServiceOrder on booking.serdetailid equals ServiceOrder.serdetailid into serviceGroup
+                        from serviceItem in serviceGroup.DefaultIfEmpty() 
+                        join staff in db.Staff on booking.staffid equals staff.staffid
+                        select new
+                        {
+                            Booking = booking,
+                            Customer = customer,
+                            Service = serviceItem,
+                            Staff = staff
+                        };
+
+            dgvBooking.DataSource = query.ToList();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             lbDatetimeNow.Text = DateTime.Now.ToString("HH:mm:ss") + "   |   Ngày: " + DateTime.Now.ToString("dd-MM-yyyy");
@@ -170,6 +208,11 @@ namespace ChuongTrinhQuanLyKhachSan
         private void btnRAdd_Click(object sender, EventArgs e)
         {
             string roomNumber = txbRName.Text.Trim();
+
+            decimal rate = decimal.Parse(txbRPrice.Text.Replace(" ", ""));
+            decimal fullngaydem = decimal.Parse(txbTheoNgay.Text.Replace(" ", ""));
+            decimal fulldem = decimal.Parse(txbQuaDem.Text.Replace(" ", ""));
+
             bool roomNumberExists = db.Room.Any(r => r.roomnumber == roomNumber);
 
             if (roomNumberExists)
@@ -185,10 +228,12 @@ namespace ChuongTrinhQuanLyKhachSan
                 db.Room.Add(new Room()
                 {
                     roomnumber = txbRName.Text,
-                    roomrate = decimal.Parse(txbRPrice.Text.Replace(" ", "")),
+                    roomrate = rate,
                     roomtype = cbRType.Text,
+                    fulldaynight = fullngaydem,
+                    fullnight = fulldem ,
                     roomstatus = cbRStatus.Text,
-                    isRemove = false
+
                 });
 
                 db.SaveChanges();
@@ -207,6 +252,9 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnREdit_Click(object sender, EventArgs e)
         {
+            decimal rate = decimal.Parse(txbRPrice.Text.Replace(" ", ""));
+            decimal fullngaydem = decimal.Parse(txbTheoNgay.Text.Replace(" ", ""));
+            decimal fulldem = decimal.Parse(txbQuaDem.Text.Replace(" ", ""));
 
             try
             {
@@ -215,7 +263,9 @@ namespace ChuongTrinhQuanLyKhachSan
                 Room room = db.Room.Find(id);
                 room.roomnumber = txbRName.Text;
                 room.roomtype = cbRType.Text;
-                room.roomrate = decimal.Parse(txbRPrice.Text.Replace(" ", ""));
+                room.roomrate = rate;
+                room.fulldaynight = fullngaydem;
+                room.fullnight = fulldem;
                 room.roomstatus = cbRStatus.Text;
 
                 db.SaveChanges();
@@ -244,7 +294,7 @@ namespace ChuongTrinhQuanLyKhachSan
             panelBaoTri.BackColor = red;
             panelTrong.BackColor = gray;
 
-            var room = db.Room.Where(r => r.isRemove == false);
+            var room = db.Room;
 
             foreach (var item in room)
             {
@@ -323,7 +373,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 if (item.roomstatus == "Đang sử dụng")
                 {
                     Label label3 = new Label();
-                    label3.Text = "Thời gian đặt:\n" + booking.checkin;
+                    label3.Text = "Thời gian đặt:\n" + (booking?.checkin.ToString() ?? " Chưa đặt");
                     label3.ForeColor = Color.Black;
                     label3.Location = new Point(0, 110);
                     label3.AutoSize = true;
@@ -432,7 +482,9 @@ namespace ChuongTrinhQuanLyKhachSan
             if (CheckValidationNhanVien())
             {
                 string sdt = txbNVSDT.Text.Trim();
+                string username = txbUser.Text.Trim();
                 bool sdtExists = db.Staff.Any(r => r.staffphone == sdt);
+                bool usenameExists = db.Staff.Any(r => r.Username == username);
 
                 if (sdt.Trim().Length != 10)
                 {
@@ -447,12 +499,17 @@ namespace ChuongTrinhQuanLyKhachSan
                         MessageBox.Show("Số điện thoại này đã được đăng kí", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txbRName.Focus();
                         return;
+                    } else if (usenameExists)
+                    {
+                        MessageBox.Show("Tên đăng nhập này đã tồn tại, vui lòng nhập tên khác", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        txbUser.Focus();
+                        return;
                     }
                     else
                     {
                         db.Staff.Add(new Staff()
                         {
-                            staffname = txbNVName.Text,
+                            staffname = Funct.VietHoaCacKyTu(txbNVName.Text),
                             staffsex = cbNVSex.Text,
                             staffphone = sdt,
                             staffdate = dtpNVDate.Value,
@@ -471,6 +528,7 @@ namespace ChuongTrinhQuanLyKhachSan
                     }
                 }
             }
+
         }
 
         private void btnNVEdit_Click(object sender, EventArgs e)
@@ -482,7 +540,7 @@ namespace ChuongTrinhQuanLyKhachSan
                     int id = Convert.ToInt32(txbNVID.Text);
 
                     Staff staff = db.Staff.Find(id);
-                    staff.staffname = txbNVName.Text;
+                    staff.staffname = Funct.VietHoaCacKyTu(txbNVName.Text);
                     staff.staffsex = cbNVSex.Text;
                     staff.staffphone = txbNVSDT.Text;
                     staff.staffaddress = txbNVAddress.Text;
@@ -564,9 +622,18 @@ namespace ChuongTrinhQuanLyKhachSan
         {
             if (CheckValidationKhachHang())
             {
+                string sdt = txbKHSDT.Text;
+                bool sdtExists = db.Staff.Any(r => r.staffphone == sdt);
+
+                if (sdtExists)
+                {
+                    MessageBox.Show("Số điện thoại này đã được đăng kí", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    txbKHSDT.Focus();
+                    return;
+                }
                 db.Customer.Add(new Customer()
                 {
-                    cusname = txbKHName.Text,
+                    cusname = Funct.VietHoaCacKyTu(txbKHName.Text),
                     cusemail = txbKHEmail.Text,
                     cusphone = txbKHSDT.Text,
                     cusdate = dtpKHDate.Value,
@@ -588,7 +655,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 int id = Convert.ToInt32(txbKHID.Text);
 
                 Customer cus = db.Customer.Find(id);
-                cus.cusname = txbKHName.Text;
+                cus.cusname = Funct.VietHoaCacKyTu(txbKHName.Text);
                 cus.cusemail = txbKHEmail.Text;
                 cus.cusphone = txbKHSDT.Text;
                 cus.cusaddress = txbKHAddress.Text;
@@ -668,7 +735,6 @@ namespace ChuongTrinhQuanLyKhachSan
                 int id = Convert.ToInt32(txbRID.Text);
 
                 Room r = db.Room.Find(id);
-                r.isRemove = true;
                 db.SaveChanges();
                 ClearFieldRoom();
                 LoadDataRoom();
@@ -683,14 +749,138 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void cbRType_SelectedIndexChanged(object sender, EventArgs e)
         {
-           /* VIP
-Quạt
-Thường
-Máy lạnh*/
-            if (cbRType.SelectedIndex == 0) txbRPrice.Text = "200 000";
-            if (cbRType.SelectedIndex == 1) txbRPrice.Text = "250 000";
-            if (cbRType.SelectedIndex == 2) txbRPrice.Text = "300 000";
-            if (cbRType.SelectedIndex == 3) txbRPrice.Text = "300 000";
+            /* VIP
+ Quạt
+ Thường
+ Máy lạnh*/
+            if (cbRType.SelectedIndex == 0)
+            {
+                txbRPrice.Text = "200 000";
+                txbQuaDem.Text = "480 000";
+                txbTheoNgay.Text = "650 000";
+
+            }
+            if (cbRType.SelectedIndex == 1)
+            {
+                txbRPrice.Text = "250 000";
+                txbQuaDem.Text = "600 000";
+                txbTheoNgay.Text = "700 000";
+            }
+            if (cbRType.SelectedIndex == 2)
+            {
+                txbRPrice.Text = "300 000";
+                txbQuaDem.Text = "600 000";
+                txbTheoNgay.Text = "800 000";
+            }
+            if (cbRType.SelectedIndex == 3)
+            {
+                txbRPrice.Text = "300 000"; 
+                txbQuaDem.Text = "700 000";
+                txbTheoNgay.Text = "900 000";
+            }
+        }
+
+        private void txbSerPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == (char)8))
+                e.Handled = true;
+        }
+
+        bool CheckValidationService()
+        {
+            if (txbSerName.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập tên dịch vụ", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txbSerName.Focus();
+                return false;
+            }
+            if (txbSerPrice.Text == "")
+            {
+                MessageBox.Show("Vui lòng nhập giá tiền", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                txbSerPrice.Focus();
+                return false;
+            }
+            if (cbSerType.Text == "")
+            {
+                MessageBox.Show("Vui lòng chọn loại dịch vụ", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                cbSerType.Focus();
+                return false;
+            }
+            return true;
+
+        }
+
+        void ClearFieldService()
+        {
+            txbSerID.Text = "";
+            txbSerName.Text = "";
+            txbSerPrice.Text = "";
+            cbSerType.Text = "";
+        }
+
+        private void btnSerThem_Click(object sender, EventArgs e)
+        {
+            if (CheckValidationService())
+            {
+                db.Service.Add(new Service()
+                {
+                    sername = Funct.VietHoaMotKyTu(txbSerName.Text), 
+                    serprice = int.Parse(txbSerPrice.Text),
+                    sertype = cbSerType.Text,
+                });
+
+                db.SaveChanges();
+                LoadDataService();
+            }
+        }
+
+        private void btnSerEdit_Click(object sender, EventArgs e)
+        {
+            if (CheckValidationService())
+            {
+                int id = Convert.ToInt32(txbSerID.Text);
+
+                Service ser = db.Service.Find(id);
+                ser.sername = Funct.VietHoaMotKyTu(txbSerName.Text);
+                ser.serprice = int.Parse(txbSerPrice.Text);
+                ser.sertype = cbSerType.Text;
+
+                db.SaveChanges();
+                MessageBox.Show("Sửa dịch vụ [" + txbSerName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                LoadDataService();
+            }
+        }
+
+        private void dgvService_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            txbSerID.Text = dgvService.SelectedRows[0].Cells[0].Value.ToString();
+            txbSerName.Text = dgvService.SelectedRows[0].Cells[1].Value.ToString();
+            txbSerPrice.Text = dgvService.SelectedRows[0].Cells[2].Value.ToString();
+            cbSerType.Text = dgvService.SelectedRows[0].Cells[3].Value.ToString();
+        }
+
+        private void dgvService_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa dịch vụ " + txbSerName.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (res == DialogResult.Yes)
+            {
+                int id = Convert.ToInt32(txbSerID.Text);
+                Service serviceToDelete = db.Service.FirstOrDefault(s => s.serid == id);
+                if (serviceToDelete != null)
+                {
+
+
+                    db.Service.Remove(serviceToDelete);
+
+                    db.SaveChanges();
+                    ClearFieldService();
+                    LoadDataService();
+                }
+                else
+                {
+                    MessageBox.Show("Không tìm thấy dịch vụ cần xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }
