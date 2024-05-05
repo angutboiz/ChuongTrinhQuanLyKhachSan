@@ -18,8 +18,8 @@
           <Property Name="checkout" Type="smalldatetime" />
           <Property Name="bookstatus" Type="nvarchar" MaxLength="50" />
           <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="paymethod" Type="nvarchar" MaxLength="50" />
           <Property Name="booktype" Type="nvarchar" MaxLength="50" />
+          <Property Name="totalhours" Type="int" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -200,12 +200,12 @@
           <Property Name="checkout" Type="DateTime" Precision="0" />
           <Property Name="bookstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="paymethod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__cusid__37A5467C" FromRole="Booking" ToRole="Customer" />
           <NavigationProperty Name="Room" Relationship="Self.FK__Booking__roomid__38996AB5" FromRole="Booking" ToRole="Room" />
           <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__Booking__serdeta__398D8EEE" FromRole="Booking" ToRole="ServiceOrder" />
           <NavigationProperty Name="Staff" Relationship="Self.FK__Booking__staffid__36B12243" FromRole="Booking" ToRole="Staff" />
           <Property Name="booktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="totalhours" Type="Int32" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -386,6 +386,7 @@
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="QLKHACHSANModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
+                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
                 <ScalarProperty Name="booktype" ColumnName="booktype" />
                 <ScalarProperty Name="bookid" ColumnName="bookid" />
                 <ScalarProperty Name="staffid" ColumnName="staffid" />
@@ -396,7 +397,6 @@
                 <ScalarProperty Name="checkout" ColumnName="checkout" />
                 <ScalarProperty Name="bookstatus" ColumnName="bookstatus" />
                 <ScalarProperty Name="payamount" ColumnName="payamount" />
-                <ScalarProperty Name="paymethod" ColumnName="paymethod" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

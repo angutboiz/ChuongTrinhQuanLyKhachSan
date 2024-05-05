@@ -359,27 +359,34 @@ namespace ChuongTrinhQuanLyKhachSan
                 label1.Text = "Loại phòng: " + item.roomtype;
                 label1.AutoSize = true;
                 label1.ForeColor = Color.Black;
-                label1.Location = new Point(0, 70);
+                label1.Location = new Point(0, 50);
                 clonedGroupBox.Controls.Add(label1);
 
                 Label label2 = new Label();
                 label2.Text = string.Format("Giá tiền: {0:#,##0}đ", item.roomrate);
                 label2.ForeColor = Color.Black;
-                label2.Location = new Point(0, 90);
+                label2.Location = new Point(0, 70);
                 label2.AutoSize = true;
                 clonedGroupBox.Controls.Add(label2);
 
                 var booking = db.Booking.FirstOrDefault(b => b.roomid == item.roomid);
-                if (item.roomstatus == "Đang sử dụng")
-                {
-                    Label label3 = new Label();
-                    label3.Text = "Thời gian đặt:\n" + (booking?.checkin.ToString() ?? " Chưa đặt");
-                    label3.ForeColor = Color.Black;
-                    label3.Location = new Point(0, 110);
-                    label3.AutoSize = true;
-                    clonedGroupBox.Controls.Add(label3);
 
-                } 
+                Label label3 = new Label();
+                label3.ForeColor = Color.Black;
+                label3.Location = new Point(0, 90);
+                label3.AutoSize = true;
+                if (item.roomstatus == "Đang sử dụng") label3.Text = "Thời gian đặt:\n" + (booking?.checkin.ToString() ?? " Chưa đặt");
+                clonedGroupBox.Controls.Add(label3);
+
+
+                Label label4 = new Label();
+                label4.ForeColor = Color.Black;
+                label4.Location = new Point(0, 130);
+                label4.AutoSize = true;
+                label4.Text = "Kiểu thuê: "+ (booking?.booktype ?? "Chưa thuê");
+                clonedGroupBox.Controls.Add(label4);
+
+
 
 
 
@@ -725,6 +732,7 @@ namespace ChuongTrinhQuanLyKhachSan
             cbRType.Text = dgvRoom.SelectedRows[0].Cells[2].Value.ToString();
             txbRPrice.Text = dgvRoom.SelectedRows[0].Cells[3].Value.ToString();
             cbRStatus.Text = dgvRoom.SelectedRows[0].Cells[4].Value.ToString();
+            cbRStatus.Text = dgvRoom.SelectedRows[0].Cells[6].Value.ToString();
         }
 
         private void dgvRoom_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -733,8 +741,9 @@ namespace ChuongTrinhQuanLyKhachSan
             if (res == DialogResult.Yes)
             {
                 int id = Convert.ToInt32(txbRID.Text);
+                var query = db.Room.Find(id);
+                db.Room.Remove(query);
 
-                Room r = db.Room.Find(id);
                 db.SaveChanges();
                 ClearFieldRoom();
                 LoadDataRoom();

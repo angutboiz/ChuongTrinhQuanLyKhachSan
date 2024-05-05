@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.grbNV = new Guna.UI2.WinForms.Guna2GroupBox();
@@ -51,6 +51,11 @@
             this.txbKHID = new Guna.UI2.WinForms.Guna2TextBox();
             this.txbKHPhone = new Guna.UI2.WinForms.Guna2TextBox();
             this.grbDetail = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.rbTheoThang = new System.Windows.Forms.RadioButton();
+            this.rbTheoGio = new System.Windows.Forms.RadioButton();
+            this.rbQuaDem = new System.Windows.Forms.RadioButton();
+            this.rbTheoNgay = new System.Windows.Forms.RadioButton();
             this.lbPhi = new System.Windows.Forms.Label();
             this.txbPhi = new Guna.UI2.WinForms.Guna2TextBox();
             this.lbGia = new System.Windows.Forms.Label();
@@ -66,9 +71,11 @@
             this.txbStart = new Guna.UI2.WinForms.Guna2TextBox();
             this.chkTuChinh = new Guna.UI2.WinForms.Guna2CheckBox();
             this.grbService = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.rbNuoc = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.rbSnack = new Guna.UI2.WinForms.Guna2RadioButton();
-            this.rbMan = new Guna.UI2.WinForms.Guna2RadioButton();
+            this.rbSnack = new System.Windows.Forms.RadioButton();
+            this.rbNuoc = new System.Windows.Forms.RadioButton();
+            this.rbMan = new System.Windows.Forms.RadioButton();
+            this.lbTongService = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
             this.btnTang = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.btnGiam = new System.Windows.Forms.Button();
@@ -84,13 +91,8 @@
             this.btnClearData = new Guna.UI2.WinForms.Guna2Button();
             this.label15 = new System.Windows.Forms.Label();
             this.grpRoom = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.lbTongService = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.rbTheoNgay = new System.Windows.Forms.RadioButton();
-            this.rbQuaDem = new System.Windows.Forms.RadioButton();
-            this.rbTheoGio = new System.Windows.Forms.RadioButton();
-            this.rbTheoThang = new System.Windows.Forms.RadioButton();
-            this.label5 = new System.Windows.Forms.Label();
+            this.lbTongTatCaTien = new System.Windows.Forms.Label();
+            this.lbSerID = new System.Windows.Forms.Label();
             this.grbNV.SuspendLayout();
             this.grbKH.SuspendLayout();
             this.grbDetail.SuspendLayout();
@@ -256,7 +258,7 @@
             this.btnThanhToan.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnThanhToan.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnThanhToan.ForeColor = System.Drawing.Color.White;
-            this.btnThanhToan.Location = new System.Drawing.Point(183, 621);
+            this.btnThanhToan.Location = new System.Drawing.Point(266, 616);
             this.btnThanhToan.Name = "btnThanhToan";
             this.btnThanhToan.Size = new System.Drawing.Size(99, 35);
             this.btnThanhToan.TabIndex = 16;
@@ -401,13 +403,82 @@
             this.grbDetail.TabIndex = 27;
             this.grbDetail.Text = "Chi tiết";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.White;
+            this.label5.Enabled = false;
+            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.Location = new System.Drawing.Point(11, 365);
+            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(308, 15);
+            this.label5.TabIndex = 47;
+            this.label5.Text = "*Nếu khách thuê  tháng, ngày, đêm quá số giờ sẽ +50k/h";
+            // 
+            // rbTheoThang
+            // 
+            this.rbTheoThang.AutoSize = true;
+            this.rbTheoThang.BackColor = System.Drawing.Color.Transparent;
+            this.rbTheoThang.ForeColor = System.Drawing.Color.Black;
+            this.rbTheoThang.Location = new System.Drawing.Point(14, 58);
+            this.rbTheoThang.Name = "rbTheoThang";
+            this.rbTheoThang.Size = new System.Drawing.Size(81, 34);
+            this.rbTheoThang.TabIndex = 46;
+            this.rbTheoThang.TabStop = true;
+            this.rbTheoThang.Text = "Thuê theo \r\ntháng";
+            this.rbTheoThang.UseVisualStyleBackColor = false;
+            this.rbTheoThang.CheckedChanged += new System.EventHandler(this.rbTheoThang_CheckedChanged);
+            // 
+            // rbTheoGio
+            // 
+            this.rbTheoGio.AutoSize = true;
+            this.rbTheoGio.BackColor = System.Drawing.Color.Transparent;
+            this.rbTheoGio.ForeColor = System.Drawing.Color.Black;
+            this.rbTheoGio.Location = new System.Drawing.Point(275, 59);
+            this.rbTheoGio.Name = "rbTheoGio";
+            this.rbTheoGio.Size = new System.Drawing.Size(78, 34);
+            this.rbTheoGio.TabIndex = 45;
+            this.rbTheoGio.TabStop = true;
+            this.rbTheoGio.Text = "Thuê theo\r\ngiờ";
+            this.rbTheoGio.UseVisualStyleBackColor = false;
+            this.rbTheoGio.CheckedChanged += new System.EventHandler(this.rbTheoGio_CheckedChanged);
+            // 
+            // rbQuaDem
+            // 
+            this.rbQuaDem.AutoSize = true;
+            this.rbQuaDem.BackColor = System.Drawing.Color.Transparent;
+            this.rbQuaDem.ForeColor = System.Drawing.Color.Black;
+            this.rbQuaDem.Location = new System.Drawing.Point(192, 58);
+            this.rbQuaDem.Name = "rbQuaDem";
+            this.rbQuaDem.Size = new System.Drawing.Size(77, 34);
+            this.rbQuaDem.TabIndex = 44;
+            this.rbQuaDem.TabStop = true;
+            this.rbQuaDem.Text = "Thuê qua \r\nđêm";
+            this.rbQuaDem.UseVisualStyleBackColor = false;
+            this.rbQuaDem.CheckedChanged += new System.EventHandler(this.rbQuaDem_CheckedChanged);
+            // 
+            // rbTheoNgay
+            // 
+            this.rbTheoNgay.AutoSize = true;
+            this.rbTheoNgay.BackColor = System.Drawing.Color.Transparent;
+            this.rbTheoNgay.ForeColor = System.Drawing.Color.Black;
+            this.rbTheoNgay.Location = new System.Drawing.Point(105, 58);
+            this.rbTheoNgay.Name = "rbTheoNgay";
+            this.rbTheoNgay.Size = new System.Drawing.Size(81, 34);
+            this.rbTheoNgay.TabIndex = 43;
+            this.rbTheoNgay.TabStop = true;
+            this.rbTheoNgay.Text = "Thuê theo \r\nngày";
+            this.rbTheoNgay.UseVisualStyleBackColor = false;
+            this.rbTheoNgay.CheckedChanged += new System.EventHandler(this.rbTheoNgay_CheckedChanged);
+            // 
             // lbPhi
             // 
             this.lbPhi.AutoSize = true;
             this.lbPhi.BackColor = System.Drawing.Color.White;
             this.lbPhi.Enabled = false;
             this.lbPhi.ForeColor = System.Drawing.Color.Black;
-            this.lbPhi.Location = new System.Drawing.Point(253, 113);
+            this.lbPhi.Location = new System.Drawing.Point(260, 113);
             this.lbPhi.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbPhi.Name = "lbPhi";
             this.lbPhi.Size = new System.Drawing.Size(71, 15);
@@ -426,12 +497,12 @@
             this.txbPhi.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbPhi.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPhi.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbPhi.Location = new System.Drawing.Point(256, 132);
+            this.txbPhi.Location = new System.Drawing.Point(263, 132);
             this.txbPhi.Name = "txbPhi";
             this.txbPhi.PasswordChar = '\0';
             this.txbPhi.PlaceholderText = "";
             this.txbPhi.SelectedText = "";
-            this.txbPhi.Size = new System.Drawing.Size(64, 36);
+            this.txbPhi.Size = new System.Drawing.Size(90, 36);
             this.txbPhi.TabIndex = 41;
             this.txbPhi.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
@@ -441,7 +512,7 @@
             this.lbGia.BackColor = System.Drawing.Color.White;
             this.lbGia.Enabled = false;
             this.lbGia.ForeColor = System.Drawing.Color.Black;
-            this.lbGia.Location = new System.Drawing.Point(195, 113);
+            this.lbGia.Location = new System.Drawing.Point(138, 110);
             this.lbGia.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbGia.Name = "lbGia";
             this.lbGia.Size = new System.Drawing.Size(42, 15);
@@ -453,7 +524,7 @@
             this.lbTongTien.AutoSize = true;
             this.lbTongTien.BackColor = System.Drawing.Color.White;
             this.lbTongTien.ForeColor = System.Drawing.Color.Black;
-            this.lbTongTien.Location = new System.Drawing.Point(45, 326);
+            this.lbTongTien.Location = new System.Drawing.Point(15, 326);
             this.lbTongTien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbTongTien.Name = "lbTongTien";
             this.lbTongTien.Size = new System.Drawing.Size(63, 15);
@@ -472,12 +543,12 @@
             this.txbGiaTheoGio.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbGiaTheoGio.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbGiaTheoGio.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbGiaTheoGio.Location = new System.Drawing.Point(167, 132);
+            this.txbGiaTheoGio.Location = new System.Drawing.Point(137, 132);
             this.txbGiaTheoGio.Name = "txbGiaTheoGio";
             this.txbGiaTheoGio.PasswordChar = '\0';
             this.txbGiaTheoGio.PlaceholderText = "";
             this.txbGiaTheoGio.SelectedText = "";
-            this.txbGiaTheoGio.Size = new System.Drawing.Size(83, 36);
+            this.txbGiaTheoGio.Size = new System.Drawing.Size(120, 36);
             this.txbGiaTheoGio.TabIndex = 39;
             // 
             // label8
@@ -485,7 +556,7 @@
             this.label8.AutoSize = true;
             this.label8.BackColor = System.Drawing.Color.White;
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(45, 280);
+            this.label8.Location = new System.Drawing.Point(15, 280);
             this.label8.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(54, 15);
@@ -497,7 +568,7 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.White;
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(45, 240);
+            this.label2.Location = new System.Drawing.Point(15, 240);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(73, 15);
@@ -509,7 +580,7 @@
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.White;
             this.label3.ForeColor = System.Drawing.Color.Black;
-            this.label3.Location = new System.Drawing.Point(45, 198);
+            this.label3.Location = new System.Drawing.Point(15, 198);
             this.label3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(76, 15);
@@ -522,7 +593,7 @@
             this.label13.BackColor = System.Drawing.Color.White;
             this.label13.Enabled = false;
             this.label13.ForeColor = System.Drawing.Color.Black;
-            this.label13.Location = new System.Drawing.Point(61, 113);
+            this.label13.Location = new System.Drawing.Point(15, 113);
             this.label13.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(67, 15);
@@ -541,7 +612,7 @@
             this.txbLoaiPhong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbLoaiPhong.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbLoaiPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbLoaiPhong.Location = new System.Drawing.Point(44, 132);
+            this.txbLoaiPhong.Location = new System.Drawing.Point(14, 132);
             this.txbLoaiPhong.Name = "txbLoaiPhong";
             this.txbLoaiPhong.PasswordChar = '\0';
             this.txbLoaiPhong.PlaceholderText = "";
@@ -561,12 +632,12 @@
             this.txbTongTime.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbTongTime.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbTongTime.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbTongTime.Location = new System.Drawing.Point(139, 270);
+            this.txbTongTime.Location = new System.Drawing.Point(109, 270);
             this.txbTongTime.Name = "txbTongTime";
             this.txbTongTime.PasswordChar = '\0';
             this.txbTongTime.PlaceholderText = "";
             this.txbTongTime.SelectedText = "";
-            this.txbTongTime.Size = new System.Drawing.Size(181, 36);
+            this.txbTongTime.Size = new System.Drawing.Size(244, 36);
             this.txbTongTime.TabIndex = 18;
             // 
             // txbEnd
@@ -581,13 +652,14 @@
             this.txbEnd.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbEnd.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbEnd.Location = new System.Drawing.Point(139, 228);
+            this.txbEnd.Location = new System.Drawing.Point(109, 228);
             this.txbEnd.Name = "txbEnd";
             this.txbEnd.PasswordChar = '\0';
             this.txbEnd.PlaceholderText = "";
             this.txbEnd.SelectedText = "";
-            this.txbEnd.Size = new System.Drawing.Size(181, 36);
+            this.txbEnd.Size = new System.Drawing.Size(244, 36);
             this.txbEnd.TabIndex = 15;
+            this.txbEnd.TextChanged += new System.EventHandler(this.txbEnd_TextChanged);
             // 
             // txbStart
             // 
@@ -601,13 +673,14 @@
             this.txbStart.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbStart.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbStart.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbStart.Location = new System.Drawing.Point(139, 186);
+            this.txbStart.Location = new System.Drawing.Point(109, 186);
             this.txbStart.Name = "txbStart";
             this.txbStart.PasswordChar = '\0';
             this.txbStart.PlaceholderText = "";
             this.txbStart.SelectedText = "";
-            this.txbStart.Size = new System.Drawing.Size(181, 36);
+            this.txbStart.Size = new System.Drawing.Size(244, 36);
             this.txbStart.TabIndex = 13;
+            this.txbStart.TextChanged += new System.EventHandler(this.txbStart_TextChanged);
             // 
             // chkTuChinh
             // 
@@ -632,11 +705,12 @@
             // 
             // grbService
             // 
-            this.grbService.Controls.Add(this.lbTongService);
-            this.grbService.Controls.Add(this.rbNuoc);
-            this.grbService.Controls.Add(this.label16);
+            this.grbService.Controls.Add(this.lbSerID);
             this.grbService.Controls.Add(this.rbSnack);
+            this.grbService.Controls.Add(this.rbNuoc);
             this.grbService.Controls.Add(this.rbMan);
+            this.grbService.Controls.Add(this.lbTongService);
+            this.grbService.Controls.Add(this.label16);
             this.grbService.Controls.Add(this.btnTang);
             this.grbService.Controls.Add(this.label4);
             this.grbService.Controls.Add(this.btnGiam);
@@ -654,71 +728,73 @@
             this.grbService.TabIndex = 28;
             this.grbService.Text = "Các dịch vụ kèm theo phòng";
             // 
-            // rbNuoc
-            // 
-            this.rbNuoc.AutoSize = true;
-            this.rbNuoc.BackColor = System.Drawing.Color.Transparent;
-            this.rbNuoc.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbNuoc.CheckedState.BorderThickness = 0;
-            this.rbNuoc.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbNuoc.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbNuoc.CheckedState.InnerOffset = -4;
-            this.rbNuoc.ForeColor = System.Drawing.Color.Black;
-            this.rbNuoc.Location = new System.Drawing.Point(282, 110);
-            this.rbNuoc.Name = "rbNuoc";
-            this.rbNuoc.Size = new System.Drawing.Size(84, 19);
-            this.rbNuoc.TabIndex = 37;
-            this.rbNuoc.Text = "Chọn nước";
-            this.rbNuoc.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbNuoc.UncheckedState.BorderThickness = 2;
-            this.rbNuoc.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbNuoc.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
-            this.rbNuoc.UseVisualStyleBackColor = false;
-            this.rbNuoc.CheckedChanged += new System.EventHandler(this.rbNuoc_CheckedChanged);
-            // 
             // rbSnack
             // 
             this.rbSnack.AutoSize = true;
             this.rbSnack.BackColor = System.Drawing.Color.Transparent;
-            this.rbSnack.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbSnack.CheckedState.BorderThickness = 0;
-            this.rbSnack.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbSnack.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbSnack.CheckedState.InnerOffset = -4;
             this.rbSnack.ForeColor = System.Drawing.Color.Black;
-            this.rbSnack.Location = new System.Drawing.Point(282, 85);
+            this.rbSnack.Location = new System.Drawing.Point(282, 83);
             this.rbSnack.Name = "rbSnack";
             this.rbSnack.Size = new System.Drawing.Size(89, 19);
-            this.rbSnack.TabIndex = 36;
+            this.rbSnack.TabIndex = 40;
+            this.rbSnack.TabStop = true;
             this.rbSnack.Text = "Chọn ăn vặt";
-            this.rbSnack.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbSnack.UncheckedState.BorderThickness = 2;
-            this.rbSnack.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbSnack.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
             this.rbSnack.UseVisualStyleBackColor = false;
             this.rbSnack.CheckedChanged += new System.EventHandler(this.rbSnack_CheckedChanged);
+            // 
+            // rbNuoc
+            // 
+            this.rbNuoc.AutoSize = true;
+            this.rbNuoc.BackColor = System.Drawing.Color.Transparent;
+            this.rbNuoc.ForeColor = System.Drawing.Color.Black;
+            this.rbNuoc.Location = new System.Drawing.Point(282, 108);
+            this.rbNuoc.Name = "rbNuoc";
+            this.rbNuoc.Size = new System.Drawing.Size(84, 19);
+            this.rbNuoc.TabIndex = 39;
+            this.rbNuoc.TabStop = true;
+            this.rbNuoc.Text = "Chọn nước";
+            this.rbNuoc.UseVisualStyleBackColor = false;
+            this.rbNuoc.CheckedChanged += new System.EventHandler(this.rbNuoc_CheckedChanged);
             // 
             // rbMan
             // 
             this.rbMan.AutoSize = true;
             this.rbMan.BackColor = System.Drawing.Color.Transparent;
-            this.rbMan.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbMan.CheckedState.BorderThickness = 0;
-            this.rbMan.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.rbMan.CheckedState.InnerColor = System.Drawing.Color.White;
-            this.rbMan.CheckedState.InnerOffset = -4;
             this.rbMan.ForeColor = System.Drawing.Color.Black;
-            this.rbMan.Location = new System.Drawing.Point(282, 59);
+            this.rbMan.Location = new System.Drawing.Point(282, 58);
             this.rbMan.Name = "rbMan";
-            this.rbMan.Size = new System.Drawing.Size(109, 19);
-            this.rbMan.TabIndex = 35;
-            this.rbMan.Text = "Chọn món mặn";
-            this.rbMan.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.rbMan.UncheckedState.BorderThickness = 2;
-            this.rbMan.UncheckedState.FillColor = System.Drawing.Color.Transparent;
-            this.rbMan.UncheckedState.InnerColor = System.Drawing.Color.Transparent;
+            this.rbMan.Size = new System.Drawing.Size(98, 19);
+            this.rbMan.TabIndex = 38;
+            this.rbMan.TabStop = true;
+            this.rbMan.Text = "Chọn món ăn";
             this.rbMan.UseVisualStyleBackColor = false;
             this.rbMan.CheckedChanged += new System.EventHandler(this.rbMan_CheckedChanged);
+            // 
+            // lbTongService
+            // 
+            this.lbTongService.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbTongService.AutoSize = true;
+            this.lbTongService.BackColor = System.Drawing.Color.Transparent;
+            this.lbTongService.ForeColor = System.Drawing.Color.Black;
+            this.lbTongService.Location = new System.Drawing.Point(116, 170);
+            this.lbTongService.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTongService.Name = "lbTongService";
+            this.lbTongService.Size = new System.Drawing.Size(13, 15);
+            this.lbTongService.TabIndex = 32;
+            this.lbTongService.Text = "0";
+            // 
+            // label16
+            // 
+            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.Transparent;
+            this.label16.ForeColor = System.Drawing.Color.Black;
+            this.label16.Location = new System.Drawing.Point(11, 170);
+            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(102, 15);
+            this.label16.TabIndex = 31;
+            this.label16.Text = "Tổng tiền dịch vụ:";
             // 
             // btnTang
             // 
@@ -726,7 +802,7 @@
             this.btnTang.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnTang.ForeColor = System.Drawing.Color.Black;
             this.btnTang.Location = new System.Drawing.Point(157, 113);
-            this.btnTang.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnTang.Margin = new System.Windows.Forms.Padding(2);
             this.btnTang.Name = "btnTang";
             this.btnTang.Size = new System.Drawing.Size(33, 29);
             this.btnTang.TabIndex = 34;
@@ -754,7 +830,7 @@
             this.btnGiam.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGiam.ForeColor = System.Drawing.Color.Black;
             this.btnGiam.Location = new System.Drawing.Point(81, 113);
-            this.btnGiam.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGiam.Margin = new System.Windows.Forms.Padding(2);
             this.btnGiam.Name = "btnGiam";
             this.btnGiam.Size = new System.Drawing.Size(33, 29);
             this.btnGiam.TabIndex = 33;
@@ -789,7 +865,7 @@
             this.cbService.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(88)))), ((int)(((byte)(112)))));
             this.cbService.ItemHeight = 30;
             this.cbService.Location = new System.Drawing.Point(90, 59);
-            this.cbService.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.cbService.Margin = new System.Windows.Forms.Padding(2);
             this.cbService.Name = "cbService";
             this.cbService.Size = new System.Drawing.Size(167, 36);
             this.cbService.TabIndex = 31;
@@ -809,7 +885,7 @@
             this.txbServiceSoluong.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbServiceSoluong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbServiceSoluong.Location = new System.Drawing.Point(119, 113);
-            this.txbServiceSoluong.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbServiceSoluong.Margin = new System.Windows.Forms.Padding(2);
             this.txbServiceSoluong.Name = "txbServiceSoluong";
             this.txbServiceSoluong.PasswordChar = '\0';
             this.txbServiceSoluong.PlaceholderText = "";
@@ -841,33 +917,34 @@
             this.dgvService.AllowUserToDeleteRows = false;
             this.dgvService.AllowUserToResizeColumns = false;
             this.dgvService.AllowUserToResizeRows = false;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            this.dgvService.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvService.ColumnHeadersHeight = 40;
             this.dgvService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
             this.Column3,
             this.Column4});
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 9F);
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvService.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F);
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvService.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvService.Location = new System.Drawing.Point(2, 193);
-            this.dgvService.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvService.Margin = new System.Windows.Forms.Padding(2);
             this.dgvService.Name = "dgvService";
             this.dgvService.ReadOnly = true;
             this.dgvService.RowHeadersVisible = false;
@@ -896,6 +973,8 @@
             this.dgvService.ThemeStyle.RowsStyle.Height = 24;
             this.dgvService.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvService.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvService.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvService_CellMouseClick);
+            this.dgvService.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgvService_CellMouseDoubleClick);
             // 
             // Column1
             // 
@@ -940,7 +1019,7 @@
             this.btnClearData.FillColor = System.Drawing.Color.Teal;
             this.btnClearData.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnClearData.ForeColor = System.Drawing.Color.White;
-            this.btnClearData.Location = new System.Drawing.Point(423, 619);
+            this.btnClearData.Location = new System.Drawing.Point(479, 619);
             this.btnClearData.Name = "btnClearData";
             this.btnClearData.Size = new System.Drawing.Size(99, 35);
             this.btnClearData.TabIndex = 29;
@@ -953,7 +1032,7 @@
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.Transparent;
             this.label15.ForeColor = System.Drawing.Color.Black;
-            this.label15.Location = new System.Drawing.Point(337, 621);
+            this.label15.Location = new System.Drawing.Point(393, 621);
             this.label15.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(81, 30);
@@ -962,6 +1041,7 @@
             // 
             // grpRoom
             // 
+            this.grpRoom.Controls.Add(this.lbTongTatCaTien);
             this.grpRoom.Controls.Add(this.label15);
             this.grpRoom.Controls.Add(this.btnClearData);
             this.grpRoom.Controls.Add(this.grbService);
@@ -981,100 +1061,32 @@
             this.grpRoom.TabIndex = 0;
             this.grpRoom.Text = "Phòng 201";
             // 
-            // lbTongService
+            // lbTongTatCaTien
             // 
-            this.lbTongService.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.lbTongService.AutoSize = true;
-            this.lbTongService.BackColor = System.Drawing.Color.Transparent;
-            this.lbTongService.ForeColor = System.Drawing.Color.Black;
-            this.lbTongService.Location = new System.Drawing.Point(116, 170);
-            this.lbTongService.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbTongService.Name = "lbTongService";
-            this.lbTongService.Size = new System.Drawing.Size(13, 15);
-            this.lbTongService.TabIndex = 32;
-            this.lbTongService.Text = "0";
+            this.lbTongTatCaTien.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbTongTatCaTien.AutoSize = true;
+            this.lbTongTatCaTien.BackColor = System.Drawing.Color.Transparent;
+            this.lbTongTatCaTien.ForeColor = System.Drawing.Color.Black;
+            this.lbTongTatCaTien.Location = new System.Drawing.Point(11, 621);
+            this.lbTongTatCaTien.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbTongTatCaTien.Name = "lbTongTatCaTien";
+            this.lbTongTatCaTien.Size = new System.Drawing.Size(95, 15);
+            this.lbTongTatCaTien.TabIndex = 31;
+            this.lbTongTatCaTien.Text = "Tổng tất cả tiền: ";
             // 
-            // label16
+            // lbSerID
             // 
-            this.label16.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.label16.AutoSize = true;
-            this.label16.BackColor = System.Drawing.Color.Transparent;
-            this.label16.ForeColor = System.Drawing.Color.Black;
-            this.label16.Location = new System.Drawing.Point(11, 170);
-            this.label16.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(102, 15);
-            this.label16.TabIndex = 31;
-            this.label16.Text = "Tổng tiền dịch vụ:";
-            // 
-            // rbTheoNgay
-            // 
-            this.rbTheoNgay.AutoSize = true;
-            this.rbTheoNgay.BackColor = System.Drawing.Color.Transparent;
-            this.rbTheoNgay.ForeColor = System.Drawing.Color.Black;
-            this.rbTheoNgay.Location = new System.Drawing.Point(105, 58);
-            this.rbTheoNgay.Name = "rbTheoNgay";
-            this.rbTheoNgay.Size = new System.Drawing.Size(81, 34);
-            this.rbTheoNgay.TabIndex = 43;
-            this.rbTheoNgay.TabStop = true;
-            this.rbTheoNgay.Text = "Thuê theo \r\nngày";
-            this.rbTheoNgay.UseVisualStyleBackColor = false;
-            this.rbTheoNgay.CheckedChanged += new System.EventHandler(this.rbTheoNgay_CheckedChanged);
-            // 
-            // rbQuaDem
-            // 
-            this.rbQuaDem.AutoSize = true;
-            this.rbQuaDem.BackColor = System.Drawing.Color.Transparent;
-            this.rbQuaDem.ForeColor = System.Drawing.Color.Black;
-            this.rbQuaDem.Location = new System.Drawing.Point(192, 58);
-            this.rbQuaDem.Name = "rbQuaDem";
-            this.rbQuaDem.Size = new System.Drawing.Size(77, 34);
-            this.rbQuaDem.TabIndex = 44;
-            this.rbQuaDem.TabStop = true;
-            this.rbQuaDem.Text = "Thuê qua \r\nđêm";
-            this.rbQuaDem.UseVisualStyleBackColor = false;
-            this.rbQuaDem.CheckedChanged += new System.EventHandler(this.rbQuaDem_CheckedChanged);
-            // 
-            // rbTheoGio
-            // 
-            this.rbTheoGio.AutoSize = true;
-            this.rbTheoGio.BackColor = System.Drawing.Color.Transparent;
-            this.rbTheoGio.ForeColor = System.Drawing.Color.Black;
-            this.rbTheoGio.Location = new System.Drawing.Point(275, 59);
-            this.rbTheoGio.Name = "rbTheoGio";
-            this.rbTheoGio.Size = new System.Drawing.Size(78, 34);
-            this.rbTheoGio.TabIndex = 45;
-            this.rbTheoGio.TabStop = true;
-            this.rbTheoGio.Text = "Thuê theo\r\ngiờ";
-            this.rbTheoGio.UseVisualStyleBackColor = false;
-            this.rbTheoGio.CheckedChanged += new System.EventHandler(this.rbTheoGio_CheckedChanged);
-            // 
-            // rbTheoThang
-            // 
-            this.rbTheoThang.AutoSize = true;
-            this.rbTheoThang.BackColor = System.Drawing.Color.Transparent;
-            this.rbTheoThang.ForeColor = System.Drawing.Color.Black;
-            this.rbTheoThang.Location = new System.Drawing.Point(14, 58);
-            this.rbTheoThang.Name = "rbTheoThang";
-            this.rbTheoThang.Size = new System.Drawing.Size(81, 34);
-            this.rbTheoThang.TabIndex = 46;
-            this.rbTheoThang.TabStop = true;
-            this.rbTheoThang.Text = "Thuê theo \r\ntháng";
-            this.rbTheoThang.UseVisualStyleBackColor = false;
-            this.rbTheoThang.CheckedChanged += new System.EventHandler(this.rbTheoThang_CheckedChanged);
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.White;
-            this.label5.Enabled = false;
-            this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(11, 365);
-            this.label5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(308, 15);
-            this.label5.TabIndex = 47;
-            this.label5.Text = "*Nếu khách thuê  tháng, ngày, đêm quá số giờ sẽ +50k/h";
+            this.lbSerID.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.lbSerID.AutoSize = true;
+            this.lbSerID.BackColor = System.Drawing.Color.Transparent;
+            this.lbSerID.ForeColor = System.Drawing.Color.Black;
+            this.lbSerID.Location = new System.Drawing.Point(441, 80);
+            this.lbSerID.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbSerID.Name = "lbSerID";
+            this.lbSerID.Size = new System.Drawing.Size(13, 15);
+            this.lbSerID.TabIndex = 41;
+            this.lbSerID.Text = "0";
+            this.lbSerID.Visible = false;
             // 
             // frmDetailRoom
             // 
@@ -1141,9 +1153,6 @@
         private Guna.UI2.WinForms.Guna2TextBox txbStart;
         private Guna.UI2.WinForms.Guna2CheckBox chkTuChinh;
         private Guna.UI2.WinForms.Guna2GroupBox grbService;
-        private Guna.UI2.WinForms.Guna2RadioButton rbNuoc;
-        private Guna.UI2.WinForms.Guna2RadioButton rbSnack;
-        private Guna.UI2.WinForms.Guna2RadioButton rbMan;
         private System.Windows.Forms.Button btnTang;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnGiam;
@@ -1166,5 +1175,10 @@
         private System.Windows.Forms.RadioButton rbTheoNgay;
         private System.Windows.Forms.RadioButton rbTheoThang;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.RadioButton rbMan;
+        private System.Windows.Forms.RadioButton rbSnack;
+        private System.Windows.Forms.RadioButton rbNuoc;
+        private System.Windows.Forms.Label lbTongTatCaTien;
+        private System.Windows.Forms.Label lbSerID;
     }
 }

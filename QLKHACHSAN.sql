@@ -70,7 +70,6 @@ CREATE TABLE Booking (
     checkout SMALLDATETIME, -- lưu lại ngày giờ lúc khách trả phòng
     bookstatus NVARCHAR(50), -- 2 giá trị: đang thuê phòng hoặc trả phòng
 	payamount DECIMAL(10, 0), -- tổng tiền thanh toán
-    paymethod NVARCHAR(50), -- hình thức thanh toán: chuyển khoản - tiền mặt?
     FOREIGN KEY (staffid) REFERENCES Staff(staffid),
     FOREIGN KEY (cusid) REFERENCES Customer(cusid),
     FOREIGN KEY (roomid) REFERENCES Room(roomid),
