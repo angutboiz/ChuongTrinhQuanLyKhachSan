@@ -116,13 +116,4 @@ VALUES	(N'Gà hấp lá chanh', 250000, N'Đồ ăn mặn'),
 		(N'Bia', 20000, N'Nước'),
 		(N'Cafe', 50000, N'Nước')
 
-		
-
-SELECT * FROM Booking as b
-inner join Room as r on r.roomid = b.roomid
-inner join Staff as s on s.staffid = b.staffid
-inner join Customer as c on c.cusid= b.cusid
-
-	 
-	 select * from History
-	 where DAY(checkin) = 7
+	
