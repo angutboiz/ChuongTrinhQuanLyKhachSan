@@ -14,12 +14,12 @@
           <Property Name="cusid" Type="int" />
           <Property Name="roomid" Type="int" />
           <Property Name="serdetailid" Type="int" />
+          <Property Name="booktype" Type="nvarchar" MaxLength="50" />
           <Property Name="checkin" Type="smalldatetime" />
           <Property Name="checkout" Type="smalldatetime" />
+          <Property Name="totalhours" Type="int" />
           <Property Name="bookstatus" Type="nvarchar" MaxLength="50" />
           <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
-          <Property Name="booktype" Type="nvarchar" MaxLength="50" />
-          <Property Name="totalhours" Type="int" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -32,6 +32,21 @@
           <Property Name="cusdate" Type="smalldatetime" />
           <Property Name="cusaddress" Type="nvarchar" MaxLength="255" />
           <Property Name="isRemove" Type="bit" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="roomname" Type="nvarchar" MaxLength="50" />
+          <Property Name="roomtype" Type="nvarchar" MaxLength="50" />
+          <Property Name="payamount" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="staffname" Type="nvarchar" MaxLength="50" />
+          <Property Name="cusname" Type="nvarchar" MaxLength="50" />
+          <Property Name="cusphone" Type="nvarchar" MaxLength="50" />
+          <Property Name="checkin" Type="smalldatetime" />
+          <Property Name="checkout" Type="smalldatetime" />
+          <Property Name="totalhours" Type="int" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -154,6 +169,7 @@
         <EntityContainer Name="QLKHACHSANModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" Schema="dbo" store:Type="Tables" />
@@ -376,7 +392,23 @@
             <End Role="Service" EntitySet="Service" />
             <End Role="ServiceOrder" EntitySet="ServiceOrder" />
           </AssociationSet>
+          <EntitySet Name="History" EntityType="QLKHACHSANModel.History" />
         </EntityContainer>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roomtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="staffname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cusname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cusphone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
+          <Property Name="checkin" Type="DateTime" Precision="0" />
+          <Property Name="checkout" Type="DateTime" Precision="0" />
+          <Property Name="totalhours" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -460,6 +492,22 @@
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="isRemove" ColumnName="isRemove" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="QLKHACHSANModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
+                <ScalarProperty Name="checkout" ColumnName="checkout" />
+                <ScalarProperty Name="checkin" ColumnName="checkin" />
+                <ScalarProperty Name="cusphone" ColumnName="cusphone" />
+                <ScalarProperty Name="cusname" ColumnName="cusname" />
+                <ScalarProperty Name="staffname" ColumnName="staffname" />
+                <ScalarProperty Name="payamount" ColumnName="payamount" />
+                <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+                <ScalarProperty Name="roomname" ColumnName="roomname" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

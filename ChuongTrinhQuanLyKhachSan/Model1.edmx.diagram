@@ -17,6 +17,7 @@
         <AssociationConnector Association="QLKHACHSANModel.FK__Booking__staffid__36B12243" ManuallyRouted="false" />
         <AssociationConnector Association="QLKHACHSANModel.FK__ServiceOr__roomi__33D4B598" ManuallyRouted="false" />
         <AssociationConnector Association="QLKHACHSANModel.FK__ServiceOr__serid__32E0915F" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QLKHACHSANModel.History" Width="1.5" PointX="6.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

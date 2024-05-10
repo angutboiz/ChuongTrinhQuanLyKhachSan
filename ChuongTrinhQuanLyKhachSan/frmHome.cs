@@ -36,6 +36,8 @@ namespace ChuongTrinhQuanLyKhachSan
             LoadDataRoom();
             LoadRoom();
             LoadDataService();
+            LoadDataHistory();
+            LoadDataDateMonthYearToComboBox();
         }
 
         private void tcName_SelectedIndexChanged(object sender, EventArgs e)
@@ -69,7 +71,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 LoadDataService();
             }
 
-            if (role != "admin" && (tcName.SelectedTab == tpNV || tcName.SelectedTab == tpQLPhong))
+            if (role != "admin" && (tcName.SelectedTab == tpNV || tcName.SelectedTab == tpQLPhong || tcName.SelectedTab == tpQLService))
             {
                 tcName.SelectedTab = tpPhong;
                 MessageBox.Show("Bạn không có quyền vào trang này", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -143,23 +145,14 @@ namespace ChuongTrinhQuanLyKhachSan
             dgvService.DataSource = result.ToList();
         }
 
-        void LoadDataBooking()
+        void LoadDataHistory()
         {
-            var query = from booking in db.Booking
-                        join customer in db.Customer on booking.cusid equals customer.cusid
-                        join ServiceOrder in db.ServiceOrder on booking.serdetailid equals ServiceOrder.serdetailid into serviceGroup
-                        from serviceItem in serviceGroup.DefaultIfEmpty() 
-                        join staff in db.Staff on booking.staffid equals staff.staffid
-                        select new
-                        {
-                            Booking = booking,
-                            Customer = customer,
-                            Service = serviceItem,
-                            Staff = staff
-                        };
+            var result = from r in db.History
+                         select r;
 
-            dgvBooking.DataSource = query.ToList();
+            dgvHistory.DataSource = result.ToList();
         }
+
 
         private void timer1_Tick(object sender, EventArgs e)
         {
@@ -421,10 +414,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnRefesh_Click(object sender, EventArgs e)
         {
-            this.Close();
-            
-            LoadDataRoom();
-            LoadRoom();
+            Application.Restart();
         }
 
         // CRUD nhân viên
@@ -890,6 +880,237 @@ namespace ChuongTrinhQuanLyKhachSan
                     MessageBox.Show("Không tìm thấy dịch vụ cần xóa.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void guna2GroupBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            if (dgvHistory.Rows.Count > 0)
+            {
+                Microsoft.Office.Interop.Excel.ApplicationClass MExcel = new Microsoft.Office.Interop.Excel.ApplicationClass();
+                MExcel.Application.Workbooks.Add(Type.Missing);
+                for (int i = 1; i < dgvHistory.Columns.Count + 1; i++)
+                {
+                    MExcel.Cells[1, i] = dgvHistory.Columns[i - 1].HeaderText;
+                }
+                for (int i = 0; i < dgvHistory.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dgvHistory.Columns.Count; j++)
+                    {
+                        MExcel.Cells[i + 2, j + 1] = dgvHistory.Rows[i].Cells[j].Value.ToString();
+                    }
+                }
+                MExcel.Columns.AutoFit();
+                MExcel.Rows.AutoFit();
+                MExcel.Columns.Font.Size = 12;
+                MExcel.Visible = true;
+            }
+            else
+            {
+                MessageBox.Show("Chưa có dữ liệu trên bảng, vui lòng thử lại sau", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void cbDDay_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == (char)8))
+                e.Handled = true;
+        }
+
+        private void cbDMonth_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == (char)8))
+                e.Handled = true;
+        }
+
+        private void cbDYear_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!(e.KeyChar >= '0' && e.KeyChar <= '9' || e.KeyChar == (char)8))
+                e.Handled = true;
+        }
+
+        private void rbDDay_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbDDay.Checked)
+            {
+                cbDDay.Text = DateTime.Now.Day.ToString();
+            } else
+            {
+                cbDDay.Text = "";
+            }
+        }
+
+        private void rbDMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbDMonth.Checked)
+            {
+                cbDMonth.Text = DateTime.Now.Month.ToString();
+            }
+            else
+            {
+                cbDMonth.Text = "";
+            }
+        }
+
+        private void rbDYear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbDYear.Checked)
+            {
+                cbDYear.Text = DateTime.Now.Year.ToString();
+            }
+            else
+            {
+                cbDYear.Text = "";
+            }
+        }
+
+        void LoadDataDateMonthYearToComboBox()
+        {
+            cbDDay.Items.Clear();
+            cbDMonth.Items.Clear();
+            cbDYear.Items.Clear();
+
+            // Load data for days
+            for (int i = 1; i <= 31; i++)
+            {
+                cbDDay.Items.Add(i);
+            }
+
+            // Load data for months
+            for (int i = 1; i <= 12; i++)
+            {
+                cbDMonth.Items.Add(i);
+            }
+
+            // Load data for years (you can adjust the range as needed)
+            int currentYear = DateTime.Now.Year;
+            for (int i = currentYear - 100; i <= currentYear; i++)
+            {
+                cbDYear.Items.Add(i);
+            }
+
+            // Optionally, you can set default values
+            // For example, if you want to set today's date as default:
+            cbDDay.SelectedItem = DateTime.Now.Day;
+            cbDMonth.SelectedItem = DateTime.Now.Month;
+            cbDYear.SelectedItem = DateTime.Now.Year;
+
+            var mostFrequentRoom = db.History
+                                .GroupBy(h => h.roomname)
+                                .OrderByDescending(g => g.Count())
+                                .Select(g => new
+                                {
+                                    RoomName = g.Key,
+                                    Count = g.Count()
+                                })
+                                .FirstOrDefault();
+            if (mostFrequentRoom != null)
+            {
+                lbPhongNhieuNhat.Text = "Phòng được đặt nhiều nhất: " + mostFrequentRoom.RoomName.ToString() ?? "Chưa có dữ liệu";
+                lbSoLanDatPhong.Text = "Số lần đặt phòng: " + mostFrequentRoom.Count.ToString() ?? "Chưa có dữ liệu";
+            }
+
+            var mostFrequentKH = db.History
+                                .GroupBy(h => h.cusname)
+                                .OrderByDescending(g => g.Count())
+                                .Select(g => new
+                                {
+                                    Cusname = g.Key,
+                                    Count = g.Count()
+                                })
+                                .FirstOrDefault();
+
+            if (mostFrequentRoom != null)
+            {
+                lbTenKH.Text = "Tên khách hàng ủng hộ nhiều nhất: " + mostFrequentKH.Cusname.ToString() ?? "Chưa có dữ liệu";
+                lbSoLanKH.Text = "Số lần khách đặt phòng: " + mostFrequentKH.Count.ToString() ?? "Chưa có dữ liệu";
+            }
+        }
+
+        void QueryDashboard()
+        {
+            if (rbDDay.Checked)
+            {
+                int day = int.Parse(cbDDay.Text);
+
+
+                DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, day);
+                var result = from h in db.History
+                             where DbFunctions.TruncateTime(h.checkin) == startDate
+                             select h;
+
+                dgvHistory.DataSource = result.ToList();
+
+                var totalRevenue = db.History.Where(h => DbFunctions.TruncateTime(h.checkin) == startDate).Sum(h => h.payamount);
+                cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
+
+            }
+
+            if (rbDMonth.Checked)
+            {
+                int month = int.Parse(cbDMonth.Text);
+                int year = DateTime.Now.Year;
+
+                DateTime startDate = new DateTime(year, month, 1); // Ngày đầu tiên của tháng
+                DateTime endDate = startDate.AddMonths(1).AddDays(-1); // Ngày cuối cùng của tháng
+
+                var result = from h in db.History
+                             where h.checkin >= startDate && h.checkin <= endDate
+                             select h;
+
+                dgvHistory.DataSource = result.ToList();
+
+                var totalRevenue = result.Sum(h => h.payamount);
+                cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
+            }
+
+            if (rbDYear.Checked)
+            {
+                int year = int.Parse(cbDYear.Text);
+
+                DateTime startDate = new DateTime(year, 1, 1); // Ngày đầu tiên của năm
+                DateTime endDate = startDate.AddYears(1).AddDays(-1); // Ngày cuối cùng của năm
+
+                var result = from h in db.History
+                             where h.checkin >= startDate && h.checkin <= endDate
+                             select h;
+
+                dgvHistory.DataSource = result.ToList();
+
+                var totalRevenue = result.Sum(h => h.payamount);
+                cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
+
+            }
+
+            if (rbDDashboard.Checked)
+            {
+                var totalRevenue = db.History.Sum(h => h.payamount);
+                cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
+            }
+        }
+
+        private void cbDDay_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            QueryDashboard();
+        }
+
+        private void cbDMonth_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            QueryDashboard();
+        }
+
+        private void cbDYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            QueryDashboard();
+        }
+
+        private void rbDDashboard_CheckedChanged(object sender, EventArgs e)
+        {
+            QueryDashboard();
         }
     }
 }

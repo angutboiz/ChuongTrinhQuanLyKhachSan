@@ -31,5 +31,6 @@ namespace ChuongTrinhQuanLyKhachSan
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServiceOrder> ServiceOrder { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
+        public virtual DbSet<History> History { get; set; }
     }
 }

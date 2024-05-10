@@ -68,6 +68,7 @@ CREATE TABLE Booking (
     booktype NVARCHAR(50), -- loại book: theo ngay theo tháng hay qua đêm
     checkin SMALLDATETIME, -- lưu lại ngày giờ lúc khách đặt phòng
     checkout SMALLDATETIME, -- lưu lại ngày giờ lúc khách trả phòng
+    totalhours INT, -- lưu lại tổng giờ thuê 
     bookstatus NVARCHAR(50), -- 2 giá trị: đang thuê phòng hoặc trả phòng
 	payamount DECIMAL(10, 0), -- tổng tiền thanh toán
     FOREIGN KEY (staffid) REFERENCES Staff(staffid),
@@ -75,6 +76,19 @@ CREATE TABLE Booking (
     FOREIGN KEY (roomid) REFERENCES Room(roomid),
 	FOREIGN KEY (serdetailid) REFERENCES ServiceOrder (serdetailid)
 );
+
+CREATE TABLE History (
+	ID INT IDENTITY(1,1) PRIMARY KEY,
+	roomname nvarchar(50),
+	roomtype nvarchar(50),
+	payamount DECIMAL(10, 0),
+	staffname nvarchar(50),
+	cusname nvarchar(50),
+	cusphone nvarchar(50),
+	checkin SMALLDATETIME,
+	checkout SMALLDATETIME,
+	totalhours int
+)
 
 
 INSERT INTO Staff (staffname, staffsex, staffphone, staffdate, staffaddress, Username, Password, Role)
@@ -84,13 +98,13 @@ INSERT INTO Customer (cusname, cusemail, cusphone, cusaddress)
 VALUES (N'Văn Thanh', 'alice@example.com', '5551234567', N'Biên Hòa'),
        (N'Long Phạm', 'bob@example.com', '5559876543', 'Bình Dương')
 
-INSERT INTO Room (roomnumber, roomtype, roomrate, roomstatus,fulldaynight,fullnight)
+INSERT INTO Room (roomnumber, roomtype, roomrate, roomstatus)
 VALUES ('101', 'Superior', 200000, N'Phòng trống'),
        ('102', 'Deluxe Twin Bed', 250000, N'Phòng trống'),
        ('872', 'VIP', 300000, N'Bảo trì'),
        ('382', 'Deluxe King Bed', 300000, N'Phòng trống')
 
-INSERT INTO Service(sername, serprice, sertype)
+INSERT INTO Service (sername, serprice, sertype)
 VALUES	(N'Gà hấp lá chanh', 250000, N'Đồ ăn mặn'),
 		(N'Ghẹ hấp', 150000, N'Đồ ăn mặn'),
 		(N'Hàu nướng', 10000, N'Đồ ăn mặn'),
@@ -103,6 +117,12 @@ VALUES	(N'Gà hấp lá chanh', 250000, N'Đồ ăn mặn'),
 		(N'Cafe', 50000, N'Nước')
 
 		
-	   
 
+SELECT * FROM Booking as b
+inner join Room as r on r.roomid = b.roomid
+inner join Staff as s on s.staffid = b.staffid
+inner join Customer as c on c.cusid= b.cusid
 
+	 
+	 select * from History
+	 where DAY(checkin) = 7
