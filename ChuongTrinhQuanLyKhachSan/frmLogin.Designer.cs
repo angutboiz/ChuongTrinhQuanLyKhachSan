@@ -44,16 +44,17 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(51, 86);
+            this.label1.Location = new System.Drawing.Point(38, 70);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(120, 22);
+            this.label1.Size = new System.Drawing.Size(97, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tên tài khoản";
             // 
             // txbUser
             // 
             this.txbUser.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbUser.DefaultText = "admin";
+            this.txbUser.DefaultText = "";
             this.txbUser.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txbUser.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txbUser.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -61,18 +62,19 @@
             this.txbUser.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbUser.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbUser.Location = new System.Drawing.Point(55, 111);
+            this.txbUser.Location = new System.Drawing.Point(41, 90);
+            this.txbUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbUser.Name = "txbUser";
             this.txbUser.PasswordChar = '\0';
             this.txbUser.PlaceholderText = "";
             this.txbUser.SelectedText = "";
-            this.txbUser.Size = new System.Drawing.Size(200, 36);
+            this.txbUser.Size = new System.Drawing.Size(150, 29);
             this.txbUser.TabIndex = 1;
             // 
             // txbPass
             // 
             this.txbPass.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txbPass.DefaultText = "admin";
+            this.txbPass.DefaultText = "";
             this.txbPass.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
             this.txbPass.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
             this.txbPass.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
@@ -80,12 +82,13 @@
             this.txbPass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPass.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbPass.Location = new System.Drawing.Point(55, 208);
+            this.txbPass.Location = new System.Drawing.Point(41, 169);
+            this.txbPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.txbPass.Name = "txbPass";
             this.txbPass.PasswordChar = '*';
             this.txbPass.PlaceholderText = "";
             this.txbPass.SelectedText = "";
-            this.txbPass.Size = new System.Drawing.Size(200, 36);
+            this.txbPass.Size = new System.Drawing.Size(150, 29);
             this.txbPass.TabIndex = 3;
             // 
             // label2
@@ -94,9 +97,10 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(51, 183);
+            this.label2.Location = new System.Drawing.Point(38, 149);
+            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(83, 22);
+            this.label2.Size = new System.Drawing.Size(69, 18);
             this.label2.TabIndex = 2;
             this.label2.Text = "Mật khẩu";
             // 
@@ -110,9 +114,10 @@
             this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(55, 269);
+            this.btnLogin.Location = new System.Drawing.Point(41, 219);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(200, 45);
+            this.btnLogin.Size = new System.Drawing.Size(150, 37);
             this.btnLogin.TabIndex = 4;
             this.btnLogin.Text = "Đăng nhập";
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
@@ -130,8 +135,9 @@
             this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.White;
             this.guna2GroupBox1.Location = new System.Drawing.Point(0, 0);
+            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(321, 389);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(241, 316);
             this.guna2GroupBox1.TabIndex = 5;
             this.guna2GroupBox1.Text = "Đăng nhập";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -140,15 +146,17 @@
             // 
             this.btnExit.BackColor = System.Drawing.Color.Transparent;
             this.btnExit.BorderRadius = 10;
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
             this.btnExit.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnExit.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnExit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(207, 338);
+            this.btnExit.Location = new System.Drawing.Point(155, 275);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(102, 39);
+            this.btnExit.Size = new System.Drawing.Size(76, 32);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Thoát";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
@@ -156,13 +164,14 @@
             // frmLogin
             // 
             this.AcceptButton = this.btnLogin;
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(321, 389);
+            this.ClientSize = new System.Drawing.Size(241, 316);
             this.ControlBox = false;
             this.Controls.Add(this.guna2GroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";

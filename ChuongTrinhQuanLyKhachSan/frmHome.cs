@@ -722,7 +722,6 @@ namespace ChuongTrinhQuanLyKhachSan
             txbRName.Text = dgvRoom.SelectedRows[0].Cells[1].Value.ToString();
             cbRType.Text = dgvRoom.SelectedRows[0].Cells[2].Value.ToString();
             txbRPrice.Text = dgvRoom.SelectedRows[0].Cells[3].Value.ToString();
-            cbRStatus.Text = dgvRoom.SelectedRows[0].Cells[4].Value.ToString();
             cbRStatus.Text = dgvRoom.SelectedRows[0].Cells[6].Value.ToString();
         }
 

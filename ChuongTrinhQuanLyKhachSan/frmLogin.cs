@@ -40,7 +40,7 @@ namespace ChuongTrinhQuanLyKhachSan
             {
                 try
                 {
-                    var user = db.Staff.FirstOrDefault(u => u.Username == username);
+                    var user = db.Staff.FirstOrDefault(u => u.Username == username && u.Password == password);
 
                     if (user != null)
                     {
