@@ -22,6 +22,7 @@ namespace ChuongTrinhQuanLyKhachSan
         string booktype = "";
 
         int tongtien = 0;
+        int soluong = 1;
         QLKHACHSANEntities db = new QLKHACHSANEntities();
 
         Color green = ColorTranslator.FromHtml("#15803d");
@@ -75,9 +76,8 @@ namespace ChuongTrinhQuanLyKhachSan
 
                     var totalall = db.ServiceOrder.Where(o => o.roomid == room.roomid).Sum(o => o.sertotal);
 
-                    lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", tongtien + totalall);
+                    lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", tongtien + totalall ?? 0);
 
-                    if (booking.booktype == "Thuê theo giờ") rbTheoGio.Checked = true;
                   
                 }
 
@@ -87,15 +87,16 @@ namespace ChuongTrinhQuanLyKhachSan
                 ClearData();
                 btnDatPhong.Enabled = true;
                 btnThanhToan.Enabled = false;
-                btnClearData.Enabled = false;
             }
         }
 
         void DefaultField()
         {
+            soluong = 1;
             grpRoom.Text = "Phòng " + room.roomnumber;
             grpRoom.BorderColor = roomColor;
             grbService.Visible = false;
+            btnClearData.Enabled = false;
             grbNV.CustomBorderColor = zinc;
             grbKH.CustomBorderColor = zinc;
             grbService.CustomBorderColor = zinc;
@@ -106,10 +107,8 @@ namespace ChuongTrinhQuanLyKhachSan
             btnDatPhong.FillColor = gray;
             btnClose.FillColor = gray;
 
-            rbTheoGio.Checked = true;
             LoadDataService();
             btnServiceAdd.Enabled = false;
-            rbMan.Checked = true;
 
             txbGiaTheoGio.Text = room.roomrate.ToString();
             txbLoaiPhong.Text = room.roomtype;
@@ -161,6 +160,29 @@ namespace ChuongTrinhQuanLyKhachSan
                 grbDetail.CustomBorderColor = orange;
 
             }
+
+            if (room.roomtype == "Superior")
+            {
+                txbGiaTheoGio.Text = "200 000";
+                lbGia.Text = "Thuê theo 2 giờ";
+
+            }
+            else if (room.roomtype == "Deluxe Twin Bed")
+            {
+                txbGiaTheoGio.Text = "250 000";
+                lbGia.Text = "Thuê theo 2 giờ";
+            }
+            else if (room.roomtype == "Deluxe King Bed")
+            {
+                txbGiaTheoGio.Text = "300 000";
+                lbGia.Text = "Thuê theo 2 giờ";
+            }
+            else if (room.roomtype == "VIP")
+            {
+                txbGiaTheoGio.Text = "300 000";
+                lbGia.Text = "Thuê theo 2 giờ";
+            }
+            booktype = "Thuê theo giờ";
         }
 
         private DateTime startTime;
@@ -226,20 +248,21 @@ namespace ChuongTrinhQuanLyKhachSan
 
 
         }
-        int soluong = 1;
+
+        
         private void btnFrmService_Click(object sender, EventArgs e)
         {
-            int soluong = int.Parse(txbServiceSoluong.Text);
+            int quantity = int.Parse(txbServiceSoluong.Text);
             string name = cbService.Text;
             var ser = db.Service.SingleOrDefault(s => s.sername == name);
-            decimal total = soluong * ser.serprice;
+            decimal total = quantity * ser.serprice;
 
 
             db.ServiceOrder.Add(new ServiceOrder()
             {
                 serid = ser.serid,
                 roomid = room.roomid,
-                serquantity = soluong,
+                serquantity = quantity,
                 sertotal = total
             });
             db.SaveChanges();
@@ -247,9 +270,9 @@ namespace ChuongTrinhQuanLyKhachSan
 
             txbServiceSoluong.Text = "1";
             soluong = 1;
-
+            TinhThoiGian();
             var totalall = db.ServiceOrder.Where(o => o.roomid == room.roomid).Sum(o => o.sertotal);
-            var totall = tongtien + totalall;
+            decimal totall = tongtien + totalall ?? 0;
             lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", totall);
         }
 
@@ -274,6 +297,7 @@ namespace ChuongTrinhQuanLyKhachSan
             txbServiceSoluong.Text = soluong.ToString();
         }
 
+
         void TinhThoiGian()
         {
             DateTime endTime = DateTime.Now;
@@ -293,10 +317,22 @@ namespace ChuongTrinhQuanLyKhachSan
             int tongthoigian = int.Parse(txbTongTime.Text) - 2;
             int phi = int.Parse(txbPhi.Text.Replace(" ", ""));
 
-            tongtien = giatheogio + (tongthoigian* phi);
+            if (tongthoigian < 0)
+            {
+                tongtien = giatheogio;
+
+            } else
+            {
+                tongtien = giatheogio + (tongthoigian * phi);
+            }
+
 
             lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
-            
+
+            var totalall = db.ServiceOrder.Where(o => o.roomid == room.roomid).Sum(o => o.sertotal);
+            decimal totall = tongtien + totalall ?? 0;
+            lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", totall);
+
         }
 
         private void btnThanhToan_Click(object sender, EventArgs e)
@@ -309,50 +345,70 @@ namespace ChuongTrinhQuanLyKhachSan
             lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
 
             bk.checkout = DateTime.Parse(txbEnd.Text);
+
             var totalall = db.ServiceOrder.Where(o => o.roomid == room.roomid).Sum(o => o.sertotal);
-            var total = tongtien + totalall;
-            lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", total);
-            bk.payamount = total;
-            bk.totalhours = int.Parse(txbTongTime.Text);
-
-            Room r = db.Room.Find(room.roomid);
-            r.roomstatus = "Bảo trì";
-
-            int staffid = int.Parse(txbNVID.Text);
-            var staff = db.Staff.SingleOrDefault(s => s.staffid == staffid);
-
-            int cusid = int.Parse(txbKHID.Text);
-            var cus = db.Customer.SingleOrDefault(c => c.cusid == cusid);
-
-            db.History.Add(new History()
+            decimal totall = 0;
+            if (totalall != null)
             {
-                roomname = room.roomnumber,
-                roomtype = room.roomtype,
-                payamount = total,
-                staffname = staff.staffname,
-                cusname = cus.cusname,
-                cusphone = cus.cusphone,
-                checkin = bk.checkin,
-                checkout = bk.checkout,
-                totalhours = bk.totalhours
-            });
-
-            MessageBox.Show("Thanh toán thành công phòng: " + room.roomnumber + "\nSố tiền: " + string.Format("{0:#,##0}đ", total), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-            var serviceOrders = db.ServiceOrder.Where(so => so.roomid == 1).ToList();
-
-            if (serviceOrders.Any())
+                totall = tongtien + totalall ?? 0;
+            }
+            else
             {
-                db.ServiceOrder.RemoveRange(serviceOrders);
+                totall = tongtien;
+               
+            }
+            lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", totall);
+
+            if (totall > 0)
+            {
+                bk.payamount = totall;
+                bk.totalhours = int.Parse(txbTongTime.Text);
+
+                Room r = db.Room.Find(room.roomid);
+                r.roomstatus = "Bảo trì";
+
+                int staffid = int.Parse(txbNVID.Text);
+                var staff = db.Staff.SingleOrDefault(s => s.staffid == staffid);
+
+                int cusid = int.Parse(txbKHID.Text);
+                var cus = db.Customer.SingleOrDefault(c => c.cusid == cusid);
+
+                db.History.Add(new History()
+                {
+                    roomname = room.roomnumber,
+                    roomtype = room.roomtype,
+                    payamount = totall,
+                    staffname = staff.staffname,
+                    cusname = cus.cusname,
+                    cusphone = cus.cusphone,
+                    checkin = bk.checkin,
+                    checkout = bk.checkout,
+                    totalhours = bk.totalhours
+                });
+
+                MessageBox.Show("Thanh toán thành công phòng: " + room.roomnumber + "\nSố tiền: " + string.Format("{0:#,##0}đ", totall), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                var serviceOrders = db.ServiceOrder.Where(so => so.roomid == 1).ToList();
+
+                if (serviceOrders.Any())
+                {
+                    db.ServiceOrder.RemoveRange(serviceOrders);
+                }
+
+                var handle = db.Booking.SingleOrDefault(s => s.roomid == room.roomid);
+                db.Booking.Remove(handle);
+
+
+
+                db.SaveChanges();
+                Application.Restart();
+            }
+            else
+            {
+                MessageBox.Show("Chưa tính được tổng tiền, vui lòng thử lại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
-            var handle = db.Booking.SingleOrDefault(s => s.roomid == room.roomid);
-            db.Booking.Remove(handle);
 
-
-
-            db.SaveChanges();
-            Application.Restart();
         }
 
         void LoadDataService()
@@ -372,7 +428,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
             dgvService.DataSource = service.ToList();
             var totalall = db.ServiceOrder.Where(o=> o.roomid == room.roomid).Sum(o => o.sertotal );
-            lbTongService.Text = string.Format("{0:#,##0}đ", totalall) ;
+            lbTongService.Text = string.Format("{0:#,##0}đ", totalall ?? 0) ;
         }
 
         private void cbNV_SelectedIndexChanged(object sender, EventArgs e)
@@ -415,6 +471,7 @@ namespace ChuongTrinhQuanLyKhachSan
             db.SaveChanges();
             ClearData();
             ClearData();
+            Application.Restart();
         }
 
         void ClearData()
@@ -486,69 +543,10 @@ namespace ChuongTrinhQuanLyKhachSan
 
         DateTime startDate = DateTime.Now;
         DateTime endDate = DateTime.Now;
-        private void rbTheoGio_CheckedChanged(object sender, EventArgs e)
-        {
-            if (rbTheoGio.Checked)
-            {
-                if (room.roomtype == "Superior")
-                {
-                    txbGiaTheoGio.Text = "200 000";
-                    lbGia.Text = "Thuê theo 2 giờ";
-
-                }
-                else if (room.roomtype == "Deluxe Twin Bed")
-                {
-                    txbGiaTheoGio.Text = "250 000";
-                    lbGia.Text = "Thuê theo 2 giờ";
-                }
-                else if (room.roomtype == "Deluxe King Bed")
-                {
-                    txbGiaTheoGio.Text = "300 000";
-                    lbGia.Text = "Thuê theo 2 giờ";
-                }
-                else if (room.roomtype == "VIP")
-                {
-                    txbGiaTheoGio.Text = "300 000";
-                    lbGia.Text = "Thuê theo 2 giờ";
-                }
-                booktype = "Thuê theo giờ";
-            }
-        }
-
-        void TinhTheoThang()
-        {
-            startDate = DateTime.Now;
-            txbStart.Text = startDate.ToString();
-            endDate = startDate.AddDays(30);
-
-            txbEnd.Text = endDate.ToString();
-
-            TimeSpan elapsedTime = endDate - startDate;
-            double totalHours = elapsedTime.TotalHours;
-
-            txbTongTime.Text = Math.Round(totalHours, 0).ToString();
-
-            int giatheogio = int.Parse(txbGiaTheoGio.Text.Replace(" ", ""));
-
-            //720 tiếng = 30 ngày
-            int tongthoigian = int.Parse(txbTongTime.Text);
-            int phi = int.Parse(txbPhi.Text.Replace(" ", ""));
-            int tongtien = 0;
-            if (tongthoigian <= 720)
-            {
-                tongtien = giatheogio;
-            } else
-            {
-                tongtien = tongthoigian  * giatheogio;
-            }
-
-            // 721 = 
-            lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
-        }
 
         private void dgvService_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa dịch vụ này không" , "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa dịch vụ này không", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
                 int id = Convert.ToInt32(lbSerID.Text);
@@ -563,6 +561,8 @@ namespace ChuongTrinhQuanLyKhachSan
         private void dgvService_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             lbSerID.Text = dgvService.SelectedRows[0].Cells[0].Value.ToString();
+
+
         }
     }
 }

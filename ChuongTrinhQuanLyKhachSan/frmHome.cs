@@ -42,7 +42,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void tcName_SelectedIndexChanged(object sender, EventArgs e)
         {
-                
+
             if (tcName.SelectedTab == tabPage1) tcName.SelectedTab = tpPhong;
             if (tcName.SelectedTab == tabPage2) tcName.SelectedTab = tpPhong;
 
@@ -172,9 +172,9 @@ namespace ChuongTrinhQuanLyKhachSan
 
         bool CheckValidationRoom()
         {
-            if (txbRName.Text == "" )
+            if (txbRName.Text == "")
             {
-                MessageBox.Show("Vui lòng nhập tên phòng","Lưu ý",MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Vui lòng nhập tên phòng", "Lưu ý", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 txbRName.Focus();
                 return false;
             }
@@ -212,7 +212,7 @@ namespace ChuongTrinhQuanLyKhachSan
             {
                 MessageBox.Show("Số phòng đã tồn tại. Vui lòng chọn số phòng khác.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 txbRName.Focus();
-                return; 
+                return;
             }
 
             if (CheckValidationRoom())
@@ -224,7 +224,7 @@ namespace ChuongTrinhQuanLyKhachSan
                     roomrate = rate,
                     roomtype = cbRType.Text,
                     fulldaynight = fullngaydem,
-                    fullnight = fulldem ,
+                    fullnight = fulldem,
                     roomstatus = cbRStatus.Text,
 
                 });
@@ -269,9 +269,9 @@ namespace ChuongTrinhQuanLyKhachSan
             }
             catch (Exception es)
             {
-                MessageBox.Show("Tên phòng này đã có, vui lòng đặt tên khác" +es);
+                MessageBox.Show("Tên phòng này đã có, vui lòng đặt tên khác" + es);
             }
-           
+
         }
 
         private void LoadRoom()
@@ -376,7 +376,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 label4.ForeColor = Color.Black;
                 label4.Location = new Point(0, 130);
                 label4.AutoSize = true;
-                label4.Text = "Kiểu thuê: "+ (booking?.booktype ?? "Chưa thuê");
+                label4.Text = "Kiểu thuê: " + (booking?.booktype ?? "Chưa thuê");
                 clonedGroupBox.Controls.Add(label4);
 
 
@@ -445,7 +445,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 txbNVPass.Focus();
                 return false;
             }
-           
+
 
             return true;
         }
@@ -496,7 +496,8 @@ namespace ChuongTrinhQuanLyKhachSan
                         MessageBox.Show("Số điện thoại này đã được đăng kí", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txbRName.Focus();
                         return;
-                    } else if (usenameExists)
+                    }
+                    else if (usenameExists)
                     {
                         MessageBox.Show("Tên đăng nhập này đã tồn tại, vui lòng nhập tên khác", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         txbUser.Focus();
@@ -571,7 +572,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void dgvNV_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa nhân viên "+txbNVName.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            DialogResult res = MessageBox.Show("Bạn có chắc muốn xóa nhân viên " + txbNVName.Text, "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
             if (res == DialogResult.Yes)
             {
                 int id = Convert.ToInt32(txbNVID.Text);
@@ -671,7 +672,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnKHClear_Click(object sender, EventArgs e)
         {
-            ClearFieldKH();    
+            ClearFieldKH();
         }
 
         private void txbKHSearch_TextChanged(object sender, EventArgs e)
@@ -681,13 +682,13 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void dgvKH_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           
-            
+
+
         }
 
         private void dgvKH_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-           
+
         }
 
         private void dgvKH_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -742,8 +743,8 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void cbRStatus_SelectedIndexChanged(object sender, EventArgs e)
         {
-          
-           
+
+
         }
 
         private void cbRType_SelectedIndexChanged(object sender, EventArgs e)
@@ -773,7 +774,7 @@ namespace ChuongTrinhQuanLyKhachSan
             }
             if (cbRType.SelectedIndex == 3)
             {
-                txbRPrice.Text = "300 000"; 
+                txbRPrice.Text = "300 000";
                 txbQuaDem.Text = "700 000";
                 txbTheoNgay.Text = "900 000";
             }
@@ -823,7 +824,7 @@ namespace ChuongTrinhQuanLyKhachSan
             {
                 db.Service.Add(new Service()
                 {
-                    sername = Funct.VietHoaMotKyTu(txbSerName.Text), 
+                    sername = Funct.VietHoaMotKyTu(txbSerName.Text),
                     serprice = int.Parse(txbSerPrice.Text),
                     sertype = cbSerType.Text,
                 });
@@ -889,31 +890,54 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnExport_Click(object sender, EventArgs e)
         {
-            if (dgvHistory.Rows.Count > 0)
+            try
             {
-                Microsoft.Office.Interop.Excel.ApplicationClass MExcel = new Microsoft.Office.Interop.Excel.ApplicationClass();
-                MExcel.Application.Workbooks.Add(Type.Missing);
-                for (int i = 1; i < dgvHistory.Columns.Count + 1; i++)
+                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+                saveFileDialog1.Filter = "Excel Workbook|*.xlsx";
+                saveFileDialog1.Title = "Save an Excel File";
+                saveFileDialog1.FileName = "Báo cáo doanh thu tháng "+DateTime.Now.Month+ " năm "+DateTime.Now.Year+".xlsx"; 
+                saveFileDialog1.ShowDialog();
+
+                if (saveFileDialog1.FileName != "")
                 {
-                    MExcel.Cells[1, i] = dgvHistory.Columns[i - 1].HeaderText;
-                }
-                for (int i = 0; i < dgvHistory.Rows.Count; i++)
-                {
-                    for (int j = 0; j < dgvHistory.Columns.Count; j++)
+                    Microsoft.Office.Interop.Excel._Application app = new Microsoft.Office.Interop.Excel.Application();
+                    // creating new WorkBook within Excel application  
+                    Microsoft.Office.Interop.Excel._Workbook workbook = app.Workbooks.Add(Type.Missing);
+                    // creating new Excelsheet in workbook  
+                    Microsoft.Office.Interop.Excel.Worksheet worksheet = null; // Change _Worksheet to Worksheet
+                                                                               // see the excel sheet behind the program  
+                    app.Visible = true;
+                    // get the reference of first sheet. By default its name is Sheet1.  
+                    // store its reference to worksheet  
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.Sheets["Sheet1"];
+                    worksheet = (Microsoft.Office.Interop.Excel.Worksheet)workbook.ActiveSheet;
+                    // changing the name of active sheet  
+                    worksheet.Name = "Exported from gridview";
+                    // storing header part in Excel  
+                    for (int i = 1; i < dgvHistory.Columns.Count; i++)
                     {
-                        MExcel.Cells[i + 2, j + 1] = dgvHistory.Rows[i].Cells[j].Value.ToString();
+                        worksheet.Cells[1, i] = dgvHistory.Columns[i - 1].HeaderText;
                     }
+                    // storing Each row and column value to excel sheet  
+                    for (int i = 0; i < dgvHistory.Rows.Count; i++)
+                    {
+                        for (int j = 0; j < dgvHistory.Columns.Count; j++)
+                        {
+                            worksheet.Cells[i + 2, j + 1] = dgvHistory.Rows[i].Cells[j].Value.ToString();
+                        }
+                    }
+                    workbook.SaveAs(saveFileDialog1.FileName, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Microsoft.Office.Interop.Excel.XlSaveAsAccessMode.xlExclusive, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+                    app.Quit();
                 }
-                MExcel.Columns.AutoFit();
-                MExcel.Rows.AutoFit();
-                MExcel.Columns.Font.Size = 12;
-                MExcel.Visible = true;
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Chưa có dữ liệu trên bảng, vui lòng thử lại sau", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Gặp lỗi trong quá trình xuất, Mã lỗi:\n" + ex, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
+
+
 
         private void cbDDay_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -938,7 +962,8 @@ namespace ChuongTrinhQuanLyKhachSan
             if (rbDDay.Checked)
             {
                 cbDDay.Text = DateTime.Now.Day.ToString();
-            } else
+            }
+            else
             {
                 cbDDay.Text = "";
             }
