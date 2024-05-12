@@ -621,7 +621,7 @@ namespace ChuongTrinhQuanLyKhachSan
             if (CheckValidationKhachHang())
             {
                 string sdt = txbKHSDT.Text;
-                bool sdtExists = db.Staff.Any(r => r.staffphone == sdt);
+                bool sdtExists = db.Customer.Any(r => r.cusphone == sdt);
 
                 if (sdtExists)
                 {
@@ -695,8 +695,8 @@ namespace ChuongTrinhQuanLyKhachSan
         {
             txbKHID.Text = dgvKH.SelectedRows[0].Cells[0].Value.ToString();
             txbKHName.Text = dgvKH.SelectedRows[0].Cells[1].Value.ToString();
-            txbKHSDT.Text = dgvKH.SelectedRows[0].Cells[2].Value.ToString();
-            txbKHEmail.Text = dgvKH.SelectedRows[0].Cells[3].Value.ToString();
+            txbKHEmail.Text = dgvKH.SelectedRows[0].Cells[2].Value.ToString();
+            txbKHSDT.Text = dgvKH.SelectedRows[0].Cells[3].Value.ToString();
             dtpKHDate.Text = dgvKH.SelectedRows[0].Cells[4].Value?.ToString();
             txbKHAddress.Text = dgvKH.SelectedRows[0].Cells[5].Value.ToString();
         }

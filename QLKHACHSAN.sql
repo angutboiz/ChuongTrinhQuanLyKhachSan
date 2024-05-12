@@ -22,11 +22,10 @@ CREATE TABLE Customer (
     cusname NVARCHAR(100) NOT NULL,
     cusemail NVARCHAR(100),
     cusphone NVARCHAR(10) UNIQUE NOT NULL,
-	cusdate SMALLDATETIME,       
+	cusdate DATE,       
     cusaddress NVARCHAR(255),
 	isRemove bit default 0 -- mặc định là hiển thị, khi xóa sẽ ko hiển thị
 );
-
 
 -- Tạo bảng Phòng
 CREATE TABLE Room (
