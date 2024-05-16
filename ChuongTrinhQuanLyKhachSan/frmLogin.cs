@@ -25,6 +25,25 @@ namespace ChuongTrinhQuanLyKhachSan
             Application.Exit();
         }
 
+        private void frmLogin_Load(object sender, EventArgs e)
+        {
+            var rq = db.RememberLogin.SingleOrDefault(r => r.id == 1);
+
+            if (rq.isCheck == true)
+            {
+                txbUser.Text = rq.Username;
+                txbPass.Text = rq.Password;
+                txbPass.Focus();
+                cbReLogin.Checked = true;
+            }
+            else
+            {
+                txbUser.Text = "";
+                txbPass.Text = "";
+                cbReLogin.Checked = false;
+            }
+        }
+
         private void btnLogin_Click(object sender, EventArgs e)
         {
             frmHome frmHome = new frmHome();
@@ -44,6 +63,11 @@ namespace ChuongTrinhQuanLyKhachSan
 
                     if (user != null)
                     {
+                        var rq = db.RememberLogin.SingleOrDefault(r => r.id == 1);
+                        rq.Username = username; 
+                        rq.Password = password;
+                        rq.isCheck = cbReLogin.Checked;
+                        db.SaveChanges();
                         frmHome.name = username;
                         frmHome.role = user.Role;
                         frmHome.ShowDialog();
@@ -59,6 +83,15 @@ namespace ChuongTrinhQuanLyKhachSan
                 }
 
             }
+        }
+
+
+
+        private void cbReLogin_CheckedChanged(object sender, EventArgs e)
+        {
+            var rq = db.RememberLogin.SingleOrDefault(r => r.id == 1);
+            rq.isCheck = cbReLogin.Checked;
+            db.SaveChanges();
         }
     }
 }

@@ -27,10 +27,12 @@ namespace ChuongTrinhQuanLyKhachSan
     
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<History> History { get; set; }
+        public virtual DbSet<HistoryService> HistoryService { get; set; }
         public virtual DbSet<Room> Room { get; set; }
         public virtual DbSet<Service> Service { get; set; }
         public virtual DbSet<ServiceOrder> ServiceOrder { get; set; }
         public virtual DbSet<Staff> Staff { get; set; }
-        public virtual DbSet<History> History { get; set; }
+        public virtual DbSet<RememberLogin> RememberLogin { get; set; }
     }
 }

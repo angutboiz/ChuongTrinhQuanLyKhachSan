@@ -19,12 +19,12 @@ namespace ChuongTrinhQuanLyKhachSan
         public Nullable<int> cusid { get; set; }
         public Nullable<int> roomid { get; set; }
         public Nullable<int> serdetailid { get; set; }
+        public string booktype { get; set; }
         public Nullable<System.DateTime> checkin { get; set; }
         public Nullable<System.DateTime> checkout { get; set; }
+        public Nullable<int> totalhours { get; set; }
         public string bookstatus { get; set; }
         public Nullable<decimal> payamount { get; set; }
-        public string booktype { get; set; }
-        public Nullable<int> totalhours { get; set; }
     
         public virtual Customer Customer { get; set; }
         public virtual Room Room { get; set; }

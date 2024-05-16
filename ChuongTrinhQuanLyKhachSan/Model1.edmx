@@ -29,7 +29,7 @@
           <Property Name="cusname" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="cusemail" Type="nvarchar" MaxLength="100" />
           <Property Name="cusphone" Type="nvarchar" MaxLength="10" Nullable="false" />
-          <Property Name="cusdate" Type="smalldatetime" />
+          <Property Name="cusdate" Type="date" />
           <Property Name="cusaddress" Type="nvarchar" MaxLength="255" />
           <Property Name="isRemove" Type="bit" />
         </EntityType>
@@ -47,6 +47,27 @@
           <Property Name="checkin" Type="smalldatetime" />
           <Property Name="checkout" Type="smalldatetime" />
           <Property Name="totalhours" Type="int" />
+          <Property Name="totalamount" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="HistoryService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="historyID" Type="int" />
+          <Property Name="sername" Type="nvarchar" MaxLength="100" />
+          <Property Name="serquantity" Type="int" />
+          <Property Name="sertotal" Type="decimal" Precision="10" Scale="0" />
+          <Property Name="seramount" Type="decimal" Precision="10" Scale="0" />
+        </EntityType>
+        <EntityType Name="RememberLogin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="isCheck" Type="bit" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -142,6 +163,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__HistorySe__histo__3E52440B">
+          <End Role="History" Type="Self.History" Multiplicity="0..1" />
+          <End Role="HistoryService" Type="Self.HistoryService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="History">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HistoryService">
+              <PropertyRef Name="historyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ServiceOr__roomi__33D4B598">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
@@ -170,6 +203,8 @@
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="History" EntityType="Self.History" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryService" EntityType="Self.HistoryService" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RememberLogin" EntityType="Self.RememberLogin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Room" EntityType="Self.Room" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" Schema="dbo" store:Type="Tables" />
@@ -189,6 +224,10 @@
           <AssociationSet Name="FK__Booking__staffid__36B12243" Association="Self.FK__Booking__staffid__36B12243">
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
+          </AssociationSet>
+          <AssociationSet Name="FK__HistorySe__histo__3E52440B" Association="Self.FK__HistorySe__histo__3E52440B">
+            <End Role="History" EntitySet="History" />
+            <End Role="HistoryService" EntitySet="HistoryService" />
           </AssociationSet>
           <AssociationSet Name="FK__ServiceOr__roomi__33D4B598" Association="Self.FK__ServiceOr__roomi__33D4B598">
             <End Role="Room" EntitySet="Room" />
@@ -212,16 +251,16 @@
           <Property Name="cusid" Type="Int32" />
           <Property Name="roomid" Type="Int32" />
           <Property Name="serdetailid" Type="Int32" />
+          <Property Name="booktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="checkin" Type="DateTime" Precision="0" />
           <Property Name="checkout" Type="DateTime" Precision="0" />
+          <Property Name="totalhours" Type="Int32" />
           <Property Name="bookstatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
           <NavigationProperty Name="Customer" Relationship="Self.FK__Booking__cusid__37A5467C" FromRole="Booking" ToRole="Customer" />
           <NavigationProperty Name="Room" Relationship="Self.FK__Booking__roomid__38996AB5" FromRole="Booking" ToRole="Room" />
           <NavigationProperty Name="ServiceOrder" Relationship="Self.FK__Booking__serdeta__398D8EEE" FromRole="Booking" ToRole="ServiceOrder" />
           <NavigationProperty Name="Staff" Relationship="Self.FK__Booking__staffid__36B12243" FromRole="Booking" ToRole="Staff" />
-          <Property Name="booktype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="totalhours" Type="Int32" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -235,6 +274,35 @@
           <Property Name="cusaddress" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="isRemove" Type="Boolean" />
           <NavigationProperty Name="Booking" Relationship="Self.FK__Booking__cusid__37A5467C" FromRole="Customer" ToRole="Booking" />
+        </EntityType>
+        <EntityType Name="History">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="roomname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="roomtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="staffname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cusname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cusphone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="checkin" Type="DateTime" Precision="0" />
+          <Property Name="checkout" Type="DateTime" Precision="0" />
+          <Property Name="totalhours" Type="Int32" />
+          <Property Name="totalamount" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="HistoryService" Relationship="Self.FK__HistorySe__histo__3E52440B" FromRole="History" ToRole="HistoryService" />
+        </EntityType>
+        <EntityType Name="HistoryService">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="historyID" Type="Int32" />
+          <Property Name="sername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="serquantity" Type="Int32" />
+          <Property Name="sertotal" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="seramount" Type="Decimal" Precision="10" Scale="0" />
+          <NavigationProperty Name="History" Relationship="Self.FK__HistorySe__histo__3E52440B" FromRole="HistoryService" ToRole="History" />
         </EntityType>
         <EntityType Name="Room">
           <Key>
@@ -337,6 +405,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK__HistorySe__histo__3E52440B">
+          <End Role="History" Type="Self.History" Multiplicity="0..1" />
+          <End Role="HistoryService" Type="Self.HistoryService" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="History">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HistoryService">
+              <PropertyRef Name="historyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK__ServiceOr__roomi__33D4B598">
           <End Role="Room" Type="Self.Room" Multiplicity="0..1" />
           <End Role="ServiceOrder" Type="Self.ServiceOrder" Multiplicity="*" />
@@ -364,6 +444,8 @@
         <EntityContainer Name="QLKHACHSANEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Booking" EntityType="Self.Booking" />
           <EntitySet Name="Customer" EntityType="Self.Customer" />
+          <EntitySet Name="History" EntityType="Self.History" />
+          <EntitySet Name="HistoryService" EntityType="Self.HistoryService" />
           <EntitySet Name="Room" EntityType="Self.Room" />
           <EntitySet Name="Service" EntityType="Self.Service" />
           <EntitySet Name="ServiceOrder" EntityType="Self.ServiceOrder" />
@@ -384,6 +466,10 @@
             <End Role="Staff" EntitySet="Staff" />
             <End Role="Booking" EntitySet="Booking" />
           </AssociationSet>
+          <AssociationSet Name="FK__HistorySe__histo__3E52440B" Association="Self.FK__HistorySe__histo__3E52440B">
+            <End Role="History" EntitySet="History" />
+            <End Role="HistoryService" EntitySet="HistoryService" />
+          </AssociationSet>
           <AssociationSet Name="FK__ServiceOr__roomi__33D4B598" Association="Self.FK__ServiceOr__roomi__33D4B598">
             <End Role="Room" EntitySet="Room" />
             <End Role="ServiceOrder" EntitySet="ServiceOrder" />
@@ -392,22 +478,16 @@
             <End Role="Service" EntitySet="Service" />
             <End Role="ServiceOrder" EntitySet="ServiceOrder" />
           </AssociationSet>
-          <EntitySet Name="History" EntityType="QLKHACHSANModel.History" />
+          <EntitySet Name="RememberLogin" EntityType="QLKHACHSANModel.RememberLogin" />
         </EntityContainer>
-        <EntityType Name="History">
+        <EntityType Name="RememberLogin">
           <Key>
-            <PropertyRef Name="ID" />
+            <PropertyRef Name="id" />
           </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="roomname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="roomtype" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="payamount" Type="Decimal" Precision="10" Scale="0" />
-          <Property Name="staffname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cusname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="cusphone" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="checkin" Type="DateTime" Precision="0" />
-          <Property Name="checkout" Type="DateTime" Precision="0" />
-          <Property Name="totalhours" Type="Int32" />
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="isCheck" Type="Boolean" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -418,15 +498,15 @@
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="QLKHACHSANModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
-                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
-                <ScalarProperty Name="booktype" ColumnName="booktype" />
                 <ScalarProperty Name="bookid" ColumnName="bookid" />
                 <ScalarProperty Name="staffid" ColumnName="staffid" />
                 <ScalarProperty Name="cusid" ColumnName="cusid" />
                 <ScalarProperty Name="roomid" ColumnName="roomid" />
                 <ScalarProperty Name="serdetailid" ColumnName="serdetailid" />
+                <ScalarProperty Name="booktype" ColumnName="booktype" />
                 <ScalarProperty Name="checkin" ColumnName="checkin" />
                 <ScalarProperty Name="checkout" ColumnName="checkout" />
+                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
                 <ScalarProperty Name="bookstatus" ColumnName="bookstatus" />
                 <ScalarProperty Name="payamount" ColumnName="payamount" />
               </MappingFragment>
@@ -442,6 +522,35 @@
                 <ScalarProperty Name="cusdate" ColumnName="cusdate" />
                 <ScalarProperty Name="cusaddress" ColumnName="cusaddress" />
                 <ScalarProperty Name="isRemove" ColumnName="isRemove" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="History">
+            <EntityTypeMapping TypeName="QLKHACHSANModel.History">
+              <MappingFragment StoreEntitySet="History">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="roomname" ColumnName="roomname" />
+                <ScalarProperty Name="roomtype" ColumnName="roomtype" />
+                <ScalarProperty Name="payamount" ColumnName="payamount" />
+                <ScalarProperty Name="staffname" ColumnName="staffname" />
+                <ScalarProperty Name="cusname" ColumnName="cusname" />
+                <ScalarProperty Name="cusphone" ColumnName="cusphone" />
+                <ScalarProperty Name="checkin" ColumnName="checkin" />
+                <ScalarProperty Name="checkout" ColumnName="checkout" />
+                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
+                <ScalarProperty Name="totalamount" ColumnName="totalamount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryService">
+            <EntityTypeMapping TypeName="QLKHACHSANModel.HistoryService">
+              <MappingFragment StoreEntitySet="HistoryService">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="historyID" ColumnName="historyID" />
+                <ScalarProperty Name="sername" ColumnName="sername" />
+                <ScalarProperty Name="serquantity" ColumnName="serquantity" />
+                <ScalarProperty Name="sertotal" ColumnName="sertotal" />
+                <ScalarProperty Name="seramount" ColumnName="seramount" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -495,19 +604,13 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="History">
-            <EntityTypeMapping TypeName="QLKHACHSANModel.History">
-              <MappingFragment StoreEntitySet="History">
-                <ScalarProperty Name="totalhours" ColumnName="totalhours" />
-                <ScalarProperty Name="checkout" ColumnName="checkout" />
-                <ScalarProperty Name="checkin" ColumnName="checkin" />
-                <ScalarProperty Name="cusphone" ColumnName="cusphone" />
-                <ScalarProperty Name="cusname" ColumnName="cusname" />
-                <ScalarProperty Name="staffname" ColumnName="staffname" />
-                <ScalarProperty Name="payamount" ColumnName="payamount" />
-                <ScalarProperty Name="roomtype" ColumnName="roomtype" />
-                <ScalarProperty Name="roomname" ColumnName="roomname" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
+          <EntitySetMapping Name="RememberLogin">
+            <EntityTypeMapping TypeName="QLKHACHSANModel.RememberLogin">
+              <MappingFragment StoreEntitySet="RememberLogin">
+                <ScalarProperty Name="isCheck" ColumnName="isCheck" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -525,8 +628,8 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="false" />
-        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>

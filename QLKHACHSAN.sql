@@ -86,9 +86,29 @@ CREATE TABLE History (
 	cusphone nvarchar(50),
 	checkin SMALLDATETIME,
 	checkout SMALLDATETIME,
-	totalhours int
+	totalhours int,
+	totalamount DECIMAL(10, 0),
 )
 
+CREATE TABLE HistoryService (
+    ID INT IDENTITY(1,1) PRIMARY KEY,
+    historyID INT,
+    sername NVARCHAR(100),
+    serquantity INT,
+    sertotal DECIMAL(10, 0),
+    seramount DECIMAL(10, 0),
+    FOREIGN KEY (historyID) REFERENCES History(ID)
+);
+
+create table RememberLogin (
+	 id int  PRIMARY KEY,
+	 Username NVARCHAR(50),
+	 Password NVARCHAR(50),
+	 isCheck bit default 0
+)
+
+INSERT INTO RememberLogin (id)
+values (1)
 
 INSERT INTO Staff (staffname, staffsex, staffphone, staffdate, staffaddress, Username, Password, Role)
 VALUES ('admin', 'Nam', '093764812', '01-01-2003', '123 Main Street', 'admin', 'admin', 'admin')
@@ -116,3 +136,6 @@ VALUES	(N'Gà hấp lá chanh', 250000, N'Đồ ăn mặn'),
 		(N'Cafe', 50000, N'Nước')
 
 	
+	select DISTINCT h.* from History as h
+	inner join HistoryService as hs on hs.historyID = h.ID
+	select * from Booking where roomid = 5

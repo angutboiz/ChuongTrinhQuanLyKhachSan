@@ -14,6 +14,12 @@ namespace ChuongTrinhQuanLyKhachSan
     
     public partial class History
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public History()
+        {
+            this.HistoryService = new HashSet<HistoryService>();
+        }
+    
         public int ID { get; set; }
         public string roomname { get; set; }
         public string roomtype { get; set; }
@@ -24,5 +30,9 @@ namespace ChuongTrinhQuanLyKhachSan
         public Nullable<System.DateTime> checkin { get; set; }
         public Nullable<System.DateTime> checkout { get; set; }
         public Nullable<int> totalhours { get; set; }
+        public Nullable<decimal> totalamount { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<HistoryService> HistoryService { get; set; }
     }
 }

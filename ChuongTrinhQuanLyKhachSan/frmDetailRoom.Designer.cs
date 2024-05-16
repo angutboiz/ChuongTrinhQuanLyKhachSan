@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmDetailRoom));
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnClose = new Guna.UI2.WinForms.Guna2Button();
             this.grbNV = new Guna.UI2.WinForms.Guna2GroupBox();
@@ -88,6 +89,8 @@
             this.label15 = new System.Windows.Forms.Label();
             this.grpRoom = new Guna.UI2.WinForms.Guna2GroupBox();
             this.lbTongTatCaTien = new System.Windows.Forms.Label();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
             this.grbNV.SuspendLayout();
             this.grbKH.SuspendLayout();
             this.grbDetail.SuspendLayout();
@@ -600,6 +603,7 @@
             this.txbStart.SelectedText = "";
             this.txbStart.Size = new System.Drawing.Size(244, 36);
             this.txbStart.TabIndex = 13;
+            this.txbStart.TextChanged += new System.EventHandler(this.txbStart_TextChanged);
             // 
             // chkTuChinh
             // 
@@ -1007,6 +1011,21 @@
             this.lbTongTatCaTien.TabIndex = 31;
             this.lbTongTatCaTien.Text = "Tổng tất cả tiền: ";
             // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
+            this.printPreviewDialog1.Load += new System.EventHandler(this.printPreviewDialog1_Load);
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
             // frmDetailRoom
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1094,5 +1113,7 @@
         private System.Windows.Forms.RadioButton rbNuoc;
         private System.Windows.Forms.Label lbTongTatCaTien;
         private System.Windows.Forms.Label lbSerID;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument printDocument1;
     }
 }

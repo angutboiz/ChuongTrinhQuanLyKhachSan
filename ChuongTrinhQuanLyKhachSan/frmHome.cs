@@ -31,12 +31,12 @@ namespace ChuongTrinhQuanLyKhachSan
             tcName.SelectedTab = tpPhong;
             tabPage2.Text = name;
 
-            LoadDataNhanVien();
+            /*LoadDataNhanVien();
             LoadDataKhachHang();
             LoadDataRoom();
             LoadRoom();
             LoadDataService();
-            LoadDataHistory();
+            LoadDataHistory();*/
             LoadDataDateMonthYearToComboBox();
         }
 
@@ -69,6 +69,11 @@ namespace ChuongTrinhQuanLyKhachSan
             if (tcName.SelectedTab == tpQLService)
             {
                 LoadDataService();
+            }
+
+            if (tcName.SelectedTab == tpDashboard)
+            {
+                LoadDataHistory();
             }
 
             if (role != "admin" && (tcName.SelectedTab == tpNV || tcName.SelectedTab == tpQLPhong || tcName.SelectedTab == tpQLService))
@@ -147,10 +152,11 @@ namespace ChuongTrinhQuanLyKhachSan
 
         void LoadDataHistory()
         {
-            var result = from r in db.History
-                         select r;
+            var query = (from h in db.History
+                         join hs in db.HistoryService on h.ID equals hs.historyID
+                         select h).Distinct();
 
-            dgvHistory.DataSource = result.ToList();
+            dgvHistory.DataSource = query.ToList();
         }
 
 
@@ -641,7 +647,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 db.SaveChanges();
                 LoadDataKhachHang();
-                MessageBox.Show("Thêm nhân viên [" + txbKHName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Thêm khách hàng [" + txbKHName.Text + "] thành công", "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 ClearFieldKH();
             }
         }
@@ -748,10 +754,6 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void cbRType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            /* VIP
- Quạt
- Thường
- Máy lạnh*/
             if (cbRType.SelectedIndex == 0)
             {
                 txbRPrice.Text = "200 000";
@@ -1012,7 +1014,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
             // Load data for years (you can adjust the range as needed)
             int currentYear = DateTime.Now.Year;
-            for (int i = currentYear - 100; i <= currentYear; i++)
+            for (int i = 2023; i <= currentYear; i++)
             {
                 cbDYear.Items.Add(i);
             }
@@ -1023,15 +1025,18 @@ namespace ChuongTrinhQuanLyKhachSan
             cbDMonth.SelectedItem = DateTime.Now.Month;
             cbDYear.SelectedItem = DateTime.Now.Year;
 
-            var mostFrequentRoom = db.History
-                                .GroupBy(h => h.roomname)
-                                .OrderByDescending(g => g.Count())
-                                .Select(g => new
-                                {
-                                    RoomName = g.Key,
-                                    Count = g.Count()
-                                })
-                                .FirstOrDefault();
+            var mostFrequentRoom = (from h in db.History
+                                    join hs in db.HistoryService on h.ID equals hs.historyID
+                                    group h by h.roomname into g
+                                    orderby g.Count() descending
+                                    select new
+                                    {
+                                        RoomName = g.Key,
+                                        Count = g.Count()
+                                    })
+                         .Distinct()
+                         .FirstOrDefault();
+            
             if (mostFrequentRoom != null)
             {
                 lbPhongNhieuNhat.Text = "Phòng được đặt nhiều nhất: " + mostFrequentRoom.RoomName.ToString() ?? "Chưa có dữ liệu";
@@ -1063,13 +1068,14 @@ namespace ChuongTrinhQuanLyKhachSan
 
 
                 DateTime startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, day);
-                var result = from h in db.History
-                             where DbFunctions.TruncateTime(h.checkin) == startDate
-                             select h;
+                var result = (from h in db.History
+                              join hs in db.HistoryService on h.ID equals hs.historyID
+                              where DbFunctions.TruncateTime(h.checkin) == startDate
+                             select h).Distinct();
 
                 dgvHistory.DataSource = result.ToList();
 
-                var totalRevenue = db.History.Where(h => DbFunctions.TruncateTime(h.checkin) == startDate).Sum(h => h.payamount);
+                var totalRevenue = result.Sum(h => h.totalamount);
                 cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
 
             }
@@ -1082,13 +1088,14 @@ namespace ChuongTrinhQuanLyKhachSan
                 DateTime startDate = new DateTime(year, month, 1); // Ngày đầu tiên của tháng
                 DateTime endDate = startDate.AddMonths(1).AddDays(-1); // Ngày cuối cùng của tháng
 
-                var result = from h in db.History
-                             where h.checkin >= startDate && h.checkin <= endDate
-                             select h;
+                var result = (from h in db.History
+                              join hs in db.HistoryService on h.ID equals hs.historyID
+                              where h.checkin >= startDate && h.checkin <= endDate
+                             select h).Distinct();
 
                 dgvHistory.DataSource = result.ToList();
 
-                var totalRevenue = result.Sum(h => h.payamount);
+                var totalRevenue = result.Sum(h => h.totalamount);
                 cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
             }
 
@@ -1099,13 +1106,14 @@ namespace ChuongTrinhQuanLyKhachSan
                 DateTime startDate = new DateTime(year, 1, 1); // Ngày đầu tiên của năm
                 DateTime endDate = startDate.AddYears(1).AddDays(-1); // Ngày cuối cùng của năm
 
-                var result = from h in db.History
-                             where h.checkin >= startDate && h.checkin <= endDate
-                             select h;
+                var result = (from h in db.History
+                              join hs in db.HistoryService on h.ID equals hs.historyID
+                              where h.checkin >= startDate && h.checkin <= endDate
+                             select h).Distinct();
 
                 dgvHistory.DataSource = result.ToList();
 
-                var totalRevenue = result.Sum(h => h.payamount);
+                var totalRevenue = result.Sum(h => h.totalamount);
                 cbDTotal.Text = string.Format("{0:#,##0}đ", totalRevenue ?? 0);
 
             }
@@ -1135,6 +1143,19 @@ namespace ChuongTrinhQuanLyKhachSan
         private void rbDDashboard_CheckedChanged(object sender, EventArgs e)
         {
             QueryDashboard();
+        }
+
+        private void dgvHistory_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            lbIDDash.Text = dgvHistory.SelectedRows[0].Cells[0].Value.ToString();
+
+        }
+
+        private void dgvHistory_CellMouseDoubleClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            frmReport frmReport = new frmReport();
+            frmReport.id = int.Parse(lbIDDash.Text);
+            frmReport.ShowDialog();
         }
     }
 }

@@ -1,16 +1,9 @@
-﻿using Guna.UI2.WinForms.Suite;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
-using System.Runtime.ConstrainedExecution;
-using System.Text;
-using System.Threading.Tasks;
+
 using System.Windows.Forms;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace ChuongTrinhQuanLyKhachSan
 {
@@ -50,7 +43,6 @@ namespace ChuongTrinhQuanLyKhachSan
             DefaultField();
 
             //kiếm xem id room có trong booking chưa, nếu có thì hiển thị data staff và customer lên load form
-
             var booking = db.Booking.FirstOrDefault(b => b.roomid == room.roomid );
             if (booking != null && booking.bookstatus == "Đang thuê phòng")
             {
@@ -193,7 +185,7 @@ namespace ChuongTrinhQuanLyKhachSan
 
         private void btnDatPhong_Click(object sender, EventArgs e)
         {
-            if (cbKH.SelectedIndex == -1 && cbNV.SelectedIndex == -1)
+            if (cbKH.SelectedIndex == -1 || cbNV.SelectedIndex == -1)
             {
                 MessageBox.Show("Bạn chưa chọn tên nhân viên hoặc tên khách hàng", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
@@ -241,7 +233,7 @@ namespace ChuongTrinhQuanLyKhachSan
                 grpRoom.BorderColor = green;
                 grpRoom.CustomBorderColor = green;
 
-                Application.Restart();
+               Application.Restart();
             }
 
 
@@ -343,8 +335,8 @@ namespace ChuongTrinhQuanLyKhachSan
             var bk = db.Booking.FirstOrDefault(b => b.roomid == room.roomid);
 
             lbTongTien.Text = string.Format("Tổng tiền: {0:#,##0}đ", tongtien);
-
-            bk.checkout = DateTime.Parse(txbEnd.Text);
+            var endTime = DateTime.Parse(txbEnd.Text);
+            bk.checkout = endTime;
 
             var totalall = db.ServiceOrder.Where(o => o.roomid == room.roomid).Sum(o => o.sertotal);
             decimal totall = 0;
@@ -355,7 +347,7 @@ namespace ChuongTrinhQuanLyKhachSan
             else
             {
                 totall = tongtien;
-               
+
             }
             lbTongTatCaTien.Text = string.Format("Tổng tất cả tiền: : {0:#,##0}đ", totall);
 
@@ -377,18 +369,55 @@ namespace ChuongTrinhQuanLyKhachSan
                 {
                     roomname = room.roomnumber,
                     roomtype = room.roomtype,
-                    payamount = totall,
+                    payamount = tongtien,
                     staffname = staff.staffname,
                     cusname = cus.cusname,
                     cusphone = cus.cusphone,
                     checkin = bk.checkin,
-                    checkout = bk.checkout,
-                    totalhours = bk.totalhours
+                    checkout = endTime,
+                    totalhours = bk.totalhours,
+                    totalamount = totall
                 });
+                db.SaveChanges();
+
+
+                var book = db.Booking.SingleOrDefault(b => b.roomid == room.roomid);
+                var history = db.History.SingleOrDefault(h => h.roomname == room.roomnumber && h.checkin == book.checkin);
+                var serviceOrders = db.ServiceOrder.Where(so => so.roomid == room.roomid).ToList();
+                if (serviceOrders.ToList().Count() > 0)
+                {
+                    var checkout = history.checkin;
+                    foreach (var item in serviceOrders)
+                    {
+                        var name = db.Service.SingleOrDefault(n => n.serid == item.serid);
+                        db.HistoryService.Add(new HistoryService()
+                        {
+                            historyID = history.ID,
+                            sername = name.sername,
+                            serquantity = item.serquantity,
+                            sertotal = item.sertotal,
+                            seramount = totalall
+                        });
+                    }
+                }
+                else
+                {
+
+
+                    db.HistoryService.Add(new HistoryService()
+                    {
+                        historyID = history.ID,
+                        sername = null,
+                        serquantity = null,
+                        sertotal = null,
+                        seramount = 0
+                    });
+                }
+
 
                 MessageBox.Show("Thanh toán thành công phòng: " + room.roomnumber + "\nSố tiền: " + string.Format("{0:#,##0}đ", totall), "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                var serviceOrders = db.ServiceOrder.Where(so => so.roomid == 1).ToList();
+
 
                 if (serviceOrders.Any())
                 {
@@ -397,8 +426,6 @@ namespace ChuongTrinhQuanLyKhachSan
 
                 var handle = db.Booking.SingleOrDefault(s => s.roomid == room.roomid);
                 db.Booking.Remove(handle);
-
-
 
                 db.SaveChanges();
                 Application.Restart();
@@ -562,6 +589,36 @@ namespace ChuongTrinhQuanLyKhachSan
         {
             lbSerID.Text = dgvService.SelectedRows[0].Cells[0].Value.ToString();
 
+
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Graphics graphics = e.Graphics;
+            Font font = new Font("Courier New", 10);
+            float fontHeight = font.GetHeight();
+            int startX = 50;
+            int startY = 55;
+            int Offset = 40;
+            graphics.DrawString("Welcome to MSST", new Font("Courier New", 14),
+                                new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("Ticket No:" ,
+                     new Font("Courier New", 14),
+                     new SolidBrush(Color.Black), startX, startY + Offset);
+            Offset = Offset + 20;
+            graphics.DrawString("Ticket Date :" ,
+                     new Font("Courier New", 12),
+                     new SolidBrush(Color.Black), startX, startY + Offset);
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txbStart_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

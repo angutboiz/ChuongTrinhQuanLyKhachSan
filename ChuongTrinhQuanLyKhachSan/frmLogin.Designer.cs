@@ -35,6 +35,7 @@
             this.btnLogin = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox1 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.btnExit = new Guna.UI2.WinForms.Guna2Button();
+            this.cbReLogin = new Guna.UI2.WinForms.Guna2CheckBox();
             this.guna2GroupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             this.txbUser.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbUser.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbUser.Location = new System.Drawing.Point(41, 90);
-            this.txbUser.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbUser.Margin = new System.Windows.Forms.Padding(2);
             this.txbUser.Name = "txbUser";
             this.txbUser.PasswordChar = '\0';
             this.txbUser.PlaceholderText = "";
@@ -82,8 +83,8 @@
             this.txbPass.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
             this.txbPass.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.txbPass.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txbPass.Location = new System.Drawing.Point(41, 169);
-            this.txbPass.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbPass.Location = new System.Drawing.Point(41, 163);
+            this.txbPass.Margin = new System.Windows.Forms.Padding(2);
             this.txbPass.Name = "txbPass";
             this.txbPass.PasswordChar = '*';
             this.txbPass.PlaceholderText = "";
@@ -97,7 +98,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(38, 149);
+            this.label2.Location = new System.Drawing.Point(38, 143);
             this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(69, 18);
@@ -114,8 +115,8 @@
             this.btnLogin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(41, 219);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnLogin.Location = new System.Drawing.Point(41, 245);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(2);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(150, 37);
             this.btnLogin.TabIndex = 4;
@@ -124,6 +125,7 @@
             // 
             // guna2GroupBox1
             // 
+            this.guna2GroupBox1.Controls.Add(this.cbReLogin);
             this.guna2GroupBox1.Controls.Add(this.btnExit);
             this.guna2GroupBox1.Controls.Add(this.label1);
             this.guna2GroupBox1.Controls.Add(this.btnLogin);
@@ -135,9 +137,9 @@
             this.guna2GroupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.guna2GroupBox1.ForeColor = System.Drawing.Color.White;
             this.guna2GroupBox1.Location = new System.Drawing.Point(0, 0);
-            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.guna2GroupBox1.Margin = new System.Windows.Forms.Padding(2);
             this.guna2GroupBox1.Name = "guna2GroupBox1";
-            this.guna2GroupBox1.Size = new System.Drawing.Size(241, 316);
+            this.guna2GroupBox1.Size = new System.Drawing.Size(241, 341);
             this.guna2GroupBox1.TabIndex = 5;
             this.guna2GroupBox1.Text = "Đăng nhập";
             this.guna2GroupBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -153,13 +155,34 @@
             this.btnExit.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnExit.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.btnExit.ForeColor = System.Drawing.Color.White;
-            this.btnExit.Location = new System.Drawing.Point(155, 275);
-            this.btnExit.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnExit.Location = new System.Drawing.Point(154, 298);
+            this.btnExit.Margin = new System.Windows.Forms.Padding(2);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(76, 32);
             this.btnExit.TabIndex = 5;
             this.btnExit.Text = "Thoát";
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // cbReLogin
+            // 
+            this.cbReLogin.AutoSize = true;
+            this.cbReLogin.BackColor = System.Drawing.Color.Transparent;
+            this.cbReLogin.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbReLogin.CheckedState.BorderRadius = 0;
+            this.cbReLogin.CheckedState.BorderThickness = 0;
+            this.cbReLogin.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.cbReLogin.ForeColor = System.Drawing.Color.DimGray;
+            this.cbReLogin.Location = new System.Drawing.Point(41, 208);
+            this.cbReLogin.Name = "cbReLogin";
+            this.cbReLogin.Size = new System.Drawing.Size(128, 19);
+            this.cbReLogin.TabIndex = 6;
+            this.cbReLogin.Text = "Ghi nhớ đăng nhập";
+            this.cbReLogin.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbReLogin.UncheckedState.BorderRadius = 0;
+            this.cbReLogin.UncheckedState.BorderThickness = 0;
+            this.cbReLogin.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.cbReLogin.UseVisualStyleBackColor = false;
+            this.cbReLogin.CheckedChanged += new System.EventHandler(this.cbReLogin_CheckedChanged);
             // 
             // frmLogin
             // 
@@ -167,14 +190,15 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(241, 316);
+            this.ClientSize = new System.Drawing.Size(241, 341);
             this.ControlBox = false;
             this.Controls.Add(this.guna2GroupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "frmLogin";
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             this.guna2GroupBox1.ResumeLayout(false);
             this.guna2GroupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -190,5 +214,6 @@
         private Guna.UI2.WinForms.Guna2Button btnLogin;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox1;
         private Guna.UI2.WinForms.Guna2Button btnExit;
+        private Guna.UI2.WinForms.Guna2CheckBox cbReLogin;
     }
 }
